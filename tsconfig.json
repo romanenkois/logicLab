@@ -5,8 +5,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-        "environments/*": ["src/app/environments/*"],
-        "commands": ["src/app/data/commands/index.ts"],
+        "@commands": ["src/app/data/commands/index.ts"],
+        "@widgets": ["src/app/widgets/index.ts"],
+
+        "@environments": ["src/app/environments/index.ts"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

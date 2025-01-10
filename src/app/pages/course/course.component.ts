@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
   templateUrl: './course.component.html',
   styleUrl: './course.component.scss',
 })
-export class CourseComponent {}
+export default class CourseComponent {
+  activeRouter: ActivatedRoute = inject(ActivatedRoute);
+
+  courseType: string = '';
+  courseId: string = '';
+
+  ngOnInit() {
+    this.activeRouter.url.subscribe((url) => {
+      this.courseType = url[1].path;
+      this.courseId = url[2].path;
+    });
+  }
+}
