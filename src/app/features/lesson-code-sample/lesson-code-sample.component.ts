@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-lesson-code-sample',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './lesson-code-sample.component.scss'
 })
 export class LessonCodeSampleComponent {
-
+  object = input();
 }

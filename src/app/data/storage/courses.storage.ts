@@ -37,7 +37,7 @@ export class CoursesStorage {
     if (!course) {
       return;
     }
-
     return course.lessons.find((lesson: CourseLesson) => lesson.href === lessonHref);
   }
+
 }

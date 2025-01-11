@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-lesson-plain-text',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './lesson-plain-text.component.scss'
 })
 export class LessonPlainTextComponent {
-
+  object = input<string>();
 }

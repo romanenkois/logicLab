@@ -1,3 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 :root {
     --black-color: #080a0f;
     --dark-color: #0c0e14;
@@ -6,8 +10,8 @@
     --white-color: #fcfcfc;
     --white-hover-color: #e6e6e6;
 
-    --primary-color: #3d65a1;
-    --primary-hover-color: #2f4e7f;
+    --primary-color: #3375d8;
+    --primary-hover-color: #3d65a1;
 
     // --small-font-size: 1rem;
     --medium-font-size: 16px;

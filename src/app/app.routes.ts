@@ -6,8 +6,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component'),
   },
   {
-    path: 'course/:type/:id',
+    path: 'course/:courseHref',
     loadComponent: () => import('./pages/course/course.component'),
+  },
+  {
+    path: 'course/:courseHref/:lessonHref',
+    loadComponent: () => import('./pages/lesson/lesson.component'),
   },
   {
     path: 'error404',
