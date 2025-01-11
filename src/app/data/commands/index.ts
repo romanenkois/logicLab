@@ -1,1 +1,1 @@
-export * from './get-course.command';
+export * from './courses.command';

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CoursesCommand } from '@commands';
 
 @Component({
   selector: 'app-course-content',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './course-content.component.scss'
 })
 export class CourseContentComponent {
+  courseCommand: CoursesCommand = inject(CoursesCommand);
 
+  
 }

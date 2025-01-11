@@ -11,10 +11,14 @@ export class GeneralApiService {
   private http: HttpClient = inject(HttpClient);
 
   public getCourses(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/courses`);
+    return this.http.get(`${this.apiUrl}/courses/all-courses-list`);
   }
 
-  public getCourse(type: string, id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/courses/${type}/${id}`);
+  public getCourse(courseHref: string, lessonHref: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/courses/course-content/${courseHref}`);
+  }
+
+  public getLesson(courseHref: string, lessonHref: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/courses/lesson/${courseHref}/${lessonHref}`);
   }
 }
