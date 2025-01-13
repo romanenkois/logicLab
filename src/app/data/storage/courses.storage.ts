@@ -1,43 +1,24 @@
-import { Injectable } from "@angular/core";
-
-export type CourseLesson = {
-  id: string;
-  href: string;
-  courseHref: string;
-  name: string;
-  title: string;
-  description: string;
-  content: string;
-}
-
-export type Course = {
-  id: string;
-  href: string;
-  name: string;
-  title: string;
-  description: string;
-  programingLanguage: string;
-  lessons: Array<CourseLesson>;
-}
-
-export type CoursesRepository = Array<Course>;
+import { Injectable, signal, WritableSignal } from "@angular/core";
+import { Course, Lesson } from "@models";
 
 @Injectable({
   providedIn: "root"
 })
 export class CoursesStorage {
-  private courses: CoursesRepository = [];
-
-  public getCourse(courseHref: string): Course | undefined {
-    return this.courses.find((course: Course) => course.href === courseHref);
+  private readonly courses: WritableSignal<Array<Course>> = signal([]);
+  public getCourse(courseHref: string): Course {
+    // used filter insetead of find, so compiler would shut up about it being undefined
+    return this.courses().filter((course: Course) => course.href === courseHref)[0];
+  }
+  public addCourse(course: Course): void {
+    this.courses.set([...this.courses(), course]);
   }
 
-  public getLesson(courseHref: string, lessonHref: string): CourseLesson | undefined {
-    const course = this.getCourse(courseHref);
-    if (!course) {
-      return;
-    }
-    return course.lessons.find((lesson: CourseLesson) => lesson.href === lessonHref);
+  private lessons: WritableSignal<Array<Lesson>> = signal([]);
+  public getLesson(courseHref: string, lessonHref: string): Lesson {
+    return this.lessons().filter((lesson) => lesson.href == lessonHref && lesson.courseHref == courseHref )[0];
   }
-
+  public addLesson(lesson: Lesson): void {
+    this.lessons.set([...this.lessons(), lesson]);
+  }
 }

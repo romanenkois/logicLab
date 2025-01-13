@@ -9,10 +9,9 @@
     </div>
     <div class="code">
         <div>
-            {{this.object()}}
+            <pre>
+                <code [highlight]="this.object() || ''" language="javascript"></code>
+            </pre>
         </div>
     </div>
-    <!-- <div class="">
-
-    </div> -->
 </div>

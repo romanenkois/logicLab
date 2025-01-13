@@ -7,6 +7,7 @@
     "paths": {
         "@api": ["src/app/data/api/index.ts"],
         "@commands": ["src/app/data/commands/index.ts"],
+        "@models": ["src/app/data/models/index.ts"],
         "@storage": ["src/app/data/storage/index.ts"],
 
         "@widgets": ["src/app/widgets/index.ts"],
