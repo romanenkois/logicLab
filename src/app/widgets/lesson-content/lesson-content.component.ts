@@ -5,10 +5,10 @@ import { LessonCodeSampleComponent } from "../../features/lesson-code-sample/les
 import { CoursesStorage } from '@storage';
 
 @Component({
-    selector: 'app-lesson-content',
-    imports: [LessonPlainTextComponent, LessonCodeSampleComponent],
-    templateUrl: './lesson-content.component.html',
-    styleUrl: './lesson-content.component.scss'
+  selector: 'app-lesson-content',
+  imports: [LessonPlainTextComponent, LessonCodeSampleComponent],
+  templateUrl: './lesson-content.component.html',
+  styleUrl: './lesson-content.component.scss'
 })
 export class LessonContentComponent implements OnInit {
   courseCommand: CoursesCommand = inject(CoursesCommand);

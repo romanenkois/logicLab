@@ -6,24 +6,19 @@ import { Course, Lesson } from "@models";
 })
 export class CoursesStorage {
   private readonly courses: WritableSignal<Array<Course>> = signal([]);
-  public getCourse(courseHref: string): any {
-    const course = this.courses().find((course: Course) => course.href === courseHref);
-    return course || undefined;
+  public getCourse(courseHref: string): Course {
+    // used filter insetead of find, so compiler would shut up about it being undefined
+    return this.courses().filter((course: Course) => course.href === courseHref)[0];
   }
   public addCourse(course: Course): void {
-    console.log('course to add',course)
-    this.courses().push(course);
+    this.courses.set([...this.courses(), course]);
   }
 
   private lessons: WritableSignal<Array<Lesson>> = signal([]);
-  public getLesson(courseHref: string, lessonHref: string): any {
-    const lesson = this.lessons().filter((lesson) => lesson.href == lessonHref);
-    console.log('lesson',lesson)
-    return  lesson || undefined;
+  public getLesson(courseHref: string, lessonHref: string): Lesson {
+    return this.lessons().filter((lesson) => lesson.href == lessonHref && lesson.courseHref == courseHref )[0];
   }
-  public addLesson(courseHref: string, lesson: Lesson): void {
-    console.log('lesson to add',lesson)
+  public addLesson(lesson: Lesson): void {
     this.lessons.set([...this.lessons(), lesson]);
-    console.log('lessons',this.lessons())
   }
 }

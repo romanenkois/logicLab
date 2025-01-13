@@ -30,7 +30,7 @@ export class CoursesCommand {
       console.log('loading lesson', lessonHref);
       this.appAPI.getLesson(courseHref, lessonHref).subscribe(
         (responce) => {
-          this.couresesRepository.addLesson(courseHref, responce['lesson']);
+          this.couresesRepository.addLesson(responce['lesson']);
         }, (error) => {
           console.error(error);
         }
