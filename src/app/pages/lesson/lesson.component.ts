@@ -3,11 +3,10 @@ import { LessonContentComponent } from "../../widgets/lesson-content/lesson-cont
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-lesson',
-  standalone: true,
-  imports: [LessonContentComponent],
-  templateUrl: './lesson.component.html',
-  styleUrl: './lesson.component.scss'
+    selector: 'app-lesson',
+    imports: [LessonContentComponent],
+    templateUrl: './lesson.component.html',
+    styleUrl: './lesson.component.scss'
 })
 export default class LessonComponent implements OnInit {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);

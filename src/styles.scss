@@ -1,6 +1,7 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@use "tailwindcss/base";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+@use 'highlight.js/styles/vs2015.css';
 
 :root {
     --black-color: #080a0f;
@@ -26,6 +27,9 @@
 
     color: var(--white-color);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
@@ -50,6 +54,28 @@ button {
     border: none;
     background-color: none;
     border-radius: 0;
+}
+
+code {
+    // background: var(--dark-color);
+    // border: 1px solid var(--black-color);
+    border-left: 3px solid var(--primary-color);
+    // color: var(--white-color);
+
+    page-break-inside: avoid;
+
+    font-size: 15px;
+    line-height: 1.6;
+    word-wrap: break-word;
+
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+
+    * {
+        font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
 }
 
 // needed for icons, used by google matterial icons

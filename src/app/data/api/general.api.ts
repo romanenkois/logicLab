@@ -14,8 +14,8 @@ export class GeneralApiService {
     return this.http.get(`${this.apiUrl}/courses/all-courses-list`);
   }
 
-  public getCourse(courseHref: string, lessonHref: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/courses/course-content/${courseHref}`);
+  public getCourse(courseHref: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/courses/course/${courseHref}`);
   }
 
   public getLesson(courseHref: string, lessonHref: string): Observable<any> {
