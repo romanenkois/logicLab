@@ -1,0 +1,14 @@
+<div class="console-container">
+    <textarea
+        class="code-input"
+        [(ngModel)]="userCode"
+        placeholder="write your JavaScript code here..."
+        rows="10"
+    >
+    </textarea>
+    <button (click)="executeCode()">Run Code</button>
+    <div class="output-container">
+        <h3>Output:</h3>
+        <pre>{{ output }}</pre>
+    </div>
+</div>

@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/lesson/lesson.component'),
   },
   {
+    path: 'console/:programmingLanguage',
+    loadComponent: () => import('./pages/console/console.component'),
+  },
+  {
     path: 'error404',
     loadComponent: () => import('./pages/error404/error404.component'),
   },

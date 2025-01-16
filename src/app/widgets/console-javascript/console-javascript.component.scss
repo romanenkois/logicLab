@@ -1,0 +1,18 @@
+.console-container {
+    padding: 20px;
+    background-color: var(--dark-color);
+}
+.code-input {
+    width: 100%;
+    font-family: monospace;
+    margin-bottom: 10px;
+    background-color: #000000;
+}
+.output-container {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+}
+pre {
+    font-size: 16px;
+}

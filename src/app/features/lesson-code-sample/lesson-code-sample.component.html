@@ -1,17 +1,12 @@
 <div class="wrapper">
-    <div class="top-bar">
+    <!-- <div class="top-bar">
         <div class="language">
             <p>JavaScript</p>
         </div>
-        <!-- <div class="description">
-            <p></p>
-        </div> -->
-    </div>
-    <div class="code">
-        <div>
-            <pre>
-                <code [highlight]="this.object() || ''" language="javascript"></code>
-            </pre>
-        </div>
+    </div> -->
+    <div class="code bg-white">
+        <pre class="m-0">
+            <code [highlight]="this.code() || ''" [language]="this.programingLanguage()"></code>
+        </pre>
     </div>
 </div>

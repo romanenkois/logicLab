@@ -56,11 +56,20 @@ button {
     border-radius: 0;
 }
 
+pre {
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    display: block;
+
+    font-size: 0;   // finally removes weird whitespaces of up and down of tag <pre>.
+                    // must be taken into a count,
+                    // so should rewritten in scoped scss that use it
+}
+
 code {
-    // background: var(--dark-color);
-    // border: 1px solid var(--black-color);
+    background: var(--dark-color);
     border-left: 3px solid var(--primary-color);
-    // color: var(--white-color);
 
     page-break-inside: avoid;
 
@@ -68,14 +77,25 @@ code {
     line-height: 1.6;
     word-wrap: break-word;
 
+    display: block;
     max-width: 100%;
     overflow: auto;
+
     padding: 1em 1.5em;
-    display: block;
+    margin: 0 !important;
+
 
     * {
         font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
     }
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.m-0 {
+    margin: 0 !important;
 }
 
 // needed for icons, used by google matterial icons

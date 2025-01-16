@@ -13,11 +13,15 @@
             <app-lesson-plain-text [object]="item.object">
             </app-lesson-plain-text>
             } @else if (item.type === 'code_sample') {
-            <app-lesson-code-sample [object]="item.object">
+            <app-lesson-code-sample
+            [code]="item.object"
+            [programingLanguage]="'javascript'">
             </app-lesson-code-sample>
             }
         </div>
         }
+    </div>
+    <div>
     </div>
 </div>
 }
