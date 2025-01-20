@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, InputSignal, OnInit, Signal } from '@angular/core';
+import { Component, computed, inject, input, InputSignal, OnInit } from '@angular/core';
 import { CoursesCommand } from '@commands';
 import { LessonPlainTextComponent } from "../../features/lesson-plain-text/lesson-plain-text.component";
 import { LessonCodeSampleComponent } from "../../features/lesson-code-sample/lesson-code-sample.component";

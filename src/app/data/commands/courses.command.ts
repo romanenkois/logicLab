@@ -24,17 +24,14 @@ export class CoursesCommand {
   }
 
   public loadLesson(courseHref: string, lessonHref: string) {
-    const lesson = this.couresesRepository.getLesson(courseHref, lessonHref);
 
-    if (true) {
-      console.log('loading lesson', lessonHref);
-      this.appAPI.getLesson(courseHref, lessonHref).subscribe(
-        (responce) => {
-          this.couresesRepository.addLesson(responce['lesson']);
-        }, (error) => {
-          console.error(error);
-        }
-      )
-    }
+    console.log('loading lesson', lessonHref);
+    this.appAPI.getLesson(courseHref, lessonHref).subscribe(
+      (responce) => {
+        this.couresesRepository.addLesson(responce['lesson']);
+      }, (error) => {
+        console.error(error);
+      }
+    )
   }
 }

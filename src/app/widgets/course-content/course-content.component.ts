@@ -1,6 +1,6 @@
-import { Component, computed, inject, input, InputSignal, Signal } from '@angular/core';
+import { Component, computed, inject, input, InputSignal, OnInit } from '@angular/core';
 import { CoursesCommand } from '@commands';
-import { Course } from '@models';
+import { CoursesStorage } from '@storage';
 
 @Component({
     selector: 'app-course-content',
@@ -8,16 +8,17 @@ import { Course } from '@models';
     templateUrl: './course-content.component.html',
     styleUrl: './course-content.component.scss'
 })
-export class CourseContentComponent {
+export class CourseContentComponent implements OnInit {
   courseCommand: CoursesCommand = inject(CoursesCommand);
+  courseStorage: CoursesStorage = inject(CoursesStorage);
 
   courseHref: InputSignal<string> = input.required();
 
-  // course: Signal<Course | undefined> = computed(() => {
-  //   const course = this.courseCommand.getCourse(this.courseHref());
-  //   if (!course) {
-  //     throw new Error('Course not found');
-  //   }
-  //   return course;
-  // });
+  course = computed(() =>
+    this.courseStorage.getCourse(this.courseHref())
+  );
+
+  ngOnInit() {
+
+  }
 }
