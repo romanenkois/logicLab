@@ -5,9 +5,13 @@
 
 :root {
     --black-color: #080a0f;
+
     --dark-color: #0c0e14;
+    --dark-light-color: #10131b;
+
     --dark-gray-color: #3a3a3a;
     --gray-color: #9b9b9b;
+
     --white-color: #fcfcfc;
     --white-hover-color: #e6e6e6;
 
@@ -19,7 +23,11 @@
     --medium-large-font-size: 18px;
     --large-font-size: 24px;
 
+    --very-quick-transition: 0.05s ease-in-out;
+    --quick-transition: 0.1s ease-in-out;
     --standart-transition: 0.3s ease-in-out;
+
+    --small-shring: scale(0.95);
 }
 
 * {
@@ -54,6 +62,8 @@ button {
     border: none;
     background-color: none;
     border-radius: 0;
+
+    font-weight: bold;
 }
 
 pre {
@@ -68,8 +78,11 @@ pre {
 }
 
 code {
-    background: var(--dark-color);
     border-left: 3px solid var(--primary-color);
+}
+
+.code, code{
+    background: var(--dark-color);
 
     page-break-inside: avoid;
 
@@ -78,6 +91,7 @@ code {
     word-wrap: break-word;
 
     display: block;
+    width: 100%;
     max-width: 100%;
     overflow: auto;
 

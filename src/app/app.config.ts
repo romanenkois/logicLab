@@ -12,13 +12,13 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHighlightOptions({
       coreLibraryLoader: () => import('highlight.js/lib/core'),
-      lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'), // Optional, add line numbers if needed
+      lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'),
       languages: {
         javascript: () => import('highlight.js/lib/languages/javascript'),
         typescript: () => import('highlight.js/lib/languages/typescript'),
+        python: () => import('highlight.js/lib/languages/python'),
+        xml: () => import('highlight.js/lib/languages/xml'),
         css: () => import('highlight.js/lib/languages/css'),
-        // html: () => import('highlight.js/lib/languages/html'),
-        xml: () => import('highlight.js/lib/languages/xml')
       },
     })
   ]

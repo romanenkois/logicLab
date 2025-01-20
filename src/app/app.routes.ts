@@ -14,12 +14,13 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/lesson/lesson.component'),
   },
   {
-    path: 'console/:programmingLanguage',
+    path: 'console',
     loadComponent: () => import('./pages/console/console.component'),
   },
   {
     path: 'error404',
     loadComponent: () => import('./pages/error404/error404.component'),
+    data: {title: 'Error 404'}
   },
   {
     path: '',
@@ -28,7 +29,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/error404',
-    pathMatch: 'full',
+    redirectTo: '/error404'
   },
 ];

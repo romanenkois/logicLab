@@ -1,14 +1,27 @@
-<div class="console-container">
+<div class="wrapper">
     <textarea
-        class="code-input"
+        class="code user-code"
         [(ngModel)]="userCode"
         placeholder="write your JavaScript code here..."
         rows="10"
     >
     </textarea>
-    <button (click)="executeCode()">Run Code</button>
+    <button
+        class="button run-button"
+        (click)="executeCode()"
+        >
+        Run Code
+    </button>
     <div class="output-container">
-        <h3>Output:</h3>
-        <pre>{{ output }}</pre>
+        <div>
+            <p>output:</p>
+        </div>
+        <div class="code">
+            @if (this.output && this.output != '') {
+            <pre>{{ this.output }}</pre>
+            } @else {
+            <pre>no output</pre>
+            }
+        </div>
     </div>
 </div>
