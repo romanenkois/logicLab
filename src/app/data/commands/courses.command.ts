@@ -15,7 +15,7 @@ export class CoursesCommand {
     if (!courses) {
       this.appAPI.getCourse(courseHref).subscribe(
         (responce) => {
-          this.couresesRepository.addCourse(responce['course']);
+          this.couresesRepository.addCourse(responce.course);
         }, (error) => {
           console.error(error);
         }
@@ -28,7 +28,9 @@ export class CoursesCommand {
     console.log('loading lesson', lessonHref);
     this.appAPI.getLesson(courseHref, lessonHref).subscribe(
       (responce) => {
-        this.couresesRepository.addLesson(responce['lesson']);
+        if (responce.lesson) {
+          this.couresesRepository.addLesson(responce.lesson);
+        }
       }, (error) => {
         console.error(error);
       }

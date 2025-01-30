@@ -1,3 +1,8 @@
+@if (this.object()) {
 <div class="wrapper">
-    <p>{{this.object()}}</p>
+    @if (this.object().object.title) {
+    <h3>{{ this.object().object.title }}</h3>
+    }
+    <p>{{ this.object().object.text }}</p>
 </div>
+}

@@ -1,21 +1,20 @@
 @if(this.lesson()) {
 <div class="wrapper">
     <div class="info">
-        <p>{{ this.lesson().name }}</p>
+        <!-- <p>{{ this.lesson().name }}</p>
         @if (this.lesson().description) {
         <p>{{ this.lesson().description }}</p>
-        }
+        } -->
     </div>
     <div class="content">
         @for (item of this.lesson().content; track $index) {
         <div class="item">
-            @if (item.type && item.type === 'plain_text') {
-            <app-lesson-plain-text [object]="item.object">
+            <!-- <p>{{item.type}}</p> -->
+            @if (item.type === 'plain-text') {
+            <app-lesson-plain-text [object]="item">
             </app-lesson-plain-text>
-            } @else if (item.type === 'code_sample') {
-            <app-lesson-code-sample
-            [code]="item.object"
-            [programingLanguage]="'javascript'">
+            } @else if (item.type === 'code-sample') {
+            <app-lesson-code-sample [object]="item">
             </app-lesson-code-sample>
             }
         </div>
@@ -25,3 +24,8 @@
     </div>
 </div>
 }
+
+<script>
+    window.alert(111)
+</script>
+

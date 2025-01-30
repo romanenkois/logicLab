@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { ProgramingLanguage } from '@models';
+import { CodeSampleBlock } from '@types';
 import { Highlight } from 'ngx-highlightjs';
 
 @Component({
@@ -10,6 +10,5 @@ import { Highlight } from 'ngx-highlightjs';
   styleUrl: './lesson-code-sample.component.scss',
 })
 export class LessonCodeSampleComponent {
-  code = input.required<string>();
-  programingLanguage = input.required<ProgramingLanguage>();
+  object = input.required<CodeSampleBlock>();
 }

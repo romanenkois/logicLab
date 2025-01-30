@@ -19,6 +19,6 @@ export class CourseContentComponent implements OnInit {
   );
 
   ngOnInit() {
-
+    this.courseCommand.loadCourse(this.courseHref());
   }
 }

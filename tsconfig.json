@@ -7,12 +7,13 @@
     "paths": {
         "@api": ["src/app/data/api/index.ts"],
         "@commands": ["src/app/data/commands/index.ts"],
-        "@models": ["src/app/data/models/index.ts"],
+        "@types": ["src/app/data/types/index.ts"],
         "@storage": ["src/app/data/storage/index.ts"],
 
         "@widgets": ["src/app/widgets/index.ts"],
+        "@features": ["src/app/features/index.ts"],
 
-        "@environments": ["src/app/environments/index.ts"],
+        "@environments": ["src/environments/index.ts"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

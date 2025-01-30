@@ -1,12 +1,35 @@
+@if (this.object()) {
 <div class="wrapper">
-    <!-- <div class="top-bar">
-        <div class="language">
-            <p>JavaScript</p>
+    @if (this.object().object.title || this.object().object.programmingLanguage) {
+    <div class="top-bar">
+        @if (this.object().object.title) {
+        <div>
+            <p>{{ this.object().object.title}}</p>
         </div>
-    </div> -->
+        }
+        @if (this.object().object.programmingLanguage) {
+        <div class="language">
+            <p>{{ this.object().object.programmingLanguage}}</p>
+        </div>
+        }
+    </div>
+    }
     <div class="code bg-white">
         <pre class="m-0">
-            <code [highlight]="this.code() || ''" [language]="this.programingLanguage()"></code>
+            <code
+            [highlight]="this.object().object.code || ''"
+            [language]="this.object().object.programmingLanguage || 'xml'"
+            ></code>
         </pre>
     </div>
+    @if(this.object().object.codeOutput) {
+    <div>
+        <pre>
+            <code>
+            {{ this.object().object.codeOutput }}
+            </code>
+        </pre>
+    </div>
+    }
 </div>
+}

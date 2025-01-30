@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { PlainTextBlock } from '@types';
 
 @Component({
     selector: 'app-lesson-plain-text',
@@ -7,5 +8,5 @@ import { Component, input } from '@angular/core';
     styleUrl: './lesson-plain-text.component.scss'
 })
 export class LessonPlainTextComponent {
-  object = input<string>();
+  object = input.required<PlainTextBlock>();
 }

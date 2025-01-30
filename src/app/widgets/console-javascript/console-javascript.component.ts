@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './console-javascript.component.scss',
 })
 export class ConsoleJavascriptComponent {
-  userCode: string = '';
+  userCode = '';
   output: string = '';
 
   executeCode() {
