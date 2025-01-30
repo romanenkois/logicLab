@@ -7,11 +7,12 @@
     "paths": {
         "@api": ["src/app/data/api/index.ts"],
         "@commands": ["src/app/data/commands/index.ts"],
-        "@types": ["src/app/data/types/index.ts"],
         "@storage": ["src/app/data/storage/index.ts"],
 
-        "@widgets": ["src/app/widgets/index.ts"],
         "@features": ["src/app/features/index.ts"],
+        "@widgets": ["src/app/widgets/index.ts"],
+
+        "@types": ["src/app/shared/types/index.ts"],
 
         "@environments": ["src/environments/index.ts"],
     },
