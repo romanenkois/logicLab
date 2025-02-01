@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component'),
   },
   {
+    path: 'courses',
+    loadComponent: () => import('./pages/courses/courses.component'),
+  },
+  {
     path: 'course/:courseHref',
     loadComponent: () => import('./pages/course/course.component'),
   },
