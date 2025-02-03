@@ -1,39 +1,54 @@
 import { inject, Injectable } from '@angular/core';
 import { GeneralApiService } from '@api';
 import { CoursesStorage } from '@storage';
+import { Course } from '@types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursesCommand {
   private appAPI: GeneralApiService = inject(GeneralApiService);
-  private couresesRepository: CoursesStorage = inject(CoursesStorage);
+  private coursesStorage: CoursesStorage = inject(CoursesStorage);
+
+  // public load
 
   public loadCourse(courseHref: string) {
-    const courses = this.couresesRepository.getCourse(courseHref);
+    const courses = this.coursesStorage.getCourse(courseHref);
 
     if (!courses) {
-      this.appAPI.getCourse(courseHref).subscribe(
+      this.appAPI.getCourse(courseHref, true).subscribe(
         (responce) => {
-          this.couresesRepository.addCourse(responce.course);
-        }, (error) => {
+          if (
+            responce.lessons &&
+            responce.lessons.length > 0 &&
+            responce.course
+          ) {
+            const course: Course = responce.course;
+            course.lessons = responce.lessons;
+            this.coursesStorage.addCourse(course);
+          }
+        },
+        (error) => {
           console.error(error);
         }
-      )
+      );
     }
   }
 
   public loadLesson(courseHref: string, lessonHref: string) {
+    const lesson = this.coursesStorage.getLesson(courseHref, lessonHref);
 
-    console.log('loading lesson', lessonHref);
-    this.appAPI.getLesson(courseHref, lessonHref).subscribe(
-      (responce) => {
-        if (responce.lesson) {
-          this.couresesRepository.addLesson(responce.lesson);
+    if (!lesson || !lesson.content || lesson.content.length < 1) {
+      this.appAPI.getLesson(courseHref, lessonHref).subscribe(
+        (responce) => {
+          if (responce.lesson) {
+            this.coursesStorage.addLesson(responce.lesson);
+          }
+        },
+        (error) => {
+          console.error(error);
         }
-      }, (error) => {
-        console.error(error);
-      }
-    )
+      );
+    }
   }
 }

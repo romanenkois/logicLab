@@ -1,10 +1,11 @@
 import { Component, computed, inject, input, InputSignal, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CoursesCommand } from '@commands';
 import { CoursesStorage } from '@storage';
 
 @Component({
     selector: 'app-course-content',
-    imports: [],
+    imports: [ RouterModule ],
     templateUrl: './course-content.component.html',
     styleUrl: './course-content.component.scss'
 })

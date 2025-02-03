@@ -3,17 +3,17 @@
     <div class="">
         <h1>{{this.course().name}}</h1>
     </div>
-    <!-- <div class="">
+    <div class="">
         @for (lesson of this.course().lessons; track $index) {
         <div>
-            <p>
-                <a [href]="lesson.href">
+            <a routerLink="course/java">
+                <p>
                     {{lesson.name}}
-                </a>
-            </p>
+                </p>
+            </a>
         </div>
         }
-    </div> -->
+    </div>
 </div>
 }
 
