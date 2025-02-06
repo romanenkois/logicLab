@@ -6,7 +6,7 @@ export const config: AppEnviromentConfig = {
     OFFLINE_MODE: false,
   },
   api: {
-    BASE_API_URL: 'https://logic-lab-api-ts-jspn.vercel.app/v2',
-    BASE_CLIENT_URL: 'http://localhost:4200/',
+    BASE_API_URL: 'https://logic-lab-api-ts.vercel.app/v2',
+    BASE_CLIENT_URL: 'https://logic-lab-two.vercel.app/',
   },
 };
