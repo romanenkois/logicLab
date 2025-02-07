@@ -1,48 +1,55 @@
-.wrapper {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.user-code {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
 
-    .user-code {
-        width: 100%;
-        font-family: monospace;
-        margin-bottom: 10px;
-        background-color: #000000;
-    }
-    .user-code:active {
-        border: none;
-        outline: none;
-    }
+    font-family: monospace;
+    font-size: 16px;
+    background-color: var(--dark-color);
 
-    .run-button {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
+    border: none;
+    outline: none;
 
-        color: var(--white-color);
-        background-color: var(--dark-color);
+    scrollbar-color: var(--dark-gray-color) var(--dark-color);
+}
 
-        transition: var(--very-quick-transition);
-    }
+.run-button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
 
-    .run-button:hover {
-        transition: var(--very-quick-transition);
-        background-color: var(--dark-light-color);
+    color: var(--white-color);
+    background-color: var(--dark-color);
 
-    }
-    .run-button:active {
-        transition: var(--very-quick-transition);
-        transform: var(--small-shring);
-    }
+    transition: var(--very-quick-transition);
+}
 
-    .output-container {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+.run-button:hover {
+    transition: var(--very-quick-transition);
+    background-color: var(--dark-light-color);
+}
+.run-button:active {
+    transition: var(--very-quick-transition);
+    transform: var(--small-shring);
+}
 
+.output-container {
+    .code {
         pre {
             font-size: 16px;
+            height: calc(100% + 100px);
+            min-height: 24px;
+            max-height: 500px;
+
+            box-sizing: border-box;
+
+            overflow: auto;
+            white-space: pre;
+            word-wrap: normal;
+
+            background-color: var(--dark-color);
+
+            scrollbar-color: var(--dark-gray-color) var(--dark-color);
         }
     }
 }

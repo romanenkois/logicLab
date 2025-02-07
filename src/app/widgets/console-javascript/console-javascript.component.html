@@ -1,26 +1,31 @@
-<div class="wrapper">
-    <textarea
-        class="code user-code"
-        [(ngModel)]="userCode"
-        placeholder="write your JavaScript code here..."
-        rows="10"
-    >
-    </textarea>
-    <button
-        class="button run-button"
-        (click)="executeCode()"
+<div class="wrapper p-6 flex flex-col gap-6">
+    <div class="w-full flex flex-col gap-2">
+        <p class="no-select font-black text-lg text-pink-900">JavaScript console</p>
+        <textarea
+            class="code user-code"
+            [(ngModel)]="userCode"
+            placeholder="write your JavaScript code here..."
+            rows="10"
         >
-        Run Code
-    </button>
-    <div class="output-container">
+        </textarea>
+    </div>
+    <div class="w-full flex flex-col gap-2">
+        <button
+            class="button run-button"
+            (click)="executeCode()"
+            >
+            Run Code
+        </button>
+    </div>
+    <div class="w-full flex flex-col gap-2 output-container">
         <div>
-            <p>output:</p>
+            <p class="no-select font-black text-lg">output:</p>
         </div>
         <div class="code">
             @if (this.output && this.output !== '') {
-            <pre>{{ this.output }}</pre>
+            <pre class="p-2">{{ this.output }}</pre>
             } @else {
-            <pre>no output</pre>
+            <pre class="p-2">no output</pre>
             }
         </div>
     </div>

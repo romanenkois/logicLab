@@ -18,7 +18,7 @@
     --primary-color: #3375d8;
     --primary-hover-color: #3d65a1;
 
-    // --small-font-size: 1rem;
+    --small-font-size: 1rem;
     --medium-font-size: 16px;
     --medium-large-font-size: 18px;
     --large-font-size: 24px;
@@ -31,7 +31,7 @@
 }
 
 * {
-    // outline: 1px red solid;
+    // outline: 1px red solid !important;
 
     color: var(--white-color);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -44,6 +44,8 @@ html, body {
     margin: 0;
     padding: 0;
     background: var(--black-color);
+
+    scrollbar-color: var(--dark-gray-color) var(--dark-color);
 }
 
 p {
@@ -67,19 +69,23 @@ button {
 }
 
 pre {
+    display: block;
+    box-sizing: border-box;
+
+    overflow: auto;
+    white-space: pre;
+    word-wrap: normal;
+    max-width: 100%;
+
     padding: 0;
     margin: 0;
+
     line-height: 1;
-    display: block;
 
     font-size: 0;   // finally removes weird whitespaces of up and down of tag <pre>.
                     // must be taken into a count,
                     // so should rewritten in scoped scss that use it
 }
-
-// code {
-//     border-left: 3px solid var(--primary-color);
-// }
 
 .code, code{
     // background: var(--dark-color);
@@ -110,6 +116,19 @@ pre {
 
 .m-0 {
     margin: 0 !important;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.no-select * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 // needed for icons, used by google matterial icons

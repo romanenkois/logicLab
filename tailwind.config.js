@@ -5,12 +5,15 @@ module.exports = {
   ],
   theme: {
     colors: {
-        'primary': {
-            DEFAULT: '#3375d8',
-        },
-        'white': {
-            DEFAULT: '#e6e6e6',
-        }
+      'primary': {
+        DEFAULT: '#3375d8',
+      },
+      'white': {
+        DEFAULT: '#e6e6e6',
+      },
+      // 'dark': {
+      //   DEFAULT: '#0c0e14',
+      // }
     },
     extend: {},
   },
