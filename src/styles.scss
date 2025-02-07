@@ -87,6 +87,14 @@ pre {
                     // so should rewritten in scoped scss that use it
 }
 
+.p-0 {
+    padding: 0 !important;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
 .code, code{
     // background: var(--dark-color);
 
@@ -110,14 +118,6 @@ pre {
     }
 }
 
-.p-0 {
-    padding: 0 !important;
-}
-
-.m-0 {
-    margin: 0 !important;
-}
-
 .no-select {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -129,6 +129,21 @@ pre {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.truncate-1 {
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.truncate-2 {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 // needed for icons, used by google matterial icons
