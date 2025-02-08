@@ -16,10 +16,10 @@ module.exports = {
         DEFAULT: '#10131b',
       },
       'dark-gray': {
-        DEFAULT: '#3a3a3a',
+        DEFAULT: '#545a64',
       },
       'gray': {
-        DEFAULT: '#9b9b9b',
+        DEFAULT: '#8c94a5',
       },
       'white': {
         DEFAULT: '#e6e6e6',

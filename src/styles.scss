@@ -1,6 +1,7 @@
 @use "tailwindcss/base";
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
+
 @use 'highlight.js/styles/vs2015.css';
 
 :root {
@@ -9,8 +10,8 @@
     --dark-color: #0c0e14;
     --dark-light-color: #10131b;
 
-    --dark-gray-color: #3a3a3a;
-    --gray-color: #9b9b9b;
+    --dark-gray-color: #545a64; // #3a3a3a;
+    --gray-color: #8c94a5; // #9b9b9b;
 
     --white-color: #fcfcfc;
     --white-hover-color: #e6e6e6;
@@ -31,13 +32,15 @@
 }
 
 * {
-    outline: 1px red solid !important;
+    // outline: 1px red solid !important;
 
     color: var(--white-color);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
     margin: 0;
     padding: 0;
+
+    transition: var(--quick-transition);
 }
 
 html, body {

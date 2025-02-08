@@ -1,0 +1,26 @@
+.item {
+    position: relative;
+}
+
+.item::before {
+    content: '';
+    display: block;
+    position: absolute;
+
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--dark-light-color) 5%,
+        var(--dark-gray-color) 95%,
+        transparent
+    );
+}
+
+.item:last-child::before {
+    display: none;
+}

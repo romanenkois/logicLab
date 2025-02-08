@@ -1,45 +1,38 @@
-<div class="no-select flex h-12 w-full bg-dark/10 backdrop-blur-sm">
-    <div class="flex items-center p-6">
-        <div class="">
+<div class="no-select w-full min-h-12 flex justify-between bg-dark/75 backdrop-blur-sm">
+    <div class="box-border flex">
+        <div class="box-border flex items-center p-4">
             <p class="text-2xl font-black text-primary">
-                <a routerLink="/home">
-                    logicLab
-                </a>
+                <a routerLink="/home"> logicLab </a>
             </p>
         </div>
-    </div>
-    <div class="flex items-center p-6">
-        <div class="flex w-full">
-            <p class="w-full">
-                <a routerLink="course/javascript" routerLinkActive="active" ariaCurrentWhenActive="page">
-                    JavaScript
-                </a>
-            </p>
+        <div class="box-border flex items-center p-4 gap-4">
+            <div>
+                <p class="w-max text-gray font-black hover:text-white">
+                    <a routerLink="course/javascript"> JavaScript </a>
+                </p>
+            </div>
+            <div>
+                <p class="w-max text-gray font-black hover:text-white">
+                    <a routerLink="course/typescript"> TypeScript </a>
+                </p>
+            </div>
         </div>
     </div>
-    <div class="flex items-center justify-end w-full p-6">
-        <div class="flex">
-            <div class="p-6">
-                <p>
-                    <a routerLink="/console">
-                        консоль
-                    </a>
-                </p>
-            </div>
-            <div class="p-6">
-                <p>
-                    <a routerLink="/courses">
-                        курси
-                    </a>
-                </p>
-            </div>
-            <div class="p-6">
-                <p>
-                    <a routerLink="/tests">
-                        тести
-                    </a>
-                </p>
-            </div>
+    <div class="box-border flex items-center p-4 gap-4">
+        <div class="box-border">
+            <p class="text-lg font-black text-gray hover:text-white">
+                <a routerLink="/console"> консоль </a>
+            </p>
+        </div>
+        <div class="box-border">
+            <p class="text-lg font-black text-gray hover:text-white">
+                <a routerLink="/courses"> курси </a>
+            </p>
+        </div>
+        <div class="box-border">
+            <p class="text-lg font-black text-gray hover:text-white">
+                <a routerLink="/tests"> тести </a>
+            </p>
         </div>
     </div>
 </div>

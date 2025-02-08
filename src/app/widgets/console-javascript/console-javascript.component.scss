@@ -13,6 +13,10 @@
     scrollbar-color: var(--dark-gray-color) var(--dark-color);
 }
 
+.user-code::placeholder {
+    color: var(--dark-gray-color);
+}
+
 .run-button {
     width: 100%;
     box-sizing: border-box;
