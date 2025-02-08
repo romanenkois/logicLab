@@ -1,0 +1,23 @@
+<div class="wrapper w-full">
+    @for (lesson of this.lessons(); track $index) {
+    <div class="item p-2 box-border">
+        <a href="course/{{ lesson.courseHref }}/{{ lesson.href }}">
+            <div class="flex flex-justify-between">
+                <div class="w-full h-full flex ">
+                    <div class="flex">
+                        <p class="text-lg h-min">
+                            {{ lesson.name }}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="w-full h-full">
+                    <p class="text-sm truncate-2 text-gray">
+                        {{ lesson.description }}
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    }
+</div>
