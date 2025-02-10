@@ -1,5 +1,19 @@
 .item {
     position: relative;
+    a {
+        .item-2 {
+            container-type: inline-size;
+
+            .description {
+                display: initial;
+            }
+            @media (max-width: 500px) {
+                .description {
+                    display: none;
+                }
+            }
+        }
+    }
 }
 
 .item::before {
@@ -7,7 +21,7 @@
     display: block;
     position: absolute;
 
-    bottom: -6px;
+    bottom: 0px;
     left: 0;
     width: 100%;
     height: 2px;

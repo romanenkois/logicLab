@@ -9,6 +9,9 @@ module.exports = {
       'primary': {
         DEFAULT: '#3375d8',
       },
+      'pure-black': {
+        DEFAULT: '#000000',
+      },
       'dark': {
         DEFAULT: '#0c0e14',
       },
@@ -23,6 +26,9 @@ module.exports = {
       },
       'white': {
         DEFAULT: '#e6e6e6',
+      },
+      'pure-white': {
+        DEFAULT: '#ffffff',
       },
     },
   },

@@ -2,9 +2,11 @@
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 
+// used for code highlighting, defines the theme
 @use 'highlight.js/styles/vs2015.css';
 
 :root {
+    --pure-black-color: #000000;
     --black-color: #080a0f;
 
     --dark-color: #0c0e14;
@@ -15,6 +17,7 @@
 
     --white-color: #fcfcfc;
     --white-hover-color: #e6e6e6;
+    --pure-white-color: #ffffff;
 
     --primary-color: #3375d8;
     --primary-hover-color: #3d65a1;
@@ -29,6 +32,11 @@
     --standart-transition: 0.3s ease-in-out;
 
     --small-shring: scale(0.95);
+}
+
+::selection {
+    background: var(--primary-color);
+    color: var(--white-color);
 }
 
 * {
@@ -132,6 +140,19 @@ pre {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.select {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+.select * {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .truncate-1 {

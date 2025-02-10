@@ -8,5 +8,6 @@ import { Lesson } from '@types';
   styleUrl: './course-lessons-list.component.scss'
 })
 export class CourseLessonsListComponent {
-  lessons: InputSignal<Lesson[]> = input.required();
+  lessons: InputSignal<Lesson[]> = input.required<Lesson[]>();
+  showDescription: InputSignal<boolean> = input<boolean>(false);
 }
