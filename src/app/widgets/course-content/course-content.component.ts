@@ -2,13 +2,13 @@ import { Component, computed, inject, input, InputSignal, OnInit } from '@angula
 import { RouterModule } from '@angular/router';
 import { CoursesCommand } from '@commands';
 import { CoursesStorage } from '@storage';
-import { CourseLessonsListComponent } from "../../features/course-lessons-list/course-lessons-list.component";
+import { CourseLessonsListComponent } from "@features";
 
 @Component({
-    selector: 'app-course-content',
-    imports: [RouterModule, CourseLessonsListComponent],
-    templateUrl: './course-content.component.html',
-    styleUrl: './course-content.component.scss'
+  selector: 'app-course-content',
+  imports: [ RouterModule, CourseLessonsListComponent ],
+  templateUrl: './course-content.component.html',
+  styleUrl: './course-content.component.scss'
 })
 export class CourseContentComponent implements OnInit {
   courseCommand: CoursesCommand = inject(CoursesCommand);

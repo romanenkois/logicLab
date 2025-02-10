@@ -1,31 +1,25 @@
 @if(this.lesson()) {
-<div class="wrapper">
-    <div class="info">
-        <!-- <p>{{ this.lesson().name }}</p>
+<div class="page-wrapper">
+    <div class="w-full flex flex-col gap-2 pb-6">
+        <p class="font-black text-4xl">{{ this.lesson().name }}</p>
         @if (this.lesson().description) {
-        <p>{{ this.lesson().description }}</p>
-        } -->
+        <p class="text-lg">{{ this.lesson().description }}</p>
+        }
     </div>
-    <div class="content">
+    <div class="content w-full flex flex-col gap-2">
         @for (item of this.lesson().content; track $index) {
         <div class="item">
-            <!-- <p>{{item.type}}</p> -->
-            @if (item.type === 'plain-text') {
-            <app-lesson-plain-text [object]="item">
-            </app-lesson-plain-text>
-            } @else if (item.type === 'code-sample') {
-            <app-lesson-code-sample [object]="item">
-            </app-lesson-code-sample>
+        @switch (item.type) {
+            @case ('plain-text') {
+            <app-lesson-plain-text [object]="item"> </app-lesson-plain-text>
+            } @case ('code-sample') {
+            <app-lesson-code-sample [object]="item"> </app-lesson-code-sample>
+            } @case ('list') {
+            <app-lesson-list [object]="item"> </app-lesson-list>
             }
+        }
         </div>
         }
     </div>
-    <div>
-    </div>
 </div>
 }
-
-<script>
-    window.alert(111)
-</script>
-

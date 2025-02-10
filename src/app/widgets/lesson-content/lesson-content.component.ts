@@ -1,11 +1,11 @@
 import { Component, computed, inject, input, InputSignal, OnInit } from '@angular/core';
 import { CoursesCommand } from '@commands';
-import { LessonPlainTextComponent, LessonCodeSampleComponent } from "@features";
+import { LessonPlainTextComponent, LessonCodeSampleComponent, LessonListComponent } from "@features";
 import { CoursesStorage } from '@storage';
 
 @Component({
   selector: 'app-lesson-content',
-  imports: [LessonPlainTextComponent, LessonCodeSampleComponent],
+  imports: [LessonPlainTextComponent, LessonCodeSampleComponent, LessonListComponent],
   templateUrl: './lesson-content.component.html',
   styleUrl: './lesson-content.component.scss'
 })
