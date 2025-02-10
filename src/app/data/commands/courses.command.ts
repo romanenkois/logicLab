@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { GeneralApiService } from '@api';
+import { CourseMapper } from '@mappers';
 import { CoursesStorage } from '@storage';
-import { Course } from '@types';
+import { Course, CourseDTO } from '@types';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class CoursesCommand {
             responce.lessons.length > 0 &&
             responce.course
           ) {
-            const course: Course = responce.course;
+            const course: Course = CourseMapper.mapCourseDTO(responce.course as CourseDTO);
             course.lessons = responce.lessons;
             this.coursesStorage.addCourse(course);
           }

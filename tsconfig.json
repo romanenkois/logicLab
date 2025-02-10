@@ -12,6 +12,7 @@
         "@features": ["src/app/features/index.ts"],
         "@widgets": ["src/app/widgets/index.ts"],
 
+        "@mappers": ["src/app/shared/mappers/index.ts"],
         "@types": ["src/app/shared/types/index.ts"],
 
         "@environments": ["src/environments/index.ts"],
