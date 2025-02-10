@@ -9,6 +9,12 @@ module.exports = {
       'primary': {
         DEFAULT: '#3375d8',
       },
+      'primary-light': {
+        DEFAULT: '#3481f5',
+      },
+      'primary-dark': {
+        DEFAULT: '#2d65b9',
+      },
       'pure-black': {
         DEFAULT: '#000000',
       },
