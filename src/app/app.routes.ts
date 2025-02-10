@@ -6,6 +6,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component'),
   },
   {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.component'),
+  },
+  {
+    path: 'user',
+    loadComponent: () => import('./pages/user/user.component'),
+  },
+  {
     path: 'courses',
     loadComponent: () => import('./pages/courses/courses.component'),
   },
@@ -16,6 +24,14 @@ export const routes: Routes = [
   {
     path: 'course/:courseHref/:lessonHref',
     loadComponent: () => import('./pages/lesson/lesson.component'),
+  },
+  {
+    path: 'tests',
+    loadComponent: () => import('./pages/tests/tests.component'),
+  },
+  {
+    path: 'test/:testCollectionHref/:testHref',
+    loadComponent: () => import('./pages/test/test.component'),
   },
   {
     path: 'console',
