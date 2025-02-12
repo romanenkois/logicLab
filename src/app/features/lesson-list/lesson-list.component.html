@@ -1,5 +1,20 @@
 @if (this.object()) {
 <div class="">
-
+    @if (this.object().object.title) {
+    <div>
+        <p class="text-lg">{{ this.object().object.title }}</p>
+    </div>
+    }
+    <div class="border-box">
+        <ul class="border-box pl-5">
+            @for (item of this.object().object.items; track $index) {
+            <li>
+                <p>
+                    {{ item }}
+                </p>
+            </li>
+            }
+        </ul>
+    </div>
 </div>
 }

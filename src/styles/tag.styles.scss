@@ -1,0 +1,42 @@
+p {
+    margin: 0;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+
+    border: none;
+    background-color: none;
+    border-radius: 0;
+
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+pre {
+    display: block;
+    box-sizing: border-box;
+
+    overflow: auto;
+    white-space: pre;
+    word-wrap: normal;
+    max-width: 100%;
+
+    padding: 0;
+    margin: 0;
+
+    line-height: 1;
+
+    font-size: 0;   // finally removes weird whitespaces of up and down of tag <pre>.
+                    // must be taken into a count,
+                    // so should rewritten in scoped scss that use it
+}
