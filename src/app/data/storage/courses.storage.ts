@@ -6,7 +6,7 @@ import { Course, Lesson } from '@types';
 })
 export class CoursesStorage {
   private readonly courses: WritableSignal<Array<Course>> = signal([]);
-  private lessons: WritableSignal<Array<Lesson>> = signal([]); // the storage for lessons with no rendered course
+  private readonly lessons: WritableSignal<Array<Lesson>> = signal([]); // the storage for lessons with no rendered course
 
   public getCourse(courseHref: string): Course {
     // used filter insetead of find, so compiler would shut up about it being undefined
@@ -18,7 +18,7 @@ export class CoursesStorage {
     this.courses.set([...this.courses(), course]);
   }
 
-  public getLesson(courseHref: string, lessonHref: string): Lesson {
+  public getLesson(courseHref: string, lessonHref: string): Lesson | null {
     const course = this.getCourse(courseHref);
     if (!course) {
       return this.lessons().filter(
@@ -31,12 +31,12 @@ export class CoursesStorage {
     )[0];
   }
   public addLesson(lesson: Lesson): void {
-    console.log('less', lesson);
     const course = this.getCourse(lesson.courseHref);
     if (!course) {
       this.lessons.set([...this.lessons(), lesson]);
       return;
     }
+
     if (!course.lessons) {
       course.lessons = [];
     }
@@ -46,8 +46,12 @@ export class CoursesStorage {
     )[0];
 
     if (!lessonInCourse) {
-      course.lessons.push(lesson);
-      console.log('11', this.courses());
+      // Create new arrays to trigger change detection
+      const updatedLessons = [...course.lessons, lesson];
+      const updatedCourses = this.courses().map(c =>
+        c.href === course.href ? {...c, lessons: updatedLessons} : c
+      );
+      this.courses.set(updatedCourses);
     }
   }
 }

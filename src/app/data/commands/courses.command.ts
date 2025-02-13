@@ -37,6 +37,7 @@ export class CoursesCommand {
   }
 
   public loadLesson(courseHref: string, lessonHref: string) {
+    console.log('loadLesson', courseHref, lessonHref);
     const lesson = this.coursesStorage.getLesson(courseHref, lessonHref);
 
     if (!lesson || !lesson.content || lesson.content.length < 1) {

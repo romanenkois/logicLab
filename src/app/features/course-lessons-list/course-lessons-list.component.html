@@ -1,7 +1,7 @@
 <div class="wrapper w-full">
     @for (lesson of this.lessons(); track $index) {
     <div class="item p-2 box-border">
-        <a href="course/{{ lesson.courseHref }}/{{ lesson.href }}">
+        <a [routerLink]="['/course', lesson.courseHref, lesson.href]">
             <div class="item-2 flex flex-justify-between">
                 <div class="w-full h-full flex">
                     <div class="flex">

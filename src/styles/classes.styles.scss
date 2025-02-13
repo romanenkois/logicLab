@@ -20,28 +20,7 @@
     }
 }
 
-.code, code{
-    // background: var(--dark-color);
 
-    page-break-inside: avoid;
-
-    font-size: 15px;
-    line-height: 1.6;
-    word-wrap: break-word;
-
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    overflow: auto;
-
-    // padding: 1em 1.5em;
-    margin: 0 !important;
-
-
-    * {
-        font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
-    }
-}
 
 .no-select {
     -webkit-user-select: none;
@@ -69,6 +48,8 @@
     user-select: text;
 }
 
+
+
 .truncate-1 {
     display: -webkit-box;
     line-clamp: 1;
@@ -83,3 +64,55 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+
+.button-break-line {
+    position: relative !important;
+}
+.bottom-break-line::before {
+    content: '';
+    display: block;
+    position: absolute;
+
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--dark-light-color) 5%,
+        var(--dark-gray-color) 95%,
+        transparent
+    );
+}
+
+
+// non-interactable code blocks styling
+.code, code{
+    // background: var(--dark-color);
+
+    page-break-inside: avoid;
+
+    font-size: 15px;
+    line-height: 1.6;
+    word-wrap: break-word;
+
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+
+    // padding: 1em 1.5em;
+    margin: 0 !important;
+
+
+    * {
+        font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
+}
+
+
+
+//

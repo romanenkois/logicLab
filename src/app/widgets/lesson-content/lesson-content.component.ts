@@ -16,11 +16,15 @@ export class LessonContentComponent implements OnInit {
   courseHref: InputSignal<string> = input.required();
   lessonHref: InputSignal<string> = input.required();
 
-  lesson = computed(() =>
-    this.courseStorage.getLesson(this.courseHref(), this.lessonHref())
-  );
+  lesson = computed(() => {
+    if (this.courseHref() && this.lessonHref()) {
+      return this.courseStorage.getLesson(this.courseHref(), this.lessonHref());
+    }
+    return undefined;
+  });
 
   ngOnInit() {
+    console.log('lesson content init');
     this.courseCommand.loadLesson(this.courseHref(), this.lessonHref());
   }
 }

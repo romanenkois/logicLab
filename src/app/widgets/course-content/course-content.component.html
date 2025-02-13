@@ -1,12 +1,12 @@
-@if (this.course()) {
+@if (this.course() && this.course() !== null) {
 <div class="select w-full flex flex-col p-6">
-    <div class="header w-full flex flex-col gap-2 pb-2">
-        <h1 class="font-black text-4xl">{{ this.course().name }}</h1>
-        <p class="text-lg">{{ this.course().description }}</p>
+    <div class="bottom-break-line relative w-full flex flex-col gap-2 pb-2">
+        <h1 class="font-black text-4xl">{{ this.course()!.name }}</h1>
+        <p class="text-lg">{{ this.course()!.description }}</p>
     </div>
     <div class="w-full flex flex-col gap-2">
         <app-course-lessons-list
-            [lessons]="this.course().lessons"
+            [lessons]="this.course()!.lessons"
             [showDescription]="true"
         ></app-course-lessons-list>
     </div>

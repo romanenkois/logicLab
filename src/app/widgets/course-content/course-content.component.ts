@@ -16,9 +16,17 @@ export class CourseContentComponent implements OnInit {
 
   courseHref: InputSignal<string> = input.required();
 
-  course = computed(() =>
-    this.courseStorage.getCourse(this.courseHref())
-  );
+  course = computed(() => {
+    try {
+      if (this.courseHref() && this.courseHref() !== '') {
+        return this.courseStorage.getCourse(this.courseHref())
+      }
+      throw new Error('Course href is not defined');
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+  });
 
   ngOnInit() {
     this.courseCommand.loadCourse(this.courseHref());

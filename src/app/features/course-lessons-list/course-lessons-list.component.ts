@@ -1,9 +1,10 @@
 import { Component, input, InputSignal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Lesson } from '@types';
 
 @Component({
   selector: 'app-course-lessons-list',
-  imports: [],
+  imports: [ RouterLink ],
   templateUrl: './course-lessons-list.component.html',
   styleUrl: './course-lessons-list.component.scss'
 })

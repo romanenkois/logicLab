@@ -1,15 +1,15 @@
 @if(this.lesson()) {
 <div class="page-wrapper">
     <div class="w-full flex flex-col gap-2 pb-6">
-        <p class="font-black text-4xl">{{ this.lesson().name }}</p>
-        @if (this.lesson().description) {
-        <p class="text-lg">{{ this.lesson().description }}</p>
+        <p class="font-black text-4xl">{{ this.lesson()!.name }}</p>
+        @if (this.lesson()!.description) {
+        <p class="text-lg">{{ this.lesson()!.description }}</p>
         }
     </div>
     <div class="content w-full flex flex-col gap-2">
-        @for (item of this.lesson().content; track $index) {
+        @for (item of this.lesson()!.content; track $index) {
         <div class="item">
-        @switch (item.type) {
+            @switch (item.type) {
             @case ('plain-text') {
             <app-lesson-plain-text [object]="item"> </app-lesson-plain-text>
             } @case ('code-sample') {
@@ -17,9 +17,11 @@
             } @case ('list') {
             <app-lesson-list [object]="item"> </app-lesson-list>
             }
-        }
+            }
         </div>
         }
     </div>
 </div>
 }
+
+
