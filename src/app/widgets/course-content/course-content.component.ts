@@ -6,7 +6,7 @@ import { CourseLessonsListComponent } from "@features";
 
 @Component({
   selector: 'app-course-content',
-  imports: [ RouterModule, CourseLessonsListComponent ],
+  imports: [RouterModule, CourseLessonsListComponent],
   templateUrl: './course-content.component.html',
   styleUrl: './course-content.component.scss'
 })
@@ -17,18 +17,11 @@ export class CourseContentComponent implements OnInit {
   courseHref: InputSignal<string> = input.required();
 
   course = computed(() => {
-    try {
-      if (this.courseHref() && this.courseHref() !== '') {
-        return this.courseStorage.getCourse(this.courseHref())
-      }
-      throw new Error('Course href is not defined');
-    } catch (error) {
-      console.error(error);
-      return;
-    }
+    return this.courseStorage.getCourse(this.courseHref())
   });
 
   ngOnInit() {
+    console.log('course content init');
     this.courseCommand.loadCourse(this.courseHref());
   }
 }

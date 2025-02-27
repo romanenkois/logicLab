@@ -11,9 +11,8 @@ export class CoursesCommand {
   private appAPI: GeneralApiService = inject(GeneralApiService);
   private coursesStorage: CoursesStorage = inject(CoursesStorage);
 
-  // public load
-
   public loadCourse(courseHref: string) {
+    console.log('loadCourse', courseHref);
     const courses = this.coursesStorage.getCourse(courseHref);
 
     if (!courses) {

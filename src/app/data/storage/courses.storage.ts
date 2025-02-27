@@ -5,8 +5,9 @@ import { Course, Lesson } from '@types';
   providedIn: 'root',
 })
 export class CoursesStorage {
-  private readonly courses: WritableSignal<Array<Course>> = signal([]);
-  private readonly lessons: WritableSignal<Array<Lesson>> = signal([]); // the storage for lessons with no rendered course
+  private readonly courses: WritableSignal<Course[]> = signal<Course[]>([]);
+  // those are lessons that are not assigned to any course
+  private readonly lonelyLessons: WritableSignal<Lesson[]> = signal<Lesson[]>([]);
 
   public getCourse(courseHref: string): Course {
     // used filter insetead of find, so compiler would shut up about it being undefined
@@ -21,7 +22,7 @@ export class CoursesStorage {
   public getLesson(courseHref: string, lessonHref: string): Lesson | null {
     const course = this.getCourse(courseHref);
     if (!course) {
-      return this.lessons().filter(
+      return this.lonelyLessons().filter(
         (lesson: Lesson) =>
           lesson.href == lessonHref && lesson.courseHref == courseHref
       )[0];
@@ -33,7 +34,7 @@ export class CoursesStorage {
   public addLesson(lesson: Lesson): void {
     const course = this.getCourse(lesson.courseHref);
     if (!course) {
-      this.lessons.set([...this.lessons(), lesson]);
+      this.lonelyLessons.set([...this.lonelyLessons(), lesson]);
       return;
     }
 
@@ -41,17 +42,26 @@ export class CoursesStorage {
       course.lessons = [];
     }
 
-    const lessonInCourse = course.lessons.filter(
+    const existingLessonIndex = course.lessons.findIndex(
       (_lesson: Lesson) => _lesson.href === lesson.href
-    )[0];
+    );
 
-    if (!lessonInCourse) {
-      // Create new arrays to trigger change detection
-      const updatedLessons = [...course.lessons, lesson];
-      const updatedCourses = this.courses().map(c =>
-        c.href === course.href ? {...c, lessons: updatedLessons} : c
-      );
-      this.courses.set(updatedCourses);
+    const updatedLessons = [...course.lessons];
+    if (existingLessonIndex === -1) {
+      // Add new lesson
+      updatedLessons.push(lesson);
+    } else {
+      // Update existing lesson with new content
+      updatedLessons[existingLessonIndex] = {
+        ...course.lessons[existingLessonIndex],
+        ...lesson
+      };
     }
+
+    // Update the courses signal with new reference
+    const updatedCourses = this.courses().map(c =>
+      c.href === course.href ? {...c, lessons: updatedLessons} : c
+    );
+    this.courses.set(updatedCourses);
   }
 }
