@@ -1,11 +1,12 @@
 import { LessonContent, ProgramingLanguage } from '@types';
 
-export type CoursesList = {
+export type CourseSimple = {
   id: string;
   href: string;
   name: string;
+  title: string;
   programingLanguage: ProgramingLanguage;
-}[]
+}
 
 export interface Course {
   id: string;

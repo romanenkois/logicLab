@@ -1,10 +1,12 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { Course, Lesson } from '@types';
+import { Course, CourseSimple, Lesson } from '@types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoursesStorage {
+  private readonly coursesList: WritableSignal<CourseSimple[]> = signal<CourseSimple[]>([]);
+
   private readonly courses: WritableSignal<Course[]> = signal<Course[]>([]);
   // those are lessons that are not assigned to any course
   private readonly lonelyLessons: WritableSignal<Lesson[]> = signal<Lesson[]>([]);
