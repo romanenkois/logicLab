@@ -19,10 +19,13 @@ export class CoursesCommand {
       this.appAPI.getCourse(courseHref, true).subscribe(
         (responce) => {
           if (
-            responce.lessons &&
-            responce.lessons.length > 0 &&
+            // responce.lessons &&
+            // responce.lessons.length > 0 &&
             responce.course
           ) {
+            console.log('responce', responce);
+            console.log('responce.course', responce.course);
+            console.log('responce.lessons', responce.lessons);
             const course: Course = CourseMapper.mapCourseDTO(responce.course as CourseDTO);
             course.lessons = responce.lessons;
             this.coursesStorage.addCourse(course);

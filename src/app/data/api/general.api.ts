@@ -15,10 +15,10 @@ export class GeneralApiService {
   }
 
   public getCourse(courseHref: string, getLessons?: boolean): Observable<any> {
-    return this.http.get(`${this.apiUrl}/courses/course?course=${courseHref}${getLessons ? '&getLessons=true' : ''}`);
+    return this.http.get(`${this.apiUrl}/courses/course?href=${courseHref}${getLessons ? '&getlessons=true' : ''}`);
   }
 
   public getLesson(courseHref: string, lessonHref: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/courses/lesson?course=${courseHref}&lesson=${lessonHref}`);
+    return this.http.get(`${this.apiUrl}/courses/lesson?href=${courseHref}&lesson=${lessonHref}`);
   }
 }
