@@ -6,61 +6,11 @@
 @use 'highlight.js/styles/vs2015.css';
 
 // custom styles
+@use 'styles/variables.styles.scss';
+@use 'styles/mixins.scss';
+
+@use 'styles/general.styles.scss';
 @use 'styles/tag.styles.scss';
 @use 'styles/classes.styles.scss';
+
 @use 'styles/third.party.scss';
-
-:root {
-    --pure-black-color: #000000;
-    --black-color: #080a0f;
-
-    --dark-color: #0c0e14;
-    --dark-light-color: #10131b;
-
-    --dark-gray-color: #545a64;
-    --gray-color: #8c94a5;
-
-    --white-color: #fcfcfc;
-    --white-hover-color: #e6e6e6;
-    --pure-white-color: #ffffff;
-
-    --primary-color: #3375d8;
-    --primary-light-color: #3481f5;
-    --primary-dark-color: #2d65b9;
-
-    --small-font-size: 1rem;
-    --medium-font-size: 16px;
-    --medium-large-font-size: 18px;
-    --large-font-size: 24px;
-
-    --very-quick-transition: 0.05s ease-in-out;
-    --quick-transition: 0.1s ease-in-out;
-    --standart-transition: 0.3s ease-in-out;
-
-    --small-shring: scale(0.95);
-}
-
-::selection {
-    background: var(--primary-color);
-    color: var(--white-color);
-}
-
-* {
-    // outline: 1px red solid !important;
-
-    color: var(--white-color);
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-    margin: 0;
-    padding: 0;
-
-    transition: var(--quick-transition);
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--black-color);
-
-    scrollbar-color: var(--dark-gray-color) var(--dark-color);
-}

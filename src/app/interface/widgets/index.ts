@@ -5,4 +5,3 @@ export { LessonContentComponent } from './lesson-content/lesson-content.componen
 // export { LessonHeaderComponent } from './lesson-header/lesson-header.component';
 
 export { NavBarComponent } from './nav-bar/nav-bar.component';
-export { SidebarComponent } from './sidebar/sidebar.component';

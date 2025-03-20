@@ -11,3 +11,5 @@ export interface AppEnviromentConfig {
     BASE_CLIENT_URL: string;
   };
 }
+
+export type SelectionOption = 'all' | 'popular' | 'new';

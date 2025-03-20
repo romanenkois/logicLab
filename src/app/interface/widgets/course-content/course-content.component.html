@@ -6,6 +6,7 @@
     </div>
     <div class="w-full flex flex-col gap-2">
         <app-course-lessons-list
+            [courseHref]="this.course()!.href"
             [lessons]="this.course()!.lessons"
             [showDescription]="true"
         ></app-course-lessons-list>

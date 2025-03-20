@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { GeneralApiService } from '@api';
-import { CourseMapper } from '@mappers';
 import { CoursesStorage } from '@storage';
-import { Course, CourseDTO } from '@types';
+import { Course, SelectionOption } from '@types';
 
 @Injectable({
   providedIn: 'root',
@@ -16,43 +15,50 @@ export class CoursesCommand {
     const courses = this.coursesStorage.getCourse(courseHref);
 
     if (!courses) {
-      this.appAPI.getCourse(courseHref, true).subscribe(
-        (responce) => {
-          if (
-            // responce.lessons &&
-            // responce.lessons.length > 0 &&
-            responce.course
-          ) {
-            console.log('responce', responce);
-            console.log('responce.course', responce.course);
-            console.log('responce.lessons', responce.lessons);
-            const course: Course = CourseMapper.mapCourseDTO(responce.course as CourseDTO);
-            course.lessons = responce.lessons;
-            this.coursesStorage.addCourse(course);
-          }
+      this.appAPI.getCourse(courseHref, true).subscribe({
+        next: (responce) => {
+          console.log('loadCourse', responce);
+          this.coursesStorage.addCourse(
+            responce.course as Course
+          );
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
         }
-      );
+      });
     }
   }
 
-  public loadLesson(courseHref: string, lessonHref: string) {
-    console.log('loadLesson', courseHref, lessonHref);
-    const lesson = this.coursesStorage.getLesson(courseHref, lessonHref);
+  public loadCourses(selection: SelectionOption) {
+    this.appAPI.getCourses(selection).subscribe({
+      next: (responce) => {
+        console.log('loadCourses', responce);
+        responce = responce.courses as Course[];
+        responce.forEach((course: Course) => {
+          this.coursesStorage.addCourse(
+            course
+          );
+        });
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+  public loadLesson(lessonHref: string) {
+    console.log('loadLesson', lessonHref);
+    const lesson = this.coursesStorage.getLesson(lessonHref);
 
     if (!lesson || !lesson.content || lesson.content.length < 1) {
-      this.appAPI.getLesson(courseHref, lessonHref).subscribe(
-        (responce) => {
-          if (responce.lesson) {
-            this.coursesStorage.addLesson(responce.lesson);
-          }
+      this.appAPI.getLesson(lessonHref).subscribe({
+        next: (responce) => {
+          this.coursesStorage.addLesson(responce.lesson);
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
         }
-      );
+      });
     }
   }
 }

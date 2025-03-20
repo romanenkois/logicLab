@@ -18,13 +18,13 @@ export class LessonContentComponent implements OnInit {
 
   lesson = computed(() => {
     if (this.courseHref() && this.lessonHref()) {
-      return this.courseStorage.getLesson(this.courseHref(), this.lessonHref());
+      return this.courseStorage.getLesson(this.lessonHref());
     }
     return undefined;
   });
 
   ngOnInit() {
     console.log('lesson content init');
-    this.courseCommand.loadLesson(this.courseHref(), this.lessonHref());
+    this.courseCommand.loadLesson(this.lessonHref());
   }
 }
