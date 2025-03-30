@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 
 import { provideHighlightOptions } from 'ngx-highlightjs';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
         xml: () => import('highlight.js/lib/languages/xml'),
         css: () => import('highlight.js/lib/languages/css'),
       },
-    })
+    }), provideClientHydration(withEventReplay())
   ]
 };
 appConfig.providers.push(provideHttpClient());
