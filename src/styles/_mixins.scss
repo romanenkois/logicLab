@@ -16,3 +16,11 @@
         transparent
     );
 }
+
+@mixin custom-scrollbar {
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    scrollbar-color: var(--dark-gray-color) var(--dark-color);
+}

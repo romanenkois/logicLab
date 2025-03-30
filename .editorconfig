@@ -11,6 +11,9 @@ trim_trailing_whitespace = true
 [*.{html,scss}]
 indent_size = 4
 
+[*.{scss}]
+quote_type = single
+
 [*.{js,ts}]
 quote_type = single
 

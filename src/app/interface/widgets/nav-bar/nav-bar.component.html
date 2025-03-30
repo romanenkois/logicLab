@@ -1,38 +1,64 @@
-<div class="no-select w-full min-h-12 flex justify-between bg-dark/75 backdrop-blur-sm">
+<div
+    class="no-select w-full min-h-12 flex justify-between bg-dark/75 backdrop-blur-sm"
+>
     <div class="box-border flex">
         <div class="box-border flex items-center p-4">
-            <p class="text-2xl font-black text-primary hover:text-primary-light">
-                <a routerLink="/home"> logicLab </a>
-            </p>
+            <a
+                routerLink="/home"
+                class="hover:text-primary-light w-full text-2xl font-black text-primary"
+            >
+                <h1>logicLab</h1>
+            </a>
         </div>
         <div class="courses-list box-border flex items-center p-4 gap-4">
             <div>
-                <p class="w-max text-gray font-black hover:text-white">
-                    <a routerLink="course/javascript"> JavaScript </a>
-                </p>
+                <a routerLink="course/javascript">
+                    <p
+                        class="w-max text-lg text-gray font-black hover:text-white"
+                    >
+                        JavaScript
+                    </p>
+                </a>
             </div>
             <div>
-                <p class="w-max text-gray font-black hover:text-white">
-                    <a routerLink="course/typescript"> TypeScript </a>
-                </p>
+                <a routerLink="course/typescript">
+                    <p
+                        class="w-max text-lg text-gray font-black hover:text-white"
+                    >
+                        TypeScript
+                    </p>
+                </a>
             </div>
         </div>
     </div>
     <div class="box-border flex items-center p-4 gap-4">
         <div class="box-border">
-            <p class="text-lg font-black text-gray hover:text-white">
-                <a routerLink="/console"> консоль </a>
-            </p>
+            <a routerLink="/code-space">
+                <p class="text-lg font-black text-gray hover:text-white">
+                    консоль
+                </p>
+            </a>
         </div>
         <div class="box-border">
-            <p class="text-lg font-black text-gray hover:text-white">
-                <a routerLink="/courses"> курси </a>
-            </p>
+            <a routerLink="/courses">
+                <p class="text-lg font-black text-gray hover:text-white">
+                    курси
+                </p>
+            </a>
         </div>
         <div class="box-border">
-            <p class="text-lg font-black text-gray hover:text-white">
-                <a routerLink="/tests"> тести </a>
-            </p>
+            <a routerLink="/tests">
+                <p class="text-lg font-black text-gray hover:text-white">
+                    тести
+                </p>
+            </a>
+        </div>
+        <div class="box-border">
+            <a routerLink="/profile">
+                <div class="medium-icon">
+                    <img src="assets/icons/user.svg" alt="user icon" />
+                </div>
+            </a>
         </div>
     </div>
 </div>

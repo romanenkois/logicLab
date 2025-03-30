@@ -1,13 +1,15 @@
+@use "mixins" as mixins;
+
 ::selection {
     background: var(--primary-color);
     color: var(--white-color);
 }
 
 * {
-    // outline: 1px red solid !important;
+    outline: 1px red solid !important;
 
     color: var(--white-color);
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: var(--standart-font);
 
     margin: 0;
     padding: 0;
@@ -20,5 +22,5 @@ html, body {
     padding: 0;
     background: var(--black-color);
 
-    scrollbar-color: var(--dark-gray-color) var(--dark-color);
+    @include mixins.custom-scrollbar;
 }

@@ -1,16 +1,18 @@
+@use "mixins" as mixins;
+
 .user-code {
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
 
-    font-family: monospace;
+    font-family: var(--code-font);
     font-size: 16px;
     background-color: var(--dark-color);
 
     border: none;
     outline: none;
 
-    scrollbar-color: var(--dark-gray-color) var(--dark-color);
+    @include mixins.custom-scrollbar;
 }
 
 .user-code::placeholder {
@@ -53,7 +55,7 @@
 
             background-color: var(--dark-color);
 
-            scrollbar-color: var(--dark-gray-color) var(--dark-color);
+            @include mixins.custom-scrollbar;
         }
     }
 }
