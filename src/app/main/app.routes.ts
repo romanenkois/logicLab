@@ -34,8 +34,8 @@ export const routes: Routes = [
     loadComponent: () => import('@pages/test/test.component'),
   },
   {
-    path: 'console',
-    loadComponent: () => import('@pages/console/console.component'),
+    path: 'code-space',
+    loadComponent: () => import('@pages/code-space/code-space.component'),
   },
   {
     path: 'error404',

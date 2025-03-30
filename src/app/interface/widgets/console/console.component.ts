@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ProgramingLanguage } from '@types';
 
 @Component({
-  selector: 'app-console-javascript',
+  selector: 'app-console',
   imports: [FormsModule],
-  templateUrl: './console-javascript.component.html',
-  styleUrl: './console-javascript.component.scss',
+  templateUrl: './console.component.html',
+  styleUrl: './console.component.scss',
 })
-export class ConsoleJavascriptComponent {
+export class ConsoleComponent {
+  programingLanguage: InputSignal<ProgramingLanguage> = input.required();
+
   userCode = '';
   output: string = '';
 

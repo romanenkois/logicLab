@@ -5,21 +5,17 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-        "@api": ["src/app/data/api/index.ts"],
-        "@commands": ["src/app/data/commands/index.ts"],
-        "@mappers": ["src/app/data/mappers/index.ts"],
-        "@storage": ["src/app/data/storage/index.ts"],
+        "@api": ["src/app/data/api/index.d.ts"],
+        "@commands": ["src/app/data/commands/index.d.ts"],
+        "@mappers": ["src/app/data/mappers/index.d.ts"],
+        "@storage": ["src/app/data/storage/index.d.ts"],
 
-
-        "@features": ["src/app/interface/features/index.ts"],
+        "@features": ["src/app/interface/features/index.d.ts"],
         "@pages/*": ["src/app/interface/pages/*"],
-        "@widgets": ["src/app/interface/widgets/index.ts"],
+        "@widgets": ["src/app/interface/widgets/index.d.ts"],
 
-
-
-        "@types": ["src/app/shared/types/index.ts"],
-
-        "@environments": ["src/environments/index.ts"],
+        "@types": ["src/app/shared/types/index.d.ts"],
+        "@environments": ["src/environments/index.d.ts"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

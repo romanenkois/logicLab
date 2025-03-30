@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { GeneralApiService } from '@api';
+import { GeneralApiService } from 'src/app/data/api';
 import { CoursesStorage } from '@storage';
 import { Course, SelectionOption } from '@types';
 
