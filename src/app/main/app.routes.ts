@@ -10,7 +10,15 @@ export const routes: Routes = [
     loadComponent: () => import('@pages/login/login.component'),
   },
   {
+    path: 'profile',
+    loadComponent: () => import('@pages/profile/profile.component'),
+  },
+  {
     path: 'user',
+    redirectTo: '/profile',
+  },
+  {
+    path: 'user/:userid',
     loadComponent: () => import('@pages/user/user.component'),
   },
   {
