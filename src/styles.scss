@@ -6,12 +6,13 @@
 @use 'highlight.js/styles/vs2015.css';
 
 // custom styles
-@use 'styles/variables.styles.scss';
+@use 'styles/variables.scss';
 @use 'styles/mixins.scss';
 
-@use 'styles/general.styles.scss';
-@use 'styles/tag.styles.scss';
-@use 'styles/classes.styles.scss';
+@use 'styles/general.scss';
+@use 'styles/tags.scss';
+@use 'styles/classes.scss';
+@use 'styles/animations.scss';
 
 // by now only used for google icons
-@use 'styles/third.party.scss';
+@use 'styles/third-party.scss';
