@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { ConsoleComponent } from '@widgets';
 
 @Component({
@@ -8,5 +8,8 @@ import { ConsoleComponent } from '@widgets';
   styleUrl: './code-space.component.scss'
 })
 export default class CodeSpaceComponent {
+  activeEdditors: WritableSignal<{
+    name: string;
+  }[]> = signal([{name: 'untitled.js'}]);
 
 }

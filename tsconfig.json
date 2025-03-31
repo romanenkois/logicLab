@@ -14,7 +14,9 @@
       "@pages/*": ["src/app/interface/pages/*"],
       "@widgets": ["src/app/interface/widgets/index.ts"],
 
+      "@pipes": ["src/app/shared/pipes/index.ts"],
       "@types": ["src/app/shared/types/index.d.ts"],
+
       "@environments": ["src/environments/index.ts"]
     },
     "outDir": "./dist/out-tsc",

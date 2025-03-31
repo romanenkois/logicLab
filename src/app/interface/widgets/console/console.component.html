@@ -1,31 +1,53 @@
-<div class="wrapper p-6 flex flex-col gap-6">
-    <div class="w-full flex flex-col gap-2">
-        <p class="no-select pl-2 font-black text-3xl text-dark-gray">JavaScript console</p>
+<div class="wrapper flex flex-col gap-6">
+    <div class="flex w-full flex-col gap-2">
+        <div class="flex w-full gap-4">
+            <div>
+                <p
+                    class="no-select w-max pl-2 text-3xl font-black text-dark-gray"
+                >
+                    {{ this.programingLanguage() | programingLanguage }} console
+                </p>
+            </div>
+            <div class="flex w-full flex-col gap-2">
+                <button class="button run-button" (click)="executeCode()">
+                    Run Code
+                </button>
+            </div>
+        </div>
+
         <textarea
             class="code user-code"
             [(ngModel)]="userCode"
-            placeholder="write your JavaScript code here..."
+            placeholder="write your {{
+                this.programingLanguage() | programingLanguage
+            }} code here..."
             rows="10"
         >
         </textarea>
     </div>
-    <div class="w-full flex flex-col gap-2">
-        <button
-            class="button run-button"
-            (click)="executeCode()"
-            >
-            Run Code
-        </button>
-    </div>
-    <div class="w-full flex flex-col gap-2 output-container">
+    <div class="output-container flex w-full flex-col gap-2">
         <div>
-            <p class="no-select  font-black text-lg">output:</p>
+            <p class="no-select text-lg font-black">output:</p>
         </div>
         <div class="code">
-            @if (this.output && this.output !== '') {
-            <pre class="p-2">{{ this.output }}</pre>
+            @if (this.output && this.output.length > 0) {
+                @for (line of output; track $index) {
+                    <pre
+                        class="p-2"
+                        [class]="
+                            line.type === 'error'
+                                ? 'text-red-500'
+                                : line.type === 'warn'
+                                  ? 'text-yellow-500'
+                                  : line.type === 'log'
+                                    ? ''
+                                    : ''
+                        "
+                        >{{ line.message }}</pre
+                    >
+                }
             } @else {
-            <pre class="p-2">no output</pre>
+                <pre class="p-2">no output</pre>
             }
         </div>
     </div>

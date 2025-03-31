@@ -1,3 +1,22 @@
-<div class="page-wrapper">
-    <app-console [programingLanguage]="'javascript'"></app-console>
+<div class="page-wrapper flex flex-col gap-2">
+    <div class="flex w-full gap-2">
+        @for (codespace of this.activeEdditors(); track $index) {
+            <div class="flex w-max gap-2 bg-dark-light p-2">
+                <div>
+                    <p class="no-select text-dark-gray">
+                        {{ `untitled.js` }}
+                    </p>
+                </div>
+                <div class="flex h-full items-center justify-center">
+                    <div class="cross-icon">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        <app-console [programingLanguage]="'javascript'"></app-console>
+    </div>
 </div>
