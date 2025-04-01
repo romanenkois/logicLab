@@ -1,5 +1,56 @@
 @use "mixins" as mixins;
 
+.save-button {
+    background-color: var(--dark-color);
+
+    div {
+        svg {
+            fill: var(--dark-gray-color);
+        }
+    }
+
+    &:hover {
+        div {
+            svg {
+                fill: var(--dark-gray-color);
+            }
+        }
+
+        background-color: var(--dark-light-color);
+    }
+
+    &:active {
+        div {
+            svg {
+                fill: var(--gray-color);
+            }
+        }
+
+        background-color: var(--dark-light-color);
+        transform: var(--small-shring);
+    }
+}
+
+.run-button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+
+    color: var(--white-color);
+    background-color: var(--dark-color);
+
+    transition: var(--very-quick-transition);
+
+    &:hover {
+        transition: var(--very-quick-transition);
+        background-color: var(--dark-light-color);
+    }
+    &:active {
+        transition: var(--very-quick-transition);
+        transform: var(--small-shring);
+    }
+}
+
 .user-code {
     width: 100%;
     box-sizing: border-box;
@@ -13,30 +64,10 @@
     outline: none;
 
     @include mixins.custom-scrollbar;
-}
 
-.user-code::placeholder {
-    color: var(--dark-gray-color);
-}
-
-.run-button {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-
-    color: var(--white-color);
-    background-color: var(--dark-color);
-
-    transition: var(--very-quick-transition);
-}
-
-.run-button:hover {
-    transition: var(--very-quick-transition);
-    background-color: var(--dark-light-color);
-}
-.run-button:active {
-    transition: var(--very-quick-transition);
-    transform: var(--small-shring);
+    &::placeholder {
+        color: var(--dark-gray-color);
+    }
 }
 
 .output-container {

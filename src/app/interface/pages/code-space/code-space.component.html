@@ -1,4 +1,4 @@
-<div class="box-border page-wrapper flex flex-col gap-2">
+<div class="page-wrapper box-border flex flex-col gap-2">
     <div class="flex w-full gap-2">
         <div class="flex-shrink-0">
             <button
@@ -11,7 +11,7 @@
                 </div>
             </button>
         </div>
-        <div class="tab-list flex-1 flex gap-2">
+        <div class="tab-list flex flex-1 gap-2">
             @for (codespace of this.codeEdditors(); track $index) {
                 <button
                     class="tab flex w-max gap-2 bg-dark-light p-2"
@@ -38,6 +38,7 @@
         </div>
     </div>
     <div>
+        <!-- EDDITORS, TRYING TO ADD ALL, FILTERING ON ONE ACTIVE TAB -->
         @for (codespace of this.codeEdditors(); track $index) {
             <app-console
                 [programingLanguage]="'javascript'"
@@ -45,6 +46,28 @@
                     this.activeEdditor() === codespace.name ? 'block' : 'none'
                 "
             ></app-console>
+        }
+
+        <!-- PLACEHOLDER IF THERE IS NOT ACTIVE EDDITOR -->
+        @if (this.codeEdditors().length === 0 || !this.activeEdditor()) {
+            <div
+                class="g-2 flex h-96 w-full flex-col items-center justify-center"
+            >
+                <p class="text-3xl font-black text-gray">
+                    Не обрано жодної консолі
+                </p>
+                @if (this.codeEdditors().length === 0) {
+                    <p class="text-dark-gray">
+                        натисніть на кнопку
+                        <span class="font-black text-dark-gray">+</span> щоб
+                        створити нову консоль
+                    </p>
+                } @else {
+                    <p class="text-dark-gray">
+                        натисніть на одну з відкритих вкладок зверху
+                    </p>
+                }
+            </div>
         }
     </div>
 </div>

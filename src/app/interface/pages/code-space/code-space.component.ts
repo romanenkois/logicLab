@@ -17,7 +17,7 @@ export default class CodeSpaceComponent {
       programingLanguage: ProgramingLanguage;
     }[]
   > = signal([{ name: this.defaultName, programingLanguage: 'javascript' }]);
-  activeEdditor: WritableSignal<string> = signal(this.defaultName);
+  activeEdditor: WritableSignal<string | null> = signal(this.defaultName);
 
   createNewEditor() {
     const newName = `untitled${this.codeEdditors().length + 1}.js`;
