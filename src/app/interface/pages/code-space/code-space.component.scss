@@ -1,7 +1,6 @@
 .highlighted {
-    // coloring does not work as an UX
-    // transition: var(--slow-transition);
-    // background: var(--dark-light-color);
+    transition: var(--slow-transition);
+    background-color: var(--dark-light-color) !important;
     animation: shrinkBounce 1s ease-in-out;
 }
 
@@ -9,13 +8,16 @@
     0% {
         transform: scale(1);
     }
-    30% {
-        transform: scale(0.9);
-    }
-    55% {
+    10% {
         transform: scale(1);
     }
-    80% {
+    40% {
+        transform: scale(0.9);
+    }
+    65% {
+        transform: scale(1);
+    }
+    85% {
         transform: scale(0.9);
     }
     100% {
@@ -24,6 +26,7 @@
 }
 
 .action-button {
+    transition: var(--quick-transition);
     background-color: var(--dark-color);
 
     div {
