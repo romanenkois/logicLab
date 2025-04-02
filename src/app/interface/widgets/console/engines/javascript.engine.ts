@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class JavascriptService {
+export class JavascriptEngine {
   async executeCode(userCode: string): Promise<{
     output: {
       type: 'log' | 'warn' | 'error';

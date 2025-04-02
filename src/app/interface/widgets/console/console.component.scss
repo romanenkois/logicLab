@@ -1,5 +1,10 @@
 @use "mixins" as mixins;
 
+select, option {
+    border: none;
+    outline: none;
+}
+
 .save-button {
     background-color: var(--dark-color);
 
@@ -32,12 +37,6 @@
 }
 
 .run-button {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-
-    color: var(--white-color);
-    background-color: var(--dark-color);
 
     transition: var(--very-quick-transition);
 
