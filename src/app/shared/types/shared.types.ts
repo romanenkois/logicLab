@@ -17,4 +17,11 @@ export interface AppEnviromentConfig {
   };
 }
 
-export type SelectionOption = 'all' | 'popular' | 'new';
+export type CoursesSelectionOption = 'all' | 'popular' | 'new';
+
+export interface ConsoleConfiguration {
+  name: string;
+  programingLanguage: ProgramingLanguage;
+
+  code: string;
+};

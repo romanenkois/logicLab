@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { GeneralApiService } from 'src/app/data/api';
 import { CoursesStorage } from '@storage';
-import { Course, SelectionOption } from '@types';
+import { Course, CoursesSelectionOption } from '@types';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class CoursesCommand {
     }
   }
 
-  public loadCourses(selection: SelectionOption) {
+  public loadCourses(selection: CoursesSelectionOption) {
     this.appAPI.getCourses(selection).subscribe({
       next: (responce) => {
         console.log('loadCourses', responce);

@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { config } from '@environments';
-import { SelectionOption } from '@types';
+import { CoursesSelectionOption } from '@types';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,10 @@ export class GeneralApiService {
   private apiUrl = config.api.BASE_API_URL;
   private http: HttpClient = inject(HttpClient);
 
-  public getCourses(selectionOption?: SelectionOption): Observable<any> {
+  public getCourses(CoursesSelectionOption?: CoursesSelectionOption): Observable<any> {
     return this.http.get(
       `${this.apiUrl}/courses/courses-list${
-        selectionOption ? `?selection=${selectionOption}` : ''
+        CoursesSelectionOption ? `?selection=${CoursesSelectionOption}` : ''
       }`
     );
   }

@@ -1,5 +1,5 @@
 import { Component, signal, WritableSignal } from '@angular/core';
-import { ProgramingLanguage } from '@types';
+import { ConsoleConfiguration } from '@types';
 import { ConsoleComponent } from '@widgets';
 
 @Component({
@@ -9,26 +9,43 @@ import { ConsoleComponent } from '@widgets';
   styleUrl: './code-space.component.scss',
 })
 export default class CodeSpaceComponent {
-  defaultName = 'untitled.js';
+  defaultEdditorSchema: ConsoleConfiguration = {
+    name: 'untitled.js',
+    programingLanguage: 'javascript',
+    code: 'console.log("Hello logicLab")',
+  };
 
-  codeEdditors: WritableSignal<
-    {
-      name: string;
-      programingLanguage: ProgramingLanguage;
-    }[]
-  > = signal([{ name: this.defaultName, programingLanguage: 'javascript' }]);
-  activeEdditor: WritableSignal<string | null> = signal(this.defaultName);
+  codeEdditors: WritableSignal<ConsoleConfiguration[]> = signal([
+    this.defaultEdditorSchema,
+  ]);
+  activeEdditor: WritableSignal<string | null> = signal(
+    this.defaultEdditorSchema.name,
+  );
+
+  newEdditorButtonAnimation() {
+    // creates a new animetion to 'new edditor' button,
+    // when there is no ediitors left.
+    // ensures, so the animation is not stacked
+    if (this.codeEdditors().length === 0) {
+      const createNewButton = document.querySelector('#create-new-tab');
+      if (!createNewButton?.classList.contains('highlighted')) {
+        createNewButton?.classList.add('highlighted');
+        setTimeout(
+          () => createNewButton?.classList.remove('highlighted'),
+          2000,
+        );
+      }
+    }
+  }
 
   createNewEditor() {
     const newName = `untitled${this.codeEdditors().length + 1}.js`;
 
-    this.codeEdditors.set([
-      ...this.codeEdditors(),
-      {
-        name: newName,
-        programingLanguage: 'javascript',
-      },
-    ]);
+    const newConsole = {
+      ...this.defaultEdditorSchema,
+      name: newName,
+    };
+    this.codeEdditors.set([...this.codeEdditors(), newConsole]);
     this.activeEdditor.set(newName);
 
     // scroll to the end of tab-list, after a short delay to ensure DOM has updated
@@ -46,15 +63,13 @@ export default class CodeSpaceComponent {
     );
     this.activeEdditor.set(null);
 
-    if (this.codeEdditors().length === 0) {
-      const createNewButton = document.querySelector('#create-new-tab');
-      if (!createNewButton?.classList.contains('highlighted')) {
-        createNewButton?.classList.add('highlighted');
-        setTimeout(
-          () => createNewButton?.classList.remove('highlighted'),
-          2000,
-        );
-      }
-    }
+    this.newEdditorButtonAnimation();
+  }
+
+  deleteAllEdditors() {
+    this.codeEdditors.set([]);
+    this.activeEdditor.set(null);
+
+    this.newEdditorButtonAnimation();
   }
 }

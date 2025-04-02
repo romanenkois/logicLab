@@ -23,6 +23,37 @@
     }
 }
 
+.action-button {
+    background-color: var(--dark-color);
+
+    div {
+        svg {
+            fill: var(--dark-gray-color);
+        }
+    }
+
+    &:hover {
+        div {
+            svg {
+                fill: var(--dark-gray-color);
+            }
+        }
+
+        background-color: var(--dark-light-color);
+    }
+
+    &:active {
+        div {
+            svg {
+                fill: var(--gray-color);
+            }
+        }
+
+        background-color: var(--dark-light-color);
+        transform: var(--small-shring);
+    }
+}
+
 .tab-list {
     width: 100%;
     max-width: 100%;

@@ -12,6 +12,32 @@
                 </div>
             </button>
         </div>
+        <div class="flex-shrink-0">
+            <button
+                class="action-button flex aspect-square h-[40px] items-center justify-center"
+                (click)="this.deleteAllEdditors()"
+            >
+                <div class="medium-icon">
+                    <svg
+                        class="text-gray-800 h-[28px] w-[28px] dark:text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7.414A2 2 0 0 0 20.414 6L18 3.586A2 2 0 0 0 16.586 3H5Zm10 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7V5h8v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1Z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                </div>
+            </button>
+        </div>
+
+        <!-- TAB LIST -->
         <div class="tab-list flex flex-1 gap-2">
             @for (codespace of this.codeEdditors(); track $index) {
                 <button
@@ -48,9 +74,11 @@
         <!-- EDDITORS, TRYING TO ADD ALL, FILTERING ON ONE ACTIVE TAB -->
         @for (codespace of this.codeEdditors(); track $index) {
             <app-console
-                [programingLanguage]="'javascript'"
+                [consoleConfiguration]="codespace"
                 [style.display]="
-                    this.activeEdditor() === codespace.name ? 'block' : 'none'
+                    this.activeEdditor() === codespace.name
+                        ? 'block'
+                        : 'none'
                 "
             ></app-console>
         }
