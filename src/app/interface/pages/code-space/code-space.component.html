@@ -2,6 +2,7 @@
     <div class="flex w-full gap-2">
         <div class="flex-shrink-0">
             <button
+                id="create-new-tab"
                 class="flex aspect-square h-[40px] items-center justify-center bg-dark-light p-2"
                 (click)="this.createNewEditor()"
             >
@@ -14,7 +15,7 @@
         <div class="tab-list flex flex-1 gap-2">
             @for (codespace of this.codeEdditors(); track $index) {
                 <button
-                    class="tab flex w-max gap-2 bg-dark-light p-2"
+                    class="flex w-max gap-2 bg-dark-light p-2"
                     [class]="
                         this.activeEdditor() === codespace.name
                             ? 'active-tab'
@@ -27,7 +28,13 @@
                             {{ codespace.name }}
                         </p>
                     </div>
-                    <button class="flex h-full items-center justify-center">
+                    <button
+                        class="flex h-full items-center justify-center"
+                        (click)="
+                            $event.stopPropagation();
+                            this.rremoveEdditor(codespace.name)
+                        "
+                    >
                         <div class="cross-icon">
                             <div class="line"></div>
                             <div class="line"></div>
@@ -48,25 +55,25 @@
             ></app-console>
         }
 
-        <!-- PLACEHOLDER IF THERE IS NOT ACTIVE EDDITOR -->
-        @if (this.codeEdditors().length === 0 || !this.activeEdditor()) {
+        <!-- PLACEHOLDER IF THERE IS NO ACTIVE EDDITOR -->
+        @if (
+            this.codeEdditors().length === 0 || this.activeEdditor() === null
+        ) {
             <div
                 class="g-2 flex h-96 w-full flex-col items-center justify-center"
             >
-                <p class="text-3xl font-black text-gray">
+                <p class="text-center text-3xl font-black text-gray">
                     Не обрано жодної консолі
                 </p>
-                @if (this.codeEdditors().length === 0) {
-                    <p class="text-dark-gray">
-                        натисніть на кнопку
-                        <span class="font-black text-dark-gray">+</span> щоб
-                        створити нову консоль
-                    </p>
-                } @else {
-                    <p class="text-dark-gray">
-                        натисніть на одну з відкритих вкладок зверху
-                    </p>
-                }
+                <p class="text-center text-dark-gray">
+                    @if (this.codeEdditors().length !== 0) {
+                        натисніть на одну з відкритих вкладок зверху, чи
+                        <br />
+                    }
+                    натисніть на кнопку
+                    <span class="font-black text-gray"> + </span>
+                    зверху, аби створити нову консоль
+                </p>
             </div>
         }
     </div>

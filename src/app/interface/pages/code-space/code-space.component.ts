@@ -40,5 +40,21 @@ export default class CodeSpaceComponent {
     });
   }
 
+  rremoveEdditor(name: string) {
+    this.codeEdditors.set(
+      this.codeEdditors().filter((editor) => editor.name !== name),
+    );
+    this.activeEdditor.set(null);
 
+    if (this.codeEdditors().length === 0) {
+      const createNewButton = document.querySelector('#create-new-tab');
+      if (!createNewButton?.classList.contains('highlighted')) {
+        createNewButton?.classList.add('highlighted');
+        setTimeout(
+          () => createNewButton?.classList.remove('highlighted'),
+          2000,
+        );
+      }
+    }
+  }
 }
