@@ -1,4 +1,3 @@
-// Safe code execution service with timeout and Web Worker support
 import { Injectable } from '@angular/core';
 
 @Injectable({
