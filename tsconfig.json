@@ -5,7 +5,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@api": ["src/app/core/api/index.d.ts"],
+      "@api": ["src/app/core/api/index.ts"],
       "@commands": ["src/app/core/commands/index.ts"],
       "@mappers": ["src/app/core/mappers/index.ts"],
       "@storage": ["src/app/core/storage/index.ts"],
