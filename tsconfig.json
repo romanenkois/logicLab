@@ -5,10 +5,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@api": ["src/app/data/api/index.d.ts"],
-      "@commands": ["src/app/data/commands/index.ts"],
-      "@mappers": ["src/app/data/mappers/index.ts"],
-      "@storage": ["src/app/data/storage/index.ts"],
+      "@api": ["src/app/core/api/index.d.ts"],
+      "@commands": ["src/app/core/commands/index.ts"],
+      "@mappers": ["src/app/core/mappers/index.ts"],
+      "@storage": ["src/app/core/storage/index.ts"],
 
       "@features": ["src/app/interface/features/index.ts"],
       "@pages/*": ["src/app/interface/pages/*"],
