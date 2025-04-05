@@ -1,15 +1,15 @@
 @if (this.object()) {
 <div class="wrapper">
     @if (this.object().object.title || this.object().object.programmingLanguage) {
-    <div class="top-bar">
+    <div class="top-bar flex justify-between">
         @if (this.object().object.title) {
-        <div>
+        <div class="p-">
             <p>{{ this.object().object.title}}</p>
         </div>
         }
         @if (this.object().object.programmingLanguage) {
         <div class="language">
-            <p>{{ this.object().object.programmingLanguage}}</p>
+            <p>{{ this.object().object.programmingLanguage | programingLanguage }}</p>
         </div>
         }
     </div>

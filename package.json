@@ -6,10 +6,9 @@
     "start": "ng serve",
 
     "build": "ng build",
-    "build:ssr": "ng build && ng run logicLab:server:production",
+    "build:ssr": "ng build && ng run logicLab:server",
 
     "serve:ssr:logicLab": "node dist/logic-lab/server/server.mjs",
-    "serve:ssr": "node dist/logic-lab/server/main.js",
     "watch": "ng build --watch --configuration development",
 
     "test": "ng test",
