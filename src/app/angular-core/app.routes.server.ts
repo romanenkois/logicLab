@@ -10,17 +10,21 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'user',
+    path: 'profile',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'user/:userid',
     renderMode: RenderMode.Client
   },
   {
     path: 'courses',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Client
   },
   {
     path: 'course/:courseHref',
     renderMode: RenderMode.Client,
-    
+
   },
   {
     path: 'course/:courseHref/:lessonHref',
@@ -28,7 +32,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'tests',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Client
   },
   {
     path: 'test/:testCollectionHref/:testHref',
@@ -36,7 +40,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'code-space',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Client
   },
   {
     path: 'error404',
