@@ -7,7 +7,7 @@
 
     "build": "ng build",
 
-    "start": "node dist/logic-lab/server/server.mjs",
+    "start": "ng build && node dist/logic-lab/server/server.mjs",
     "serve:ssr": "node dist/logic-lab/server/server.mjs",
 
     "watch": "ng build --watch --configuration development",
