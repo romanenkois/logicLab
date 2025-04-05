@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "dev": "ng serve",
 
     "build": "ng build",
-    "build:ssr": "ng build && ng run logicLab:server",
 
-    "serve:ssr:logicLab": "node dist/logic-lab/server/server.mjs",
+    "start": "node dist/logic-lab/server/server.mjs",
+    "serve:ssr": "node dist/logic-lab/server/server.mjs",
+
     "watch": "ng build --watch --configuration development",
 
     "test": "ng test",
