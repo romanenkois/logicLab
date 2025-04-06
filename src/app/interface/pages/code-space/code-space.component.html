@@ -18,7 +18,7 @@
         <div class="flex-shrink-0">
             <button
                 class="action-button flex aspect-square h-[40px] items-center justify-center"
-                (click)="this.deleteAllEdditors()"
+                (click)="this.deleteAllEditors()"
             >
                 <div class="medium-icon">
                     <svg
@@ -36,15 +36,15 @@
 
         <!-- TAB LIST -->
         <div class="tab-list flex flex-1 gap-2">
-            @for (codespace of this.codeEdditors(); track $index) {
+            @for (codespace of this.codeEditors(); track $index) {
                 <button
                     class="flex w-max gap-2 bg-dark-light p-2"
                     [class]="
-                        this.activeEdditor() === codespace.name
+                        this.activeEditor() === codespace.name
                             ? 'active-tab'
                             : ''
                     "
-                    (click)="this.activeEdditor.set(codespace.name)"
+                    (click)="this.activeEditor.set(codespace.name)"
                 >
                     <div>
                         <p class="no-select text-dark-gray">
@@ -55,7 +55,7 @@
                         class="flex h-full items-center justify-center"
                         (click)="
                             $event.stopPropagation();
-                            this.rremoveEdditor(codespace.name)
+                            this.removeEditor(codespace.name)
                         "
                     >
                         <div class="cross-icon">
@@ -68,19 +68,19 @@
         </div>
     </div>
     <div>
-        <!-- EDDITORS, TRYING TO ADD ALL, FILTERING ON ONE ACTIVE TAB -->
-        @for (codespace of this.codeEdditors(); track $index) {
+        <!-- EDITORS, TRYING TO ADD ALL, FILTERING ON ONE ACTIVE TAB -->
+        @for (codespace of this.codeEditors(); track $index) {
             <app-console
                 [consoleConfiguration]="codespace"
                 [style.display]="
-                    this.activeEdditor() === codespace.name ? 'block' : 'none'
+                    this.activeEditor() === codespace.name ? 'block' : 'none'
                 "
             ></app-console>
         }
 
-        <!-- PLACEHOLDER IF THERE IS NO ACTIVE EDDITOR -->
+        <!-- PLACEHOLDER IF THERE IS NO ACTIVE EDITOR -->
         @if (
-            this.codeEdditors().length === 0 || this.activeEdditor() === null
+            this.codeEditors().length === 0 || this.activeEditor() === null
         ) {
             <div
                 class="g-2 flex h-96 w-full flex-col items-center justify-center"
@@ -89,7 +89,7 @@
                     Не обрано жодної консолі
                 </p>
                 <p class="text-center text-dark-gray">
-                    @if (this.codeEdditors().length !== 0) {
+                    @if (this.codeEditors().length !== 0) {
                         натисніть на одну з відкритих вкладок зверху, чи
                         <br />
                     }

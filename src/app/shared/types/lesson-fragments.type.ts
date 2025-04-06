@@ -1,4 +1,4 @@
-import { ProgramingLanguage } from "@types";
+import { ProgrammingLanguage } from "@types";
 
 export type LessonContent =
   | PlainTextBlock
@@ -31,7 +31,7 @@ export interface CodeSampleBlock extends LessonBlock {
   type: 'code-sample';
   object: {
     title?: string;
-    programmingLanguage?: ProgramingLanguage;
+    programmingLanguage?: ProgrammingLanguage;
     code: string;
     codeOutput?: string;
   }

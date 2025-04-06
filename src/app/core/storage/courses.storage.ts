@@ -9,7 +9,7 @@ export class CoursesStorage {
   private readonly lessons: WritableSignal<Lesson[]> = signal<Lesson[]>([]);
 
   public getCourse(courseHref: string): Course {
-    // used filter insetead of find, so compiler would shut up about it being undefined
+    // used filter instead of find, so compiler would shut up about it being undefined
     return this.courses().filter(
       (course: Course) => course.href === courseHref
     )[0];

@@ -9,24 +9,24 @@ import { ConsoleComponent } from '@widgets';
   styleUrl: './code-space.component.scss',
 })
 export default class CodeSpaceComponent {
-  defaultEdditorSchema: ConsoleConfiguration = {
+  defaultEditorSchema: ConsoleConfiguration = {
     name: 'untitled.js',
-    programingLanguage: 'javascript',
+    programmingLanguage: 'javascript',
     code: 'console.log("Hello logicLab")',
   };
 
-  codeEdditors: WritableSignal<ConsoleConfiguration[]> = signal([
-    this.defaultEdditorSchema,
+  codeEditors: WritableSignal<ConsoleConfiguration[]> = signal([
+    this.defaultEditorSchema,
   ]);
-  activeEdditor: WritableSignal<string | null> = signal(
-    this.defaultEdditorSchema.name,
+  activeEditor: WritableSignal<string | null> = signal(
+    this.defaultEditorSchema.name,
   );
 
-  newEdditorButtonAnimation() {
-    // creates a new animetion to 'new edditor' button,
-    // when there is no ediitors left.
+  newEditorButtonAnimation() {
+    // creates a new animation to 'new editor' button,
+    // when there is no editors left.
     // ensures, so the animation is not stacked
-    if (this.codeEdditors().length === 0) {
+    if (this.codeEditors().length === 0) {
       const createNewButton = document.querySelector('#create-new-tab');
       if (!createNewButton?.classList.contains('highlighted')) {
         createNewButton?.classList.add('highlighted');
@@ -39,14 +39,14 @@ export default class CodeSpaceComponent {
   }
 
   createNewEditor() {
-    const newName = `untitled${this.codeEdditors().length + 1}.js`;
+    const newName = `untitled${this.codeEditors().length + 1}.js`;
 
     const newConsole = {
-      ...this.defaultEdditorSchema,
+      ...this.defaultEditorSchema,
       name: newName,
     };
-    this.codeEdditors.set([...this.codeEdditors(), newConsole]);
-    this.activeEdditor.set(newName);
+    this.codeEditors.set([...this.codeEditors(), newConsole]);
+    this.activeEditor.set(newName);
 
     // scroll to the end of tab-list, after a short delay to ensure DOM has updated
     setTimeout(() => {
@@ -57,19 +57,19 @@ export default class CodeSpaceComponent {
     });
   }
 
-  rremoveEdditor(name: string) {
-    this.codeEdditors.set(
-      this.codeEdditors().filter((editor) => editor.name !== name),
+  removeEditor(name: string) {
+    this.codeEditors.set(
+      this.codeEditors().filter((editor) => editor.name !== name),
     );
-    this.activeEdditor.set(null);
+    this.activeEditor.set(null);
 
-    this.newEdditorButtonAnimation();
+    this.newEditorButtonAnimation();
   }
 
-  deleteAllEdditors() {
-    this.codeEdditors.set([]);
-    this.activeEdditor.set(null);
+  deleteAllEditors() {
+    this.codeEditors.set([]);
+    this.activeEditor.set(null);
 
-    this.newEdditorButtonAnimation();
+    this.newEditorButtonAnimation();
   }
 }

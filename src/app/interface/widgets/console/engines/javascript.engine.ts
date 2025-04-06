@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class JavascriptEngine {
-  private readonly timeoutTreathhold = 5000;
+  private readonly timeoutThreshold = 5000;
 
   async executeCode(userCode: string): Promise<{
     output: {
@@ -79,7 +79,7 @@ export class JavascriptEngine {
       const workerUrl = URL.createObjectURL(blob);
       const worker = new Worker(workerUrl);
 
-      // We set up the timeout primise, so it would surely execude if not stoped then manually
+      // We set up the timeout promise, so it would surely execute if not stopped then manually
       const timeoutId = setTimeout(() => {
         worker.terminate();
         URL.revokeObjectURL(workerUrl);
@@ -88,11 +88,11 @@ export class JavascriptEngine {
             {
               type: 'error',
               message:
-                'Execution timed out after' + this.timeoutTreathhold + 'ms',
+                'Execution timed out after' + this.timeoutThreshold + 'ms',
             },
           ],
         });
-      }, this.timeoutTreathhold);
+      }, this.timeoutThreshold);
 
       worker.onmessage = (e) => {
         clearTimeout(timeoutId);

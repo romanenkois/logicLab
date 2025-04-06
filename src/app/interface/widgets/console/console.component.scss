@@ -32,7 +32,7 @@ select, option {
         }
 
         background-color: var(--dark-light-color);
-        transform: var(--small-shring);
+        transform: var(--small-shrink);
     }
 }
 
@@ -46,7 +46,7 @@ select, option {
     }
     &:active {
         transition: var(--very-quick-transition);
-        transform: var(--small-shring);
+        transform: var(--small-shrink);
     }
 }
 

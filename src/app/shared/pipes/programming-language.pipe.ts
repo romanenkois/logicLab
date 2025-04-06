@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ProgramingLanguage } from '@types';
+import { ProgrammingLanguage } from '@types';
 
 @Pipe({
-  name: 'programingLanguage',
+  name: 'programmingLanguage',
 })
-export class ProgramingLanguagePipe implements PipeTransform {
+export class ProgrammingLanguagePipe implements PipeTransform {
   transform(value: unknown): string {
-    switch (value as string as ProgramingLanguage) {
+    switch (value as string as ProgrammingLanguage) {
       case 'javascript':
         return 'JavaScript';
       case 'typescript':

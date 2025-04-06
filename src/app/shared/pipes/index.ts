@@ -1,1 +1,1 @@
-export { ProgramingLanguagePipe } from './programing-language.pipe';
+export { ProgrammingLanguagePipe } from './programming-language.pipe';

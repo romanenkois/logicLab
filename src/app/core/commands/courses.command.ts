@@ -16,10 +16,10 @@ export class CoursesCommand {
 
     if (!courses) {
       this.appAPI.getCourse(courseHref, true).subscribe({
-        next: (responce) => {
-          console.log('loadCourse', responce);
+        next: (response) => {
+          console.log('loadCourse', response);
           this.coursesStorage.addCourse(
-            responce.course as Course
+            response.course as Course
           );
         },
         error: (error) => {
@@ -31,10 +31,10 @@ export class CoursesCommand {
 
   public loadCourses(selection: CoursesSelectionOption) {
     this.appAPI.getCourses(selection).subscribe({
-      next: (responce) => {
-        console.log('loadCourses', responce);
-        responce = responce.courses as Course[];
-        responce.forEach((course: Course) => {
+      next: (response) => {
+        console.log('loadCourses', response);
+        response = response.courses as Course[];
+        response.forEach((course: Course) => {
           this.coursesStorage.addCourse(
             course
           );
@@ -52,8 +52,8 @@ export class CoursesCommand {
 
     if (!lesson || !lesson.content || lesson.content.length < 1) {
       this.appAPI.getLesson(lessonHref).subscribe({
-        next: (responce) => {
-          this.coursesStorage.addLesson(responce.lesson);
+        next: (response) => {
+          this.coursesStorage.addLesson(response.lesson);
         },
         error: (error) => {
           console.error(error);

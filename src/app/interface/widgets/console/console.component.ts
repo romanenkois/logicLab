@@ -1,12 +1,12 @@
 import { Component, input, InputSignal, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConsoleConfiguration } from '@types';
-import { ProgramingLanguagePipe } from '@pipes';
+import { ProgrammingLanguagePipe } from '@pipes';
 import { config } from '@environments';
 
 @Component({
   selector: 'app-console',
-  imports: [FormsModule, ProgramingLanguagePipe],
+  imports: [FormsModule, ProgrammingLanguagePipe],
   templateUrl: './console.component.html',
   styleUrl: './console.component.scss',
 })
@@ -19,12 +19,12 @@ export class ConsoleComponent implements OnInit {
     message: string;
   }[] = [];
 
-  availableEngines = config.codeEditor.suportedLanguages;
+  availableEngines = config.codeEditor.supportedLanguages;
 
   async executeCode() {
     console.log(this.availableEngines)
 
-    if (this.consoleConfiguration().programingLanguage === 'javascript') {
+    if (this.consoleConfiguration().programmingLanguage === 'javascript') {
       const result = await import('./engines/javascript.engine').then(
         ({ JavascriptEngine }) => {
           const javascriptEngine = new JavascriptEngine();

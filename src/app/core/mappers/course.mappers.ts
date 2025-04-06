@@ -9,7 +9,7 @@
 //       href: courseDTO.href,
 //       name: courseDTO.name,
 //       title: courseDTO.title,
-//       programingLanguage: courseDTO.programingLanguage,
+//       programmingLanguage: courseDTO.programmingLanguage,
 //       description: courseDTO.description,
 //       lessons: [],
 //     };
