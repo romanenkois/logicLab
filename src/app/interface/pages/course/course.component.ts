@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseContentComponent } from "../../widgets/course-content/course-content.component";
 
@@ -8,7 +8,7 @@ import { CourseContentComponent } from "../../widgets/course-content/course-cont
     templateUrl: './course.component.html',
     styleUrl: './course.component.scss'
 })
-export default class CourseComponent {
+export default class CourseComponent implements OnInit {
   activeRouter: ActivatedRoute = inject(ActivatedRoute);
 
   courseHref: WritableSignal<string> = signal('');
