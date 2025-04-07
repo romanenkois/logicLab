@@ -7,7 +7,7 @@ import { CoursesSelectionOption } from '@types';
 @Injectable({
   providedIn: 'root',
 })
-export class GeneralApiService {
+export class CoursesAPI {
   private apiUrl = config.api.BASE_API_URL;
   private http: HttpClient = inject(HttpClient);
 

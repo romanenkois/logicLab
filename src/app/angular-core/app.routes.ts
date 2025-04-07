@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authorizationGuard } from '@guards';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,7 @@ export const routes: Routes = [
   {
     path: 'profile',
     loadComponent: () => import('@pages/profile/profile.component'),
+    canActivate: [authorizationGuard],
   },
   {
     path: 'user',
@@ -48,7 +50,7 @@ export const routes: Routes = [
   {
     path: 'error404',
     loadComponent: () => import('@pages/error404/error404.component'),
-    data: {title: 'Error 404'}
+    data: { title: 'Error 404' },
   },
   {
     path: '',
@@ -57,6 +59,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/error404'
+    redirectTo: '/error404',
   },
 ];

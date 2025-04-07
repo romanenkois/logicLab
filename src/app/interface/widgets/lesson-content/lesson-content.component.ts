@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, InputSignal, OnInit } from '@angular/core';
-import { CoursesCommand } from '@commands';
+import { CourseCommand } from '@commands';
 import { LessonPlainTextComponent, LessonCodeSampleComponent, LessonListComponent } from "@features";
 import { CoursesStorage } from '@storage';
 
@@ -10,7 +10,7 @@ import { CoursesStorage } from '@storage';
   styleUrl: './lesson-content.component.scss'
 })
 export class LessonContentComponent implements OnInit {
-  courseCommand: CoursesCommand = inject(CoursesCommand);
+  courseCommand: CourseCommand = inject(CourseCommand);
   courseStorage: CoursesStorage = inject(CoursesStorage);
 
   courseHref: InputSignal<string> = input.required();

@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, InputSignal, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CoursesCommand } from '@commands';
+import { CourseCommand } from '@commands';
 import { CoursesStorage } from '@storage';
 import { LessonSimple, Lesson } from '@types';
 
@@ -11,7 +11,7 @@ import { LessonSimple, Lesson } from '@types';
   styleUrl: './course-lessons-list.component.scss',
 })
 export class CourseLessonsListComponent {
-  private CoursesCommand: CoursesCommand = inject(CoursesCommand);
+  private CourseCommand: CourseCommand = inject(CourseCommand);
   private CoursesStorage: CoursesStorage = inject(CoursesStorage);
 
   courseHref: InputSignal<string> = input.required<string>();
@@ -20,7 +20,7 @@ export class CourseLessonsListComponent {
 
   $lessons: Signal<Lesson[]> = computed(() => {
     return this.lessons().map((lesson: LessonSimple) => {
-      this.CoursesCommand.loadLesson(lesson.href);
+      this.CourseCommand.loadLesson(lesson.href);
       return this.CoursesStorage.getLesson(lesson.href);
     });
   });

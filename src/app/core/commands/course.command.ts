@@ -1,13 +1,13 @@
 import { inject, Injectable } from '@angular/core';
-import { GeneralApiService } from '@api';
+import { CoursesAPI } from '@api';
 import { CoursesStorage } from '@storage';
 import { Course, CoursesSelectionOption } from '@types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CoursesCommand {
-  private appAPI: GeneralApiService = inject(GeneralApiService);
+export class CourseCommand {
+  private appAPI: CoursesAPI = inject(CoursesAPI);
   private coursesStorage: CoursesStorage = inject(CoursesStorage);
 
   public loadCourse(courseHref: string) {

@@ -1,1 +1,1 @@
-export * from './courses.command';
+export { CourseCommand } from './course.command';
