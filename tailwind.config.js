@@ -18,6 +18,9 @@ module.exports = {
       'pure-black': {
         DEFAULT: '#000000',
       },
+      'black': {
+        DEFAULT: '#080a0f',
+      },
       'dark': {
         DEFAULT: '#0c0e14',
       },

@@ -1,17 +1,40 @@
 .main {
-    height: 100wh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     position: relative;
 
     .header {
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+
+        overflow: hidden; // TODO
+
         position: sticky;
         top: 0;
         z-index: 100;
     }
-    .content {
+
+    .router {
         position: relative;
         width: 100%;
-        height: 100%;
         box-sizing: border-box;
+
+        flex: 1;
+
+        align-self: flex-start;
+
+        display: flex;
+        flex-direction: column;
+
+        router-outlet {
+            display: none;
+        }
+        > * {
+            width: 100%;
+            flex: 1;
+        }
     }
 }

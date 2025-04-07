@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div>
+    <div class="bg-dark px-12 py-8 flex flex-col gap-4">
+        <div>
+            <p class="select-none text-xl font-black sm:text-2xl">
+                Ввійдіть в свій аккаунт
+            </p>
+        </div>
+
+        <form class="flex flex-col gap-2">
+            <input
+                class="border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
+                type="text"
+                placeholder="Електронна пошта"
+            />
+            <input
+                class="border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
+                type="password"
+                placeholder="Пароль"
+            />
+            <button
+                class="select-none bg-primary p-2 font-black hover:bg-primary-light"
+                type="button"
+                (click)="logInUser()"
+            >
+                Увійти
+            </button>
+        </form>
+
+        <div class="mt-4 flex flex-col gap-2">
+            <button class="select-none bg-black p-2 hover:bg-dark-light">
+                <a routerLink="/register">Зареєструватися</a>
+            </button>
+            <!-- <button class="select-none bg-dark p-2 hover:bg-dark-light">
+                <a routerLink="/forgot-password">Забули пароль?</a>
+            </button> -->
+        </div>
+    </div>
+</div>

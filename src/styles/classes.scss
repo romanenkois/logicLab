@@ -7,6 +7,8 @@
 }
 
 .page-wrapper {
+    height: 100%;
+    width: 100%;
     padding: 2rem 4rem;
 }
 @media screen and (max-width: 1024px) {
@@ -22,13 +24,13 @@
 
 
 
-.no-select {
+.select-none {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
-.no-select * {
+.select-none * {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -137,7 +139,6 @@
         font-family: var(--code-font);
     }
 }
-
 
 
 //
