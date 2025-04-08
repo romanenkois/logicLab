@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { UserAPI } from '@api';
 import { UserStorage } from '@storage';
 import { User } from '@types';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,20 +18,15 @@ export class UserCommand {
     profilePhoto,
   }: {
     email: User['email'];
-    password: User['password']; // should be changed probably ???
+    password: User['password'];
     name: User['userInfo']['name'];
     profilePhoto?: User['userInfo']['profilePicture'];
-  }) : any | void | Observable<any> {
-    this.userAPI.registerUser(email, password, name, profilePhoto).subscribe({
-      next: (response: any) => {
+  }): Observable<any> {
+    return this.userAPI.registerUser(email, password, name, profilePhoto).pipe(
+      tap((response: any) => {
         this.userStorage.setUser(response.user);
-        return response.user;
-      },
-      error: (error) => {
-        console.error(error);
-        return 'Error';
-      },
-    });
+      })
+    );
   }
 
   public async loadUserData(email: User['email'], password: User['password']) {

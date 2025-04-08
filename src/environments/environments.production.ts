@@ -1,6 +1,6 @@
-import { AppEnvironmentConfig } from '@types';
+import { AppConfig } from '@types';
 
-export const config: AppEnvironmentConfig = {
+export const config: AppConfig = {
   api: {
     BASE_API_URL: 'https://logic-lab-api-ts.vercel.app/v2',
     BASE_CLIENT_URL: 'https://logic-lab-two.vercel.app/',
@@ -8,5 +8,8 @@ export const config: AppEnvironmentConfig = {
   codeEditor: {
     defaultLanguage: 'javascript',
     supportedLanguages: ['javascript'],
+  },
+  defaultUserConfig: {
+    keepLogedIn: false,
   },
 };

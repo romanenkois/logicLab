@@ -6,16 +6,7 @@ export type ProgrammingLanguage =
   | 'typescript'
   | 'python';
 
-export interface AppEnvironmentConfig {
-  api: {
-    BASE_API_URL: string;
-    BASE_CLIENT_URL: string;
-  };
-  codeEditor: {
-    defaultLanguage: ProgrammingLanguage;
-    supportedLanguages: ProgrammingLanguage[];
-  };
-}
+
 
 export type CoursesSelectionOption = 'all' | 'popular' | 'new';
 

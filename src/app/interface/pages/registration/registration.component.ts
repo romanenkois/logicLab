@@ -34,7 +34,6 @@ export default class RegistrationComponent {
   }
 
   registerUser() {
-    console.log(123)
     if (this.registrationForm.valid && this.passwordsMatchValidator()) {
       const formValue = this.registrationForm.value;
       this.userCommand
@@ -47,9 +46,13 @@ export default class RegistrationComponent {
           next: () => {
             this.router.navigate(['/login']);
           },
-          error: () => {
+          error: (error) => {
             this.registrationForm.reset();
-            console.error('Error during registration');
+            if (error.status === 409) {
+              window.alert('Користувач з такою поштою вже існує');
+            } else {
+              window.alert('Помилка під час реєстрації');
+            }
           },
         });
     } else if (!this.passwordsMatchValidator()) {

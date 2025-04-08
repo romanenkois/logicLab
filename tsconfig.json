@@ -9,6 +9,7 @@
       "@commands": ["src/app/core/commands/index.ts"],
       "@guards": ["src/app/core/guards/index.ts"],
       "@mappers": ["src/app/core/mappers/index.ts"],
+      "@services": ["src/app/core/services/index.ts"],
       "@storage": ["src/app/core/storage/index.ts"],
 
       "@features": ["src/app/interface/features/index.ts"],

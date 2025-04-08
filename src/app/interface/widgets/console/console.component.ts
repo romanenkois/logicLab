@@ -2,7 +2,7 @@ import { Component, input, InputSignal, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConsoleConfiguration } from '@types';
 import { ProgrammingLanguagePipe } from '@pipes';
-import { config } from '@environments';
+import { $appConfig } from '@environments';
 
 @Component({
   selector: 'app-console',
@@ -19,7 +19,7 @@ export class ConsoleComponent implements OnInit {
     message: string;
   }[] = [];
 
-  availableEngines = config.codeEditor.supportedLanguages;
+  availableEngines = $appConfig.codeEditor.supportedLanguages;
 
   async executeCode() {
     console.log(this.availableEngines)

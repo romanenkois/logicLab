@@ -1,15 +1,33 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  ApplicationConfig,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 
 import { provideHighlightOptions } from 'ngx-highlightjs';
 
+import { PreloadService } from '@services';
+
+export function appPreloadInitializer(preloadService: PreloadService) {
+  return () => preloadService;
+}
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+
+    PreloadService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appPreloadInitializer,
+      deps: [PreloadService],
+      multi: true,
+    },
+
     provideHighlightOptions({
       coreLibraryLoader: () => import('highlight.js/lib/core'),
       lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'),
@@ -20,7 +38,7 @@ export const appConfig: ApplicationConfig = {
         xml: () => import('highlight.js/lib/languages/xml'),
         css: () => import('highlight.js/lib/languages/css'),
       },
-    })
-  ]
+    }),
+  ],
 };
 appConfig.providers.push(provideHttpClient());

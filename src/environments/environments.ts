@@ -1,8 +1,8 @@
-import { AppEnvironmentConfig } from '@types';
+import { AppConfig } from '@types';
 
 const production = false;
 
-export const config: AppEnvironmentConfig = {
+export const $appConfig: AppConfig = {
   api: {
     BASE_API_URL: production ? 'https://logic-lab-api-ts.vercel.app/v2': 'http://localhost:3000/v2',
     BASE_CLIENT_URL: production ? 'https://logic-lab-two.vercel.app/' : 'http://localhost:4200/',
@@ -15,5 +15,8 @@ export const config: AppEnvironmentConfig = {
       'typescript',
       'python',
     ],
+  },
+  defaultUserConfig: {
+    keepLogedIn: true,
   },
 };

@@ -1,9 +1,11 @@
 export interface User {
   email: string;
 
-  // is not intended to be actually stored
-  // kept to keep types consistent
+  // password is not intended to be actually stored
+  // present to keep types consistent
   password?: string;
+
+  token: string;
 
   userInfo: {
     name: string;

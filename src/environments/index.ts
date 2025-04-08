@@ -1,1 +1,1 @@
-export * from './environments';
+export { $appConfig } from './environments';

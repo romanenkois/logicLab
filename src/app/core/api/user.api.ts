@@ -1,14 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { config } from '@environments';
+import { $appConfig } from '@environments';
 import { User } from '@types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserAPI {
-  private apiUrl = config.api.BASE_API_URL;
+  private apiUrl = $appConfig.api.BASE_API_URL;
   private http: HttpClient = inject(HttpClient);
 
   public registerUser(

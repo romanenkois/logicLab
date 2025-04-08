@@ -1,7 +1,6 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { User } from '@types';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -13,5 +12,7 @@ export class UserStorage {
   }
   public setUser(user: User): void {
     this.user.set(user);
+
+
   }
 }
