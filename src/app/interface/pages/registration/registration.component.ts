@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export default class RegistrationComponent {
   userCommand: UserCommand = inject(UserCommand);
-  private formBuilder = inject(FormBuilder);
+  private formBuilder: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
 
   registrationForm: FormGroup = this.formBuilder.group({
@@ -44,7 +44,7 @@ export default class RegistrationComponent {
         })
         .subscribe({
           next: () => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/profile']);
           },
           error: (error) => {
             this.registrationForm.reset();

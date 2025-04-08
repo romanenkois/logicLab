@@ -6,15 +6,17 @@
             </p>
         </div>
 
-        <form class="flex flex-col gap-2">
+        <form [formGroup]="loginForm" class="flex flex-col gap-2">
             <input
                 class="w-full border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
                 type="text"
+                formControlName="email"
                 placeholder="Електронна пошта"
             />
             <input
                 class="w-full border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
                 type="password"
+                formControlName="password"
                 placeholder="Пароль"
             />
             <button
@@ -34,13 +36,14 @@
                     Зареєструватися
                 </button>
             </a>
-            <a routerLink="/forgot-password">
+            <!-- TODO: Implement??? -->
+            <!-- <a routerLink="/forgot-password">
                 <button
                     class="w-full select-none bg-black p-2 hover:bg-dark-light"
                 >
                     Забули пароль?
                 </button>
-            </a>
+            </a> -->
         </div>
     </div>
 </div>

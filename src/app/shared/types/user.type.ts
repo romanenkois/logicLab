@@ -5,7 +5,7 @@ export interface User {
   // present to keep types consistent
   password?: string;
 
-  token: string;
+  token?: string;
 
   userInfo: {
     name: string;

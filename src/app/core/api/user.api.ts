@@ -33,8 +33,10 @@ export class UserAPI {
 
   public logInUser(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/login`, {
-      email,
-      password,
+      login: {
+        email,
+        password,
+      },
     });
   }
 }

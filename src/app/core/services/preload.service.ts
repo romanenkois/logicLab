@@ -3,16 +3,17 @@ import { $appConfig } from '@environments';
 import { UserConfigStorage } from '@storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PreloadService {
-  private readonly userConfigStorage: UserConfigStorage = inject(UserConfigStorage);
+  private readonly userConfigStorage: UserConfigStorage =
+    inject(UserConfigStorage);
 
   constructor() {
     console.log('PreloadService initialized');
     this.loadUserConfig();
     if (this.userConfigStorage.getUserConfig().saveLogin) {
-      this.logInUser();
+      this.loadLogInInfo();
     }
   }
 
@@ -25,7 +26,7 @@ export class PreloadService {
     }
   }
 
-  logInUser() {
+  loadLogInInfo() {
     let user = localStorage.getItem('user');
     if (user) {
       user = JSON.parse(user);
@@ -33,6 +34,7 @@ export class PreloadService {
       // TODO: rewrite, couse its just stupid
       if (user) {
         this.userConfigStorage.setUserConfig(user);
+        console.log('user loged in');
       }
     }
   }

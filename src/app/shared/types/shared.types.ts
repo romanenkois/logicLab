@@ -6,8 +6,6 @@ export type ProgrammingLanguage =
   | 'typescript'
   | 'python';
 
-
-
 export type CoursesSelectionOption = 'all' | 'popular' | 'new';
 
 export interface ConsoleConfiguration {
