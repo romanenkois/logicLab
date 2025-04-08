@@ -1,0 +1,43 @@
+<div>
+    <div class="flex w-full flex-col gap-4 bg-dark px-12 py-8 sm:w-[500px]">
+        <div>
+            <p class="select-none text-xl font-black sm:text-2xl">Реєстрація</p>
+        </div>
+
+        <form [formGroup]="registrationForm" class="flex flex-col gap-2">
+            <input
+                class="w-full border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
+                type="text"
+                formControlName="name"
+                placeholder="Ім'я"
+            />
+            <input
+                class="w-full border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
+                type="email"
+                formControlName="email"
+                placeholder="Електронна пошта"
+            />
+            <div></div>
+            <input
+                class="w-full border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
+                type="password"
+                formControlName="password"
+                placeholder="Пароль"
+            />
+            <input
+                class="w-full border-collapse select-none bg-black p-2 outline-none focus:outline-primary"
+                type="password"
+                formControlName="confirmPassword"
+                placeholder="Підтвердження пароля"
+            />
+
+            <button
+                class="w-full select-none bg-primary p-2 font-black hover:bg-primary-light"
+                type="button"
+                (click)="this.registerUser()"
+            >
+                Зареєструватися
+            </button>
+        </form>
+    </div>
+</div>

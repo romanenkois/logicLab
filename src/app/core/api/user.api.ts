@@ -18,12 +18,14 @@ export class UserAPI {
     profilePicture?: User['userInfo']['profilePicture'],
   ): Observable<any> {
     return this.http.put(`${this.apiUrl}/auth/register`, {
-      email,
-      password,
-      userInfo: {
-        name,
-        ...{
-          ...(profilePicture && { profilePicture }),
+      user: {
+        email,
+        password,
+        userInfo: {
+          name,
+          ...{
+            ...(profilePicture && { profilePicture }),
+          },
         },
       },
     });

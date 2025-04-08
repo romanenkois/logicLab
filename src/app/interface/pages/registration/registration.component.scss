@@ -7,10 +7,3 @@
     justify-content: center;
     align-items: center;
 }
-
-button {
-
-    &:active {
-        transform: var(--small-shrink);
-    }
-}

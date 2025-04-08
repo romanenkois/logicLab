@@ -6,11 +6,19 @@ import { UserStorage } from '@storage';
 export const authorizationGuard: CanActivateFn = (route, state) => {
   const userStorage: UserStorage = inject(UserStorage);
   const router: Router = inject(Router);
+  const requiresAuth = !['login', 'registration'].includes(route.routeConfig?.path || '');
 
-  if (userStorage.getUser() === null) {
+  const isLoggedIn = userStorage.getUser() !== null;
+
+  if (requiresAuth && !isLoggedIn) {
     router.navigate(['/login']);
     return false;
-  } else {
-    return true;
   }
+
+  if (!requiresAuth && isLoggedIn) {
+    router.navigate(['/profile']);
+    return false;
+  }
+
+  return true;
 };
