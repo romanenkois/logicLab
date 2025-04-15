@@ -43,11 +43,14 @@ export default class LoginComponent {
               break;
             case 'invalidData':
               window.alert('Невірні дані для входу');
+              this.loginForm.get('password')?.reset();
               break;
 
             case 'error':
-              window.alert('Помилка під час входу');
+              window.alert('Помилка під час входу, перевірте введені дані');
+              this.loginForm.get('password')?.reset();
               break;
+
             default:
               console.error('Unknown status:', status);
           }
