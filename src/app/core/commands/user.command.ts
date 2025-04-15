@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { UserAPI } from '@api';
-import { UserStorage } from '@storage';
-import { User, UserToken } from '@types';
+import { TokenStorage, UserStorage } from '@storage';
+import { User } from '@types';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -10,6 +10,7 @@ import { tap } from 'rxjs';
 export class UserCommand {
   private userAPI: UserAPI = inject(UserAPI);
   private userStorage: UserStorage = inject(UserStorage);
+  private tokenStorage: TokenStorage = inject(TokenStorage);
 
   public registerUser({
     email,
@@ -37,10 +38,9 @@ export class UserCommand {
     password: User['password'];
   }) {
     return this.userAPI.logInUser(email, password!).pipe(
-      tap((response: {user: User, token: UserToken}) => {
-        // user data and token are taken sepparately from api
-        response.user.token = response.token;
+      tap((response: {user: User, token: string}) => {
         this.userStorage.setUser(response.user);
+        this.tokenStorage.setToken(response.token);
       }),
     );
   }

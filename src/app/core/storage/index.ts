@@ -1,3 +1,4 @@
-export { CoursesStorage } from "./courses.storage";
-export { UserConfigStorage } from "./user-config.storage";
-export { UserStorage } from "./user.storage";
+export { CoursesStorage } from './courses.storage';
+export { TokenStorage } from './token.storage';
+export { UserSettingsStorage } from './user-settings.storage';
+export { UserStorage } from './user.storage';

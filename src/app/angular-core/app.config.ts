@@ -19,6 +19,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideHttpClient(),
 
     PreloadService,
     {
@@ -41,4 +42,3 @@ export const appConfig: ApplicationConfig = {
     }),
   ],
 };
-appConfig.providers.push(provideHttpClient());

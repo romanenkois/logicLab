@@ -9,7 +9,8 @@ export const $appConfig: AppConfig = {
     defaultLanguage: 'javascript',
     supportedLanguages: ['javascript'],
   },
-  defaultUserConfig: {
-    keepLogedIn: false,
+  defaultUserSettings: {
+    theme: 'dark',
+    keepToken: true,
   },
 };

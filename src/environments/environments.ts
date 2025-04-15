@@ -16,7 +16,8 @@ export const $appConfig: AppConfig = {
       'python',
     ],
   },
-  defaultUserConfig: {
-    keepLogedIn: true,
+  defaultUserSettings: {
+    theme: 'dark',
+    keepToken: true,
   },
 };

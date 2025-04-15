@@ -1,4 +1,5 @@
 import { ProgrammingLanguage } from '@types';
+import { UserSettings } from './user-settings.type';
 
 export interface AppConfig {
   api: {
@@ -9,9 +10,5 @@ export interface AppConfig {
     defaultLanguage: ProgrammingLanguage;
     supportedLanguages: ProgrammingLanguage[];
   };
-  defaultUserConfig: UserConfig; // !? keep eye on circular dependency
-}
-
-export interface UserConfig {
-  keepLogedIn: boolean;
+  defaultUserSettings: UserSettings; // !? keep eye on circular dependency
 }

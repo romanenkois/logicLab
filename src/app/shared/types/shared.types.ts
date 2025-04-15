@@ -13,4 +13,4 @@ export interface ConsoleConfiguration {
   programmingLanguage: ProgrammingLanguage;
 
   code: string;
-};
+}
