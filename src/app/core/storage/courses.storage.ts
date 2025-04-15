@@ -17,6 +17,9 @@ export class CoursesStorage {
   public addCourse(course: Course): void {
     this.courses.set([...this.courses(), course]);
   }
+  public addCourses(courses: Course[]): void {
+    this.courses.set([...this.courses(), ...courses]);
+  }
 
   public getLesson(lessonHref: string): Lesson {
     return this.lessons().filter(

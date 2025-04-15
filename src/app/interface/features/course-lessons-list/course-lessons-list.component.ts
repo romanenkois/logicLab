@@ -20,7 +20,9 @@ export class CourseLessonsListComponent {
 
   $lessons: Signal<Lesson[]> = computed(() => {
     return this.lessons().map((lesson: LessonSimple) => {
-      this.CourseCommand.loadLesson(lesson.href);
+      this.CourseCommand.loadLesson(lesson.href).subscribe((status) => {
+        console.log('loadLesson', status);
+      });
       return this.CoursesStorage.getLesson(lesson.href);
     });
   });

@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegistrationState } from '@types';
 
 @Component({
   selector: 'app-registration',
@@ -36,24 +37,35 @@ export default class RegistrationComponent {
   registerUser() {
     if (this.registrationForm.valid && this.passwordsMatchValidator()) {
       const formValue = this.registrationForm.value;
+
       this.userCommand
         .registerUser({
           name: formValue.name,
           email: formValue.email,
           password: formValue.password,
         })
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/profile']);
-          },
-          error: (error) => {
-            this.registrationForm.reset();
-            if (error.status === 409) {
-              window.alert('Користувач з такою поштою вже існує');
-            } else {
+        .subscribe((status: RegistrationState) => {
+          switch (status) {
+            case 'loading':
+              console.log('Loading...');
+              break;
+            case 'resolved':
+              console.log('Registration successful');
+              this.router.navigate(['/profile']);
+              break;
+            case 'error':
               window.alert('Помилка під час реєстрації');
-            }
-          },
+              break;
+            case 'userAlreadyExists':
+              window.alert('Користувач з такою поштою вже існує');
+              break;
+            case 'invalidData':
+              window.alert('Некоректні дані');
+              break;
+            default:
+              console.error('Unknown status:', status);
+              break;
+          }
         });
     } else if (!this.passwordsMatchValidator()) {
       window.alert('Паролі не співпадають');

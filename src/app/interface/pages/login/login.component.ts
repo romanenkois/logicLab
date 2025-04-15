@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserCommand } from '@commands';
+import { LoginState } from '@types';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -32,18 +33,24 @@ export default class LoginComponent {
           email: formValue.email,
           password: formValue.password,
         })
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/profile']);
-          },
-          error: (error) => {
-            this.loginForm.reset();
-            if (error.status === 404) {
-              window.alert('Невірний логін або пароль');
-            } else {
+        .subscribe((status: LoginState) => {
+          switch (status) {
+            case 'loading':
+              console.log('Loading...');
+              break;
+            case 'resolved':
+              this.router.navigate(['/profile']);
+              break;
+            case 'invalidData':
+              window.alert('Невірні дані для входу');
+              break;
+
+            case 'error':
               window.alert('Помилка під час входу');
-            }
-          },
+              break;
+            default:
+              console.error('Unknown status:', status);
+          }
         });
     } else if (this.loginForm.get('password')?.errors?.['minlength']) {
       window.alert('Пароль повинен містити не менше 8 символів');

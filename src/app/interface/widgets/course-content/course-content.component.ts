@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CourseCommand } from '@commands';
 import { CoursesStorage } from '@storage';
 import { CourseLessonsListComponent } from "@features";
+import { LoadingState } from '@types';
 
 @Component({
   selector: 'app-course-content',
@@ -22,6 +23,20 @@ export class CourseContentComponent implements OnInit {
 
   ngOnInit() {
     console.log('course content init');
-    this.courseCommand.loadCourse(this.courseHref());
+    this.courseCommand.loadCourse(this.courseHref()).subscribe((status: LoadingState) => {
+      switch (status) {
+        case 'loading':
+          console.log('Loading...');
+          break;
+        case 'resolved':
+          console.log('Resolved');
+          break;
+        case 'error':
+          console.error('Error loading course');
+          break;
+        default:
+          console.error('Unknown status:', status);
+      }
+    });
   }
 }
