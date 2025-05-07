@@ -71,11 +71,10 @@
         }
     }
 
-
     .toggle-btn {
         position: absolute;
-        top: 0;
-        left: -50px;
+        top: 1rem;
+        left: calc(-32px - 1rem);
         z-index: 15;
     }
 }

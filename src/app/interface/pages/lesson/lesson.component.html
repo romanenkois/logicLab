@@ -7,7 +7,8 @@
         </app-lesson-content>
     </div>
     <div
-        class="comments hide-comments h-full w-full bg-dark/80 backdrop-blur-sm lg:w-[500px]"
+        class="comments h-full w-full bg-dark/80 backdrop-blur-sm lg:w-[500px]"
+        [class.hide-comments]="!this.lessonCommentsVisibility()"
     >
         <app-lesson-comments
             [lessonHref]="this.lessonHref()"
