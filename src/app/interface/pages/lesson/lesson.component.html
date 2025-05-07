@@ -1,7 +1,15 @@
-<div>
-    <app-lesson-content
-    [courseHref]="this.courseHref()"
-    [lessonHref]="this.lessonHref()"
-    >
-    </app-lesson-content>
+<div class="page">
+    <div>
+        <app-lesson-content
+            [courseHref]="this.courseHref()"
+            [lessonHref]="this.lessonHref()"
+        >
+        </app-lesson-content>
+    </div>
+    <div class="comments bg-dark">
+        <app-lesson-comments
+        [lessonHref]="this.lessonHref()"
+        >
+        </app-lesson-comments>
+    </div>
 </div>

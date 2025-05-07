@@ -1,14 +1,29 @@
-import { Component, computed, inject, input, InputSignal, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  InputSignal,
+  OnInit,
+} from '@angular/core';
 import { CourseCommand } from '@commands';
-import { LessonPlainTextComponent, LessonCodeSampleComponent, LessonListComponent } from "@features";
+import {
+  LessonPlainTextComponent,
+  LessonCodeSampleComponent,
+  LessonListComponent,
+} from '@features';
 import { CoursesStorage } from '@storage';
 import { LoadingState } from '@types';
 
 @Component({
   selector: 'app-lesson-content',
-  imports: [LessonPlainTextComponent, LessonCodeSampleComponent, LessonListComponent],
+  imports: [
+    LessonPlainTextComponent,
+    LessonCodeSampleComponent,
+    LessonListComponent,
+  ],
   templateUrl: './lesson-content.component.html',
-  styleUrl: './lesson-content.component.scss'
+  styleUrl: './lesson-content.component.scss',
 })
 export class LessonContentComponent implements OnInit {
   courseCommand: CourseCommand = inject(CourseCommand);
@@ -16,6 +31,8 @@ export class LessonContentComponent implements OnInit {
 
   courseHref: InputSignal<string> = input.required();
   lessonHref: InputSignal<string> = input.required();
+
+  status: LoadingState = 'idle';
 
   lesson = computed(() => {
     if (this.courseHref() && this.lessonHref()) {
@@ -26,20 +43,10 @@ export class LessonContentComponent implements OnInit {
 
   ngOnInit() {
     console.log('lesson content init');
-    this.courseCommand.loadLesson(this.lessonHref()).subscribe((status: LoadingState) => {
-      switch (status) {
-        case 'loading':
-          console.log('Loading...');
-          break;
-        case 'resolved':
-          console.log('Resolved');
-          break;
-        case 'error':
-          console.error('Error loading lesson');
-          break;
-        default:
-          console.error('Unknown status:', status);
-      }
-    });
+    this.courseCommand
+      .loadLesson(this.lessonHref())
+      .subscribe((status: LoadingState) => {
+        this.status = status;
+      });
   }
 }

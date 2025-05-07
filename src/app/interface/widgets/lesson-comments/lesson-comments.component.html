@@ -1,0 +1,34 @@
+<div>
+    <div>
+        @for (comment of this.comments(); track $index) {
+            <div>
+                <div>
+                    <div>
+
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+                <div>
+                    {{ comment.text }}
+                </div>
+            </div>
+        }
+        @if (this.comments().length < 1 && this.loadingStatus === "resolved") {
+            no comments yet
+        }
+    </div>
+    <div>
+        <textarea
+            class=""
+            [(ngModel)]="newComment"
+            placeholder="write your comment here..."
+            rows="2"
+        >
+        </textarea>
+        <button (click)="this.postNewComment()">
+            <p>Опублікувати</p>
+        </button>
+    </div>
+</div>

@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { LessonContentComponent } from '@widgets';
 import { ActivatedRoute } from '@angular/router';
+import { LessonCommentsComponent } from "../../widgets/lesson-comments/lesson-comments.component";
 
 @Component({
   selector: 'app-lesson',
-  imports: [LessonContentComponent],
+  imports: [LessonContentComponent, LessonCommentsComponent],
   templateUrl: './lesson.component.html',
   styleUrl: './lesson.component.scss',
 })
