@@ -1,14 +1,9 @@
-<div>
-    <div>
+<div class="wrapper">
+    <div class="comments">
         @for (comment of this.comments(); track $index) {
             <div>
                 <div>
-                    <div>
-
-                    </div>
-                    <div>
-                        
-                    </div>
+                    <p>{{ comment.userId }}</p>
                 </div>
                 <div>
                     {{ comment.text }}
@@ -19,7 +14,7 @@
             no comments yet
         }
     </div>
-    <div>
+    <div class="actions">
         <textarea
             class=""
             [(ngModel)]="newComment"

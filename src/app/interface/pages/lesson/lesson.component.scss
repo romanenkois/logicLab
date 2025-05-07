@@ -1,15 +1,28 @@
+:host {
+    height: 100%;
+}
+
 .page {
     position: relative;
-    width: 100wh;
-    // overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: hidden;
+
+    .lesson {
+        height: max-content;
+        overflow-y: scroll;
+    }
 
     .comments {
         position: absolute;
         top: 0;
-        // left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 400px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
         z-index: 10;
     }
 }

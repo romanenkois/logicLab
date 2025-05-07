@@ -16,6 +16,15 @@ export class CommentsStorage {
   }
 
   public addLessonComments(comments: LessonComment[]) {
-    this.comments.set([...this.comments(), ...comments]);
+    const existingComments = new Set(
+      this.comments().map((comment: LessonComment) => comment.id),
+    );
+    const comments_ = comments.filter(
+      (comment: LessonComment) => !existingComments.has(comment.id),
+    );
+    if (comments_.length === 0) {
+      return;
+    }
+    this.comments.set([...this.comments(), ...comments_]);
   }
 }
