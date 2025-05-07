@@ -1,29 +1,27 @@
 <div class="wrapper">
     <div class="comments">
         @for (comment of this.comments(); track $index) {
-            <div>
-                <div>
+            <div class="comment">
+                <div class="user-info">
                     <p>{{ comment.userId }}</p>
                 </div>
-                <div>
+                <div class="comment-text">
                     {{ comment.text }}
                 </div>
             </div>
         }
         @if (this.comments().length < 1 && this.loadingStatus === "resolved") {
-            no comments yet
+            <div class="no-comments">No comments yet</div>
         }
     </div>
     <div class="actions">
         <textarea
-            class=""
             [(ngModel)]="newComment"
-            placeholder="write your comment here..."
+            placeholder="Write your comment here..."
             rows="2"
-        >
-        </textarea>
+        ></textarea>
         <button (click)="this.postNewComment()">
-            <p>Опублікувати</p>
+            Post
         </button>
     </div>
 </div>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavBarComponent } from '@widgets';
+import { NavBarComponent, ScreenNotificationComponent } from '@widgets';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavBarComponent],
+  imports: [RouterOutlet, NavBarComponent, ScreenNotificationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

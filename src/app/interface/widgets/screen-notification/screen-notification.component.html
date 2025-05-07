@@ -1,0 +1,24 @@
+@if (this.message()) {
+    <div
+        class="wrapper flex h-full w-full items-center justify-center bg-dark/20 backdrop-blur-sm"
+    >
+        <div class="flex max-w-[400px] flex-col gap-2 bg-dark p-4">
+            <h1 class="mb-2 text-2xl font-black text-primary sm:text-3xl">
+                {{ this.message()!.title }}
+            </h1>
+            <p class="text-lg">
+                {{ this.message()!.text }}
+            </p>
+
+            @if (this.message()!.secondaryText) {
+                <p class="text-lg text-gray">
+                    {{ this.message()!.secondaryText }}
+                </p>
+            }
+
+            <button class="w-full bg-primary p-2" (click)="this.close()">
+                {{ this.message()!.buttonText }}
+            </button>
+        </div>
+    </div>
+}

@@ -14,3 +14,11 @@ export interface ConsoleConfiguration {
 
   code: string;
 }
+
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+export type Message = {
+  title: string;
+  text: string;
+  secondaryText?: string;
+  buttonText: string;
+}
