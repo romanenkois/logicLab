@@ -1,10 +1,12 @@
 import {
   Component,
   computed,
+  EventEmitter,
   inject,
   input,
   InputSignal,
   OnInit,
+  Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommentsCommand } from '@commands';
@@ -22,6 +24,7 @@ export class LessonCommentsComponent implements OnInit {
   readonly commentsStorage: CommentsStorage = inject(CommentsStorage);
 
   lessonHref: InputSignal<string> = input.required();
+  @Output() toggleVisibilityEvent = new EventEmitter<boolean | void>();
 
   loadingStatus: LoadingState = 'idle';
   uploadingStatus: UploadingState = 'idle';
@@ -31,6 +34,14 @@ export class LessonCommentsComponent implements OnInit {
   comments = computed(() => {
     return this.commentsStorage.getLessonComments(this.lessonHref());
   });
+
+  closeWindow() {
+    this.toggleVisibilityEvent.emit(false);
+  }
+
+  toggleVisibility() {
+    this.toggleVisibilityEvent.emit();
+  }
 
   postNewComment() {
     console.log('Posting new comment:', this.newComment);

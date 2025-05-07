@@ -6,9 +6,12 @@
         >
         </app-lesson-content>
     </div>
-    <div class="comments bg-dark">
+    <div
+        class="comments hide-comments h-full w-full bg-dark/80 backdrop-blur-sm lg:w-[500px]"
+    >
         <app-lesson-comments
-        [lessonHref]="this.lessonHref()"
+            [lessonHref]="this.lessonHref()"
+            (toggleVisibilityEvent)="this.toggleLessonComments($event)"
         >
         </app-lesson-comments>
     </div>

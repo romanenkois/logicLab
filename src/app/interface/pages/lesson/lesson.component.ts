@@ -15,6 +15,16 @@ export default class LessonComponent implements OnInit {
   courseHref: WritableSignal<string> = signal('');
   lessonHref: WritableSignal<string> = signal('');
 
+  lessonCommentsVisibility: WritableSignal<boolean> = signal(false);
+
+  toggleLessonComments(togle?: boolean | void) {
+    if (togle) {
+      this.lessonCommentsVisibility.set(togle);
+      return;
+    }
+    this.lessonCommentsVisibility.set(!this.lessonCommentsVisibility());
+  }
+
   ngOnInit() {
     this.activeRoute.params.subscribe((params) => {
       this.courseHref.set(params['courseHref']);

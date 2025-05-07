@@ -1,8 +1,8 @@
 <div
-    class="select-none flex min-h-12 w-full justify-between bg-dark/75 backdrop-blur-sm"
+    class="flex min-h-12 w-full select-none justify-between bg-dark/75 backdrop-blur-sm"
 >
     <div class="box-border flex">
-        <div class="box-border flex items-center p-4">
+        <div class="box-border flex items-center p-4 pr-2 sm:pr-4">
             <a routerLink="/home">
                 <h1
                     class="w-full text-2xl font-black text-primary hover:text-primary-light"
@@ -11,7 +11,9 @@
                 </h1>
             </a>
         </div>
-        <div class="courses-list box-border flex items-center gap-4 p-4">
+        <div
+            class="courses-list box-border hidden items-center gap-4 p-4 sm:flex"
+        >
             <div>
                 <a routerLink="course/javascript">
                     <p
@@ -21,7 +23,7 @@
                     </p>
                 </a>
             </div>
-            <div>
+            <!-- <div>
                 <a routerLink="course/typescript">
                     <p
                         class="w-max text-lg font-black text-gray hover:text-white"
@@ -29,31 +31,31 @@
                         TypeScript
                     </p>
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
-    <div class="box-border flex items-center gap-4 p-4">
+    <div class="box-border flex items-center gap-2 p-4 pl-2 sm:pl-4 md:gap-4">
         <div class="box-border">
             <a routerLink="/code-space">
-                <p class="text-lg font-black text-gray hover:text-white">
+                <p class="font-black text-gray hover:text-white text-lg">
                     консоль
                 </p>
             </a>
         </div>
         <div class="box-border">
             <a routerLink="/courses">
-                <p class="text-lg font-black text-gray hover:text-white">
+                <p class="font-black text-gray hover:text-white text-lg">
                     курси
                 </p>
             </a>
         </div>
-        <div class="box-border">
+        <!-- <div class="box-border">
             <a routerLink="/tests">
                 <p class="text-lg font-black text-gray hover:text-white">
                     тести
                 </p>
             </a>
-        </div>
+        </div> -->
         <div class="box-border">
             <a routerLink="/profile">
                 <div class="medium-icon">

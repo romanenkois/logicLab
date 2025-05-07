@@ -21,13 +21,15 @@
         right: 0;
         z-index: 10;
 
-        width: 100%;
-        max-width: 400px;
-        height: 100%;
+        // resize: horizontal;
+
+        // width: 100%;
+        // max-width: 400px;
+        // height: 100%;
 
         padding-top: 64px;
-
-        background-color: rgba(0, 0, 0, 0.7);
-
+    }
+    .comments.hide-comments {
+        right: 0px;
     }
 }
