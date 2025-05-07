@@ -1,8 +1,16 @@
-import { Component, computed, inject, input, InputSignal, Signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  InputSignal,
+  OnInit,
+  Signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CourseCommand } from '@commands';
 import { CoursesStorage } from '@storage';
-import { LessonSimple, Lesson } from '@types';
+import { LessonSimple, Lesson, LoadingState } from '@types';
 
 @Component({
   selector: 'app-course-lessons-list',
@@ -10,7 +18,7 @@ import { LessonSimple, Lesson } from '@types';
   templateUrl: './course-lessons-list.component.html',
   styleUrl: './course-lessons-list.component.scss',
 })
-export class CourseLessonsListComponent {
+export class CourseLessonsListComponent implements OnInit {
   private CourseCommand: CourseCommand = inject(CourseCommand);
   private CoursesStorage: CoursesStorage = inject(CoursesStorage);
 
@@ -18,12 +26,22 @@ export class CourseLessonsListComponent {
   lessons: InputSignal<LessonSimple[]> = input.required<LessonSimple[]>();
   showDescription: InputSignal<boolean> = input<boolean>(false);
 
+  status: LoadingState = 'idle';
+
   $lessons: Signal<Lesson[]> = computed(() => {
-    return this.lessons().map((lesson: LessonSimple) => {
-      this.CourseCommand.loadLesson(lesson.href).subscribe((status) => {
-        console.log('loadLesson', status);
-      });
-      return this.CoursesStorage.getLesson(lesson.href);
-    });
+    return this.lessons().map((lesson: LessonSimple) =>
+      this.CoursesStorage.getLesson(lesson.href)
+    ).filter(lesson => lesson !== undefined);
   });
+
+  ngOnInit() {
+    for (const lesson of this.lessons()) {
+      const existingLesson = this.CoursesStorage.getLesson(lesson.href);
+      if (!existingLesson || !existingLesson.content || existingLesson.content.length < 1) {
+        this.CourseCommand.loadLesson(lesson.href).subscribe((status) => {
+          this.status = status;
+        });
+      }
+    }
+  }
 }
