@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistrationState } from '@types';
+import { ScreenNotificationService } from '@services';
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +17,11 @@ import { RegistrationState } from '@types';
   styleUrl: './registration.component.scss',
 })
 export default class RegistrationComponent {
-  userCommand: UserCommand = inject(UserCommand);
+  private userCommand: UserCommand = inject(UserCommand);
+  private screenNotifications: ScreenNotificationService = inject(
+    ScreenNotificationService,
+  );
+
   private formBuilder: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
 
@@ -37,6 +42,8 @@ export default class RegistrationComponent {
   }
 
   registerUser() {
+
+
     if (this.registrationForm.valid && this.passwordsMatchValidator()) {
       const formValue = this.registrationForm.value;
 
@@ -55,23 +62,52 @@ export default class RegistrationComponent {
               this.router.navigate(['/profile']);
               break;
             case 'error':
-              window.alert('Помилка під час реєстрації');
+              this.screenNotifications.sendMessage({
+                title: 'Помилка',
+                text: 'Помилка під час реєстрації',
+                buttonText: 'Ок',
+              });
               break;
             case 'userAlreadyExists':
-              window.alert('Користувач з такою поштою вже існує');
+              this.screenNotifications.sendMessage({
+                title: 'Помилка',
+                text: 'Користувач з такою поштою вже існує',
+                buttonText: 'Ок',
+              });
               break;
             case 'invalidData':
-              window.alert('Некоректні дані');
-              break;
-            default:
-              console.error('Unknown status:', status);
+              this.screenNotifications.sendMessage({
+                title: 'Помилка',
+                text: 'Ви ввели некоректні дані',
+                buttonText: 'Ок',
+              });
               break;
           }
         });
     } else if (!this.passwordsMatchValidator()) {
-      window.alert('Паролі не співпадають');
+      this.screenNotifications.sendMessage({
+        title: 'Помилка',
+        text: 'Паролі не співпадають',
+        buttonText: 'Ок',
+      });
     } else {
-      window.alert('Будь ласка, заповніть усі поля коректно');
+
+      if (
+        this.registrationForm.get('name')?.value &&
+        this.registrationForm.get('email')?.value &&
+        (this.registrationForm.get('password')?.value?.length || 0) < 8) {
+        this.screenNotifications.sendMessage({
+          title: 'Помилка',
+          text: 'Пароль повинен містити не менше 8 символів',
+          buttonText: 'Ок',
+        });
+        return;
+      }
+      this.screenNotifications.sendMessage({
+        title: 'Помилка',
+        text: 'Будь ласка, заповніть усі поля коректно',
+        buttonText: 'Ок',
+      });
     }
   }
 }

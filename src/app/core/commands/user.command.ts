@@ -37,15 +37,16 @@ export class UserCommand {
           params.profilePhoto,
         )
         .subscribe({
-          next: (response: { message: string }) => {
-            if (response.message !== 'User has successfully registered') {
-              observer.next('resolved');
+          next: (response: { user: UserPrivate; token: string }) => {
+            if (!response.user && !response.token) {
+              observer.next('error');
               observer.complete();
               return;
             }
-            observer.next('error');
+            this.userStorage.setUser(response.user);
+            this.tokenStorage.setToken(response.token);
+            observer.next('resolved');
             observer.complete();
-            return;
           },
           error: (error) => {
             console.error(error);
@@ -65,7 +66,7 @@ export class UserCommand {
 
       this.userAPI.logInUser(params.email, params.password!).subscribe({
         next: (response: { user: UserPrivate; token: string }) => {
-          // this.userStorage.setUser(response.user);
+          this.userStorage.setUser(response.user);
           this.tokenStorage.setToken(response.token);
           observer.next('resolved');
         },
@@ -108,9 +109,16 @@ export class UserCommand {
     });
   }
 
-  public getUserPrivateInfo(token: string): Observable<LoadingState> {
+  public getUserPrivateInfo(): Observable<LoadingState> {
     return new Observable<LoadingState>((observer) => {
       observer.next('loading');
+      const token = this.tokenStorage.getToken();
+      if (!token) {
+        observer.next('error');
+        observer.complete();
+        return;
+      }
+
       this.userAPI.getUserPersonalInfo(token).subscribe({
         next: (response: { user: UserPrivate }) => {
           this.userStorage.setUser(response.user);
