@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserAPI } from '@api';
 import { TokenStorage, UserStorage } from '@storage';
 import {
@@ -13,6 +14,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserCommand {
+  private router: Router = inject(Router);
+
   private userAPI: UserAPI = inject(UserAPI);
   private userStorage: UserStorage = inject(UserStorage);
   private tokenStorage: TokenStorage = inject(TokenStorage);
@@ -78,6 +81,8 @@ export class UserCommand {
   public logoutUser() {
     this.userStorage.setUser(null);
     this.tokenStorage.setToken(null);
+
+    this.router.navigate(['/login']);
   }
 
   public verifyToken(token: string): Observable<LoadingState> {
