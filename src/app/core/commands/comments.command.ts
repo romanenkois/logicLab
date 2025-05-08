@@ -49,7 +49,7 @@ export class CommentsCommand {
 
       this.commentsApi.postNewComment(comment, userToken).subscribe({
         next: (response) => {
-          this.commentsStorage.addLessonComments([response]);
+          this.commentsStorage.addLessonComments([response.comment]);
           observer.next('resolved');
           observer.complete();
         },

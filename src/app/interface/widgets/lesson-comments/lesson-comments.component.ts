@@ -59,9 +59,11 @@ export class LessonCommentsComponent implements OnInit {
           this.uploadingStatus = status;
           if (status === 'resolved') {
             this.newComment = '';
-
-            console.log('Comment posted successfully');
-            this.commentsCommand.loadLessonComments(this.lessonHref());
+            this.screenNotifications.sendMessage({
+              title: 'Готово',
+              text: 'Коментар успішно опубліковано',
+              buttonText: 'ок',
+            });
           }
           if (status === 'error') {
             this.screenNotifications.sendMessage({
