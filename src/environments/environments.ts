@@ -10,10 +10,10 @@ export const $appConfig: AppConfig = {
   codeEditor: {
     defaultLanguage: 'javascript',
     supportedLanguages: [
-      'html',
+      // 'html',
       'javascript',
-      'typescript',
-      'python',
+      // 'typescript',
+      // 'python',
     ],
   },
   defaultUserSettings: {
