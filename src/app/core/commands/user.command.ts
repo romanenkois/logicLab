@@ -1,7 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { UserAPI } from '@api';
 import { TokenStorage, UserStorage } from '@storage';
-import { LoginState, RegistrationState, User } from '@types';
+import {
+  LoadingState,
+  LoginState,
+  RegistrationState,
+  UserPrivate,
+} from '@types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,10 +18,10 @@ export class UserCommand {
   private tokenStorage: TokenStorage = inject(TokenStorage);
 
   public registerUser(params: {
-    email: User['email'];
-    password: User['password'];
-    name: User['userInfo']['name'];
-    profilePhoto?: User['userInfo']['profilePicture'];
+    email: UserPrivate['email'];
+    password: UserPrivate['password'];
+    name: UserPrivate['userInfo']['name'];
+    profilePhoto?: UserPrivate['userInfo']['profilePicture'];
   }): Observable<RegistrationState> {
     return new Observable<RegistrationState>((observer) => {
       observer.next('loading');
@@ -29,11 +34,15 @@ export class UserCommand {
           params.profilePhoto,
         )
         .subscribe({
-          next: (response: { user: User; token: string }) => {
-            this.userStorage.setUser(response.user);
-            this.tokenStorage.setToken(response.token);
-            observer.next('resolved');
+          next: (response: { message: string }) => {
+            if (response.message !== 'User has successfully registered') {
+              observer.next('resolved');
+              observer.complete();
+              return;
+            }
+            observer.next('error');
             observer.complete();
+            return;
           },
           error: (error) => {
             console.error(error);
@@ -45,17 +54,63 @@ export class UserCommand {
   }
 
   public loginUser(params: {
-    email: User['email'];
-    password: User['password'];
+    email: UserPrivate['email'];
+    password: UserPrivate['password'];
   }): Observable<LoginState> {
     return new Observable<LoginState>((observer) => {
       observer.next('loading');
 
       this.userAPI.logInUser(params.email, params.password!).subscribe({
-        next: (response: { user: User; token: string }) => {
-          this.userStorage.setUser(response.user);
+        next: (response: { user: UserPrivate; token: string }) => {
+          // this.userStorage.setUser(response.user);
           this.tokenStorage.setToken(response.token);
           observer.next('resolved');
+        },
+        error: (error) => {
+          console.error(error);
+          observer.next('error');
+          observer.complete();
+        },
+      });
+    });
+  }
+
+  public logoutUser() {
+    this.userStorage.setUser(null);
+    this.tokenStorage.setToken(null);
+  }
+
+  public verifyToken(token: string): Observable<LoadingState> {
+    return new Observable<LoadingState>((observer) => {
+      observer.next('loading');
+      this.userAPI.verifyToken(token).subscribe({
+        next: (response: any) => {
+          if (response.message === 'Token is valid') {
+            observer.next('resolved');
+            observer.complete();
+          } else {
+            // is 401 if not valid, but we would handle anything else as error of authorization
+            observer.next('error');
+            observer.complete();
+          }
+        },
+        error: (error: any) => {
+          console.error(error);
+          observer.next('error');
+          observer.complete();
+        },
+      });
+    });
+  }
+
+  public getUserPrivateInfo(token: string): Observable<LoadingState> {
+    return new Observable<LoadingState>((observer) => {
+      observer.next('loading');
+      this.userAPI.getUserPersonalInfo(token).subscribe({
+        next: (response: { user: UserPrivate }) => {
+          this.userStorage.setUser(response.user);
+          observer.next('resolved');
+          observer.complete();
         },
         error: (error) => {
           console.error(error);

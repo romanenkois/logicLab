@@ -11,9 +11,14 @@ export class TokenStorage {
 
   public setToken(token: string | null): void {
     this.userToken.set(token);
+    console.log('Token set in signal', token);
     // TODO: dangerously unsafe
-    if (this.userSettings.getUserSettings().keepToken && token) {
-      localStorage.setItem('userToken', JSON.stringify(token));
+    if (this.userSettings.getUserSettings().keepToken) {
+      if (token === null) {
+        localStorage.removeItem('userToken');
+      } else {
+        localStorage.setItem('userToken', JSON.stringify(token));
+      }
     }
   }
   public getToken(): string | null {

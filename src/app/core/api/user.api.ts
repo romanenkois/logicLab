@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { $appConfig } from '@environments';
-import { User } from '@types';
+import { UserPrivate } from '@types';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,10 @@ export class UserAPI {
   private http: HttpClient = inject(HttpClient);
 
   public registerUser(
-    email: User['email'],
-    password: User['password'],
-    name: User['userInfo']['name'],
-    profilePicture?: User['userInfo']['profilePicture'],
+    email: UserPrivate['email'],
+    password: UserPrivate['password'],
+    name: UserPrivate['userInfo']['name'],
+    profilePicture?: UserPrivate['userInfo']['profilePicture'],
   ): Observable<any> {
     return this.http.put(`${this.apiUrl}/auth/register`, {
       user: {
@@ -36,6 +36,25 @@ export class UserAPI {
       login: {
         email,
         password,
+      },
+    });
+  }
+
+  public verifyToken(token: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/auth/verify?token=${token}`);
+  }
+
+  public getUserInfo(token: string, userId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user/user?userid=${userId}`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+  }
+  public getUserPersonalInfo(token: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user/user-private`, {
+      headers: {
+        Authorization: `${token}`,
       },
     });
   }

@@ -20,6 +20,8 @@ export default class RegistrationComponent {
   private formBuilder: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
 
+  status: RegistrationState = 'idle';
+
   registrationForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
@@ -45,10 +47,9 @@ export default class RegistrationComponent {
           password: formValue.password,
         })
         .subscribe((status: RegistrationState) => {
+          this.status = status;
+
           switch (status) {
-            case 'loading':
-              console.log('Loading...');
-              break;
             case 'resolved':
               console.log('Registration successful');
               this.router.navigate(['/profile']);

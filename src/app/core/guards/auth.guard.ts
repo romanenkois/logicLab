@@ -1,14 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { UserStorage } from '@storage';
+import { TokenStorage } from '@storage';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const authorizationGuard: CanActivateFn = (route, state) => {
-  const userStorage: UserStorage = inject(UserStorage);
+  const tokenStorage: TokenStorage = inject(TokenStorage);
   const router: Router = inject(Router);
   const requiresAuth = !['login', 'registration'].includes(route.routeConfig?.path || '');
 
-  const isLoggedIn = userStorage.getUser() !== null;
+  const isLoggedIn = tokenStorage.getToken() !== null;
 
   if (requiresAuth && !isLoggedIn) {
     router.navigate(['/login']);
