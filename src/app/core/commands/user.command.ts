@@ -114,6 +114,13 @@ export class UserCommand {
   public getUserPrivateInfo(): Observable<LoadingState> {
     return new Observable<LoadingState>((observer) => {
       observer.next('loading');
+
+      const user = this.userStorage.getUser();
+      if (user) {
+        observer.next('resolved');
+        observer.complete();
+        return;
+      }
       const token = this.tokenStorage.getToken();
       if (!token) {
         observer.next('error');
