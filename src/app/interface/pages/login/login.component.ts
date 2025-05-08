@@ -35,9 +35,6 @@ export default class LoginComponent {
         })
         .subscribe((status: LoginState) => {
           switch (status) {
-            case 'loading':
-              console.log('Loading...');
-              break;
             case 'resolved':
               this.router.navigate(['/profile']);
               break;
@@ -45,7 +42,6 @@ export default class LoginComponent {
               window.alert('Невірні дані для входу');
               this.loginForm.get('password')?.reset();
               break;
-
             case 'error':
               window.alert('Помилка під час входу, перевірте введені дані');
               this.loginForm.get('password')?.reset();

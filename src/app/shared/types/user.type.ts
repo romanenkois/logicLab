@@ -1,4 +1,5 @@
 export interface UserPrivate {
+  id: string;
   email: string;
 
   // password is not intended to be actually stored
@@ -9,4 +10,12 @@ export interface UserPrivate {
     name: string;
     profilePicture?: string;
   };
+}
+
+export interface UserPublic {
+  id: string;
+  userInfo: {
+    name: string;
+    profilePicture?: string;
+  }
 }

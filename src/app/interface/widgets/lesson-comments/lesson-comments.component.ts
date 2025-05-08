@@ -13,10 +13,11 @@ import { CommentsCommand } from '@commands';
 import { ScreenNotificationService } from '@services';
 import { CommentsStorage } from '@storage';
 import { LoadingState, UploadingState } from '@types';
+import { UserBadgeComponent } from "../../features/user-badge/user-badge.component";
 
 @Component({
   selector: 'app-lesson-comments',
-  imports: [FormsModule],
+  imports: [FormsModule, UserBadgeComponent],
   templateUrl: './lesson-comments.component.html',
   styleUrl: './lesson-comments.component.scss',
 })

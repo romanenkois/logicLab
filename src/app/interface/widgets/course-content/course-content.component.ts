@@ -17,26 +17,15 @@ export class CourseContentComponent implements OnInit {
 
   courseHref: InputSignal<string> = input.required();
 
+  status: LoadingState = 'idle';
+
   course = computed(() => {
     return this.courseStorage.getCourse(this.courseHref())
   });
 
   ngOnInit() {
-    console.log('course content init');
     this.courseCommand.loadCourse(this.courseHref()).subscribe((status: LoadingState) => {
-      switch (status) {
-        case 'loading':
-          console.log('Loading...');
-          break;
-        case 'resolved':
-          console.log('Resolved');
-          break;
-        case 'error':
-          console.error('Error loading course');
-          break;
-        default:
-          console.error('Unknown status:', status);
-      }
+      this.status = status;
     });
   }
 }

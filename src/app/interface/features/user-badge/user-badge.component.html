@@ -1,0 +1,18 @@
+@if (this.user()) {
+    <div>
+        <div>
+            @if (this.user()!.userInfo.profilePicture) {
+                <img
+                    class="rounded-full"
+                    [src]="this.user()!.userInfo.profilePicture"
+                    alt="User Avatar"
+                />
+            } @else {
+                <div class="rounded-full bg-gray-200 h-10 w-10"></div>
+            }
+        </div>
+        <div>
+            <p>{{ this.user()!.userInfo.name }}</p>
+        </div>
+    </div>
+}

@@ -22,8 +22,6 @@ export class ConsoleComponent implements OnInit {
   availableEngines = $appConfig.codeEditor.supportedLanguages;
 
   async executeCode() {
-    console.log(this.availableEngines)
-
     if (this.consoleConfiguration().programmingLanguage === 'javascript') {
       const result = await import('./engines/javascript.engine').then(
         ({ JavascriptEngine }) => {

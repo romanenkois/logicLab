@@ -3,3 +3,5 @@ export { LessonCodeSampleComponent } from './lesson-block-code-sample/lesson-cod
 export { LessonListComponent } from './lesson-block-list/lesson-list.component';
 
 export { CourseLessonsListComponent } from './course-lessons-list/course-lessons-list.component';
+
+export { UserBadgeComponent } from './user-badge/user-badge.component';

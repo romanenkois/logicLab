@@ -14,11 +14,11 @@
             </div>
         </button>
     </div>
-    <div class="comments">
+    <div class="comments flex flex-col gap-2 w-full h-full overflow-y-auto">
         @for (comment of this.comments(); track $index) {
-            <div class="comment">
-                <div class="user-info">
-                    <p>{{ comment.userId }}</p>
+            <div class="flex w-full gap-2 bg-dark p-4">
+                <div class="user-info w-4">
+                    <app-user-badge [userId]="comment.userId"></app-user-badge>
                 </div>
                 <div class="comment-text">
                     {{ comment.text }}
@@ -26,8 +26,8 @@
             </div>
         }
         @if (this.comments().length < 1 && this.loadingStatus === "resolved") {
-            <div class="no-comments">
-                <p>Ніхто не залишив коментаря до цього уроку, досі</p>
+            <div class="flex w-full h-full items-center justify-center">
+                <p class="text-center text-gray">Ніхто ще не залишив коментаря до цього уроку</p>
             </div>
         }
     </div>

@@ -1,9 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  Signal,
-} from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { ScreenNotificationService } from '@services';
 import { Message } from '@types';
 
@@ -23,7 +18,6 @@ export class ScreenNotificationComponent {
   });
 
   close() {
-    console.log('close');
     this.screenNotifucationService.removeMessage();
   }
 }

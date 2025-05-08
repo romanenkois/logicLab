@@ -16,19 +16,14 @@ export class CommentsStorage {
   }
 
   public addLessonComments(comments: LessonComment[]) {
-    console.log('Adding comments:', comments);
     const currentComments = this.comments();
+    const existingCommentIds = new Set(
+      currentComments.map((comment) => comment.id),
+    );
+    const newComments = comments.filter(
+      (comment) => !existingCommentIds.has(comment.id),
+    );
 
-    // Create a Set of existing comment IDs
-    const existingCommentIds = new Set(currentComments.map(comment => comment.id));
-
-    // Only add comments that don't exist yet
-    const newComments = comments.filter(comment => !existingCommentIds.has(comment.id));
-
-    // Combine existing and new comments
-    const mergedComments = [...currentComments, ...newComments];
-
-    console.log('Merged comments:', mergedComments);
-    this.comments.set(mergedComments);
+    this.comments.set([...currentComments, ...newComments]);
   }
 }

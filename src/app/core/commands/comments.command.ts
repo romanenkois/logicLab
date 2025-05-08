@@ -13,7 +13,6 @@ export class CommentsCommand {
   private tokenStorage: TokenStorage = inject(TokenStorage);
 
   public loadLessonComments(lessonHref: string): Observable<LoadingState> {
-    console.log('Loading comments for lesson:', lessonHref);
     return new Observable<LoadingState>((observer) => {
       observer.next('loading');
 

@@ -58,7 +58,6 @@ export default class RegistrationComponent {
 
           switch (status) {
             case 'resolved':
-              console.log('Registration successful');
               this.router.navigate(['/profile']);
               break;
             case 'error':

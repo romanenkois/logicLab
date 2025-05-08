@@ -11,7 +11,6 @@ export class TokenStorage {
 
   public setToken(token: string | null): void {
     this.userToken.set(token);
-    console.log('Token set in signal', token);
     // TODO: dangerously unsafe
     if (this.userSettings.getUserSettings().keepToken) {
       if (token === null) {

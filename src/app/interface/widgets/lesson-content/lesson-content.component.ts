@@ -42,7 +42,6 @@ export class LessonContentComponent implements OnInit {
   });
 
   ngOnInit() {
-    console.log('lesson content init');
     this.courseCommand
       .loadLesson(this.lessonHref())
       .subscribe((status: LoadingState) => {

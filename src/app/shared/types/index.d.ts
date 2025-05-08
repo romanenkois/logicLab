@@ -6,4 +6,4 @@ export { Lesson, LessonSimple } from "./lesson.type"
 export { LoadingState, UploadingState, RegistrationState, LoginState } from './loading-state.type';
 export * from "./shared.types"
 export { UserSettings } from "./user-settings.type"
-export { UserPrivate } from "./user.type"
+export { UserPrivate, UserPublic } from "./user.type"

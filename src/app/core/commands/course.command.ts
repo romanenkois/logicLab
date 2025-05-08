@@ -19,7 +19,6 @@ export class CourseCommand {
       if (!courses) {
         this.appAPI.getCourse(courseHref, true).subscribe({
           next: (response) => {
-            console.log('loadCourse', response);
             this.coursesStorage.addCourse(response.course as Course);
             observer.next('resolved');
             observer.complete();

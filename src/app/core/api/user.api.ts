@@ -44,13 +44,10 @@ export class UserAPI {
     return this.http.get<any>(`${this.apiUrl}/auth/verify?token=${token}`);
   }
 
-  public getUserInfo(token: string, userId: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/user/user?userid=${userId}`, {
-      headers: {
-        Authorization: `${token}`,
-      },
-    });
+  public getUserInfo(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user/user?userid=${userId}`, {});
   }
+
   public getUserPersonalInfo(token: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/user/user-private`, {
       headers: {
