@@ -1,46 +1,47 @@
 @if (this.consoleConfiguration()) {
-    <div class="wrapper flex flex-col gap-2">
-        <div class="flex w-full flex-col gap-2">
-            <div class="flex w-full gap-4">
-                <div class="flex items-center">
+    <div class="wrapper flex flex-col gap-4">
+        <div class="flex w-full flex-col gap-4">
+            <div class="flex w-full flex-col gap-2 md:flex-row">
+                <div class="flex w-full items-center gap-2 md:w-max">
                     <select
                         id="programming-language-selector"
-                        class="select-none h-[48px] w-max bg-dark px-2 text-3xl font-black text-dark-gray"
+                        class="h-[48px] w-full select-none bg-dark px-2 text-3xl font-black text-dark-gray"
                     >
                         @for (language of this.availableEngines; track $index) {
                             <option
-                                class="select-none w-max pl-2 text-3xl font-black text-dark-gray"
+                                class="w-max select-none pl-2 text-3xl font-black text-dark-gray"
                                 [value]="language"
                             >
                                 {{ language | programmingLanguage }}
                             </option>
                         }
                     </select>
+                    <div>
+                        <button
+                            class="save-button flex items-center justify-center p-2"
+                        >
+                            <div class="medium-icon">
+                                <svg
+                                    class="text-gray-800 h-[28px] w-[28px] dark:text-white"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7.414A2 2 0 0 0 20.414 6L18 3.586A2 2 0 0 0 16.586 3H5Zm10 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7V5h8v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1Z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
                 </div>
                 <!-- TODO -->
-                <!-- <div>
-                    <button
-                        class="save-button flex items-center justify-center p-2"
-                    >
-                        <div class="medium-icon">
-                            <svg
-                                class="text-gray-800 h-[28px] w-[28px] dark:text-white"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7.414A2 2 0 0 0 20.414 6L18 3.586A2 2 0 0 0 16.586 3H5Zm10 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7V5h8v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1Z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-                        </div>
-                    </button>
-                </div> -->
+
                 <div class="flex w-full flex-col">
                     <button
                         class="button run-button h-[48px] w-full bg-dark"
