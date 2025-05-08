@@ -4,4 +4,4 @@ export { LessonListComponent } from './lesson-block-list/lesson-list.component';
 
 export { CourseLessonsListComponent } from './course-lessons-list/course-lessons-list.component';
 
-export { UserBadgeComponent } from './user-badge/user-badge.component';
+export { UserCardComponent } from './user-card/user-card.component';

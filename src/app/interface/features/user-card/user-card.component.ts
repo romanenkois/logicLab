@@ -10,13 +10,14 @@ import { UserCommand } from '@commands';
 import { SocialStorage } from '@storage';
 import { LoadingState, UserPublic } from '@types';
 
+
 @Component({
-  selector: 'app-user-badge',
+  selector: 'app-user-card',
   imports: [],
-  templateUrl: './user-badge.component.html',
-  styleUrl: './user-badge.component.scss',
+  templateUrl: './user-card.component.html',
+  styleUrl: './user-card.component.scss'
 })
-export class UserBadgeComponent implements OnInit {
+export class UserCardComponent implements OnInit {
   private userCommand: UserCommand = inject(UserCommand);
   private socialStorage: SocialStorage = inject(SocialStorage);
 

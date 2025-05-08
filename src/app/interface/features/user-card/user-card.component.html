@@ -1,0 +1,23 @@
+@if (this.user()) {
+    <div class="flex w-[70px] flex-col items-center gap-1 lg:w-[100px]">
+        <div>
+            @if (this.user()!.userInfo.profilePicture) {
+                <img
+                    class="h-10 w-10 rounded-full lg:h-14 lg:w-14"
+                    [src]="this.user()!.userInfo.profilePicture"
+                    alt="User Avatar"
+                />
+            } @else {
+                <div class="h-10 w-10 rounded-full bg-gray/50"></div>
+            }
+        </div>
+        <div class="w-full">
+            <p
+                class="truncate-1 text-center text-sm text-gray"
+                [title]="this.user()!.userInfo.name"
+            >
+                {{ this.user()!.userInfo.name }}
+            </p>
+        </div>
+    </div>
+}
