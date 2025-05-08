@@ -137,9 +137,15 @@ export class UserCommand {
   }
 
   public loadPublicUser(userId: UserPublic['id']): Observable<LoadingState> {
-    console.log('loadPublicUser', userId);
     return new Observable<LoadingState>((observer) => {
       observer.next('loading');
+
+      const user = this.socialStorage.getUser(userId);
+      if (user) {
+        observer.next('resolved');
+        observer.complete();
+        return;
+      }
 
       this.userAPI.getUserInfo(userId).subscribe({
         next: (response: { user: UserPublic }) => {
