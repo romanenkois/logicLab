@@ -1,4 +1,5 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
+import { CodeSpaceService } from '@services';
 import { ConsoleConfiguration } from '@types';
 import { ConsoleComponent } from '@widgets';
 
@@ -9,18 +10,18 @@ import { ConsoleComponent } from '@widgets';
   styleUrl: './code-space.component.scss',
 })
 export default class CodeSpaceComponent {
-  defaultEditorSchema: ConsoleConfiguration = {
-    name: 'untitled.js',
-    programmingLanguage: 'javascript',
-    code: 'console.log("Hello logicLab")',
-  };
+  private readonly codeSpaceService: CodeSpaceService = inject(CodeSpaceService);
 
-  codeEditors: WritableSignal<ConsoleConfiguration[]> = signal([
-    this.defaultEditorSchema,
-  ]);
-  activeEditor: WritableSignal<string | null> = signal(
-    this.defaultEditorSchema.name,
-  );
+  codeEditors: Signal<ConsoleConfiguration[]> = computed(() => {
+    return this.codeSpaceService.getCodeEditors();
+  });
+  activeEditor: Signal<string | null> = computed(()=>{
+    return this.codeSpaceService.getActiveEditor();
+  })
+
+  setActiveEditor(name: string) {
+    this.codeSpaceService.setActiveEditor(name);
+  }
 
   newEditorButtonAnimation() {
     // creates a new animation to 'new editor' button,
@@ -39,14 +40,7 @@ export default class CodeSpaceComponent {
   }
 
   createNewEditor() {
-    const newName = `untitled${this.codeEditors().length + 1}.js`;
-
-    const newConsole = {
-      ...this.defaultEditorSchema,
-      name: newName,
-    };
-    this.codeEditors.set([...this.codeEditors(), newConsole]);
-    this.activeEditor.set(newName);
+    this.codeSpaceService.createNewEditor();
 
     // scroll to the end of tab-list, after a short delay to ensure DOM has updated
     setTimeout(() => {
@@ -58,17 +52,13 @@ export default class CodeSpaceComponent {
   }
 
   removeEditor(name: string) {
-    this.codeEditors.set(
-      this.codeEditors().filter((editor) => editor.name !== name),
-    );
-    this.activeEditor.set(null);
+    this.codeSpaceService.removeEditor(name);
 
     this.newEditorButtonAnimation();
   }
 
   deleteAllEditors() {
-    this.codeEditors.set([]);
-    this.activeEditor.set(null);
+    this.codeSpaceService.deleteAllEditors();
 
     this.newEditorButtonAnimation();
   }
