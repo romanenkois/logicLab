@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommentsCommand } from '@commands';
+import { ScreenNotificationService } from '@services';
 import { CommentsStorage } from '@storage';
 import { LoadingState, UploadingState } from '@types';
 
@@ -20,8 +21,11 @@ import { LoadingState, UploadingState } from '@types';
   styleUrl: './lesson-comments.component.scss',
 })
 export class LessonCommentsComponent implements OnInit {
-  readonly commentsCommand: CommentsCommand = inject(CommentsCommand);
-  readonly commentsStorage: CommentsStorage = inject(CommentsStorage);
+  private commentsCommand: CommentsCommand = inject(CommentsCommand);
+  private commentsStorage: CommentsStorage = inject(CommentsStorage);
+  private screenNotifications: ScreenNotificationService = inject(
+    ScreenNotificationService,
+  );
 
   lessonHref: InputSignal<string> = input.required();
   @Output() toggleVisibilityEvent = new EventEmitter<boolean | void>();
@@ -44,9 +48,7 @@ export class LessonCommentsComponent implements OnInit {
   }
 
   postNewComment() {
-    console.log('Posting new comment:', this.newComment);
     if (this.newComment && this.lessonHref() && this.newComment.trim() !== '') {
-      console.log('Posting new comment:', this.newComment);
       this.commentsCommand
         .postNewComment({
           lessonHref: this.lessonHref(),
@@ -57,6 +59,23 @@ export class LessonCommentsComponent implements OnInit {
           this.uploadingStatus = status;
           if (status === 'resolved') {
             this.newComment = '';
+
+            console.log('Comment posted successfully');
+            this.commentsCommand.loadLessonComments(this.lessonHref());
+          }
+          if (status === 'error') {
+            this.screenNotifications.sendMessage({
+              title: 'Помилка',
+              text: 'Помилка під час публікації коментаря',
+              buttonText: 'ой',
+            });
+          }
+          if (status === 'unauthorized') {
+            this.screenNotifications.sendMessage({
+              title: 'Помилка авторизації',
+              text: 'Вам потрібно бути залогіненим, щоб залишити коментар',
+              buttonText: 'ой',
+            });
           }
         });
     }

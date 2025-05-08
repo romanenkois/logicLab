@@ -9,6 +9,7 @@ export type UploadingState =
   | 'idle'
   | 'uploading'
   | 'resolved'
+  | 'unauthorized'
   | 'error'
 
 export type RegistrationState =

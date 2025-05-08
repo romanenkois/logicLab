@@ -13,6 +13,7 @@ export class CommentsCommand {
   private tokenStorage: TokenStorage = inject(TokenStorage);
 
   public loadLessonComments(lessonHref: string): Observable<LoadingState> {
+    console.log('Loading comments for lesson:', lessonHref);
     return new Observable<LoadingState>((observer) => {
       observer.next('loading');
 
@@ -38,8 +39,7 @@ export class CommentsCommand {
     return new Observable<UploadingState>((observer) => {
       observer.next('uploading');
 
-      const userToken = '213'
-      // this.tokenStorage.getToken();
+      const userToken = this.tokenStorage.getToken();
 
       if (!userToken) {
         observer.next('error');
@@ -53,9 +53,19 @@ export class CommentsCommand {
           observer.next('resolved');
           observer.complete();
         },
-        error: () => {
-          observer.next('error');
-          observer.complete();
+        error: (error: any) => {
+          if (
+            error.error.message === 'invalid token' ||
+            error.error.message === 'token expired'
+          ) {
+            observer.next('unauthorized');
+            observer.complete();
+            return;
+          } else {
+            console.error('Error posting comment:', error);
+            observer.next('error');
+            observer.complete();
+          }
         },
       });
     });
