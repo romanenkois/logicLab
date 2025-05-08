@@ -24,6 +24,10 @@ export class CodeSpaceService {
   public setCodeEditors(codeEditors: ConsoleConfiguration[]) {
     this.codeEditors.set(codeEditors);
   }
+  public addNewEditor(editor: ConsoleConfiguration) {
+    this.codeEditors.set([...this.codeEditors(), editor]);
+    this.activeEditor.set(editor.name);
+  }
 
   public getActiveEditor() {
     return this.activeEditor();
@@ -32,14 +36,29 @@ export class CodeSpaceService {
     this.activeEditor.set(name);
   }
 
-  createNewEditor() {
+  public createNewEditor(editor?: {
+    name?: string;
+    programmingLanguage: ConsoleConfiguration['programmingLanguage'];
+    code?: string;
+  }) {
     const newName = `untitled${this.codeEditors().length + 1}.js`;
 
-    const newConsole = {
-      ...this.defaultEditorSchema,
-      name: newName,
-    };
-    this.codeEditors.set([...this.codeEditors(), newConsole]);
+    let newEditor: ConsoleConfiguration | undefined;
+    if (editor) {
+      newEditor = {
+        code: editor.code ? editor.code : this.defaultEditorSchema.code,
+        name: editor.name ? editor.name : newName,
+        programmingLanguage: editor.programmingLanguage
+          ? editor.programmingLanguage
+          : this.defaultEditorSchema.programmingLanguage,
+      };
+    } else {
+      newEditor = {
+        ...this.defaultEditorSchema,
+        name: newName,
+      };
+    }
+    this.codeEditors.set([...this.codeEditors(), newEditor]);
     this.activeEditor.set(newName);
   }
 

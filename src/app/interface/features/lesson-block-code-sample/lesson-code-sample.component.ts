@@ -1,4 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input, InputSignal } from '@angular/core';
+import { Router } from '@angular/router';
+import { $appConfig } from '@environments';
+import { CodeSpaceService } from '@services';
 import { CodeSampleBlock } from '@types';
 import { Highlight } from 'ngx-highlightjs';
 
@@ -10,5 +13,30 @@ import { Highlight } from 'ngx-highlightjs';
   styleUrl: './lesson-code-sample.component.scss',
 })
 export class LessonCodeSampleComponent {
-  object = input.required<CodeSampleBlock>();
+  private router: Router = inject(Router);
+  private codeSpaceService: CodeSpaceService = inject(CodeSpaceService);
+
+  object: InputSignal<CodeSampleBlock> = input.required<CodeSampleBlock>();
+
+  // checks, if the programing language is licted as supported
+  // affects the run button
+  isRunnable = computed(() => {
+    const programmingLanguage = this.object().object.programmingLanguage;
+    if (
+      programmingLanguage &&
+      $appConfig.codeEditor.supportedLanguages.includes(programmingLanguage)
+    ) {
+      return true;
+    }
+    return false;
+  });
+
+
+  runInEdditor() {
+    this.codeSpaceService.createNewEditor({
+      programmingLanguage: this.object().object.programmingLanguage ?? 'javascript',
+      code: this.object().object.code,
+    })
+    this.router.navigate(['code-space']);
+  }
 }

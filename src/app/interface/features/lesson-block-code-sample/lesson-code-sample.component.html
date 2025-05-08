@@ -4,20 +4,34 @@
             this.object().object.title ||
             this.object().object.programmingLanguage
         ) {
-            <div class="justify-between flex p-1">
+            <div class="flex flex-col md:flex-row gap-5 justify-between p-1 py-3">
                 <div class="flex-1">
                     @if (this.object().object.title) {
-                        <p>{{ this.object().object.title }}</p>
+                        <div class="flex h-full w-full items-center">
+                            <p class="pl-2">
+                                {{ this.object().object.title }}
+                            </p>
+                        </div>
                     }
                 </div>
-                <div class="w-[150px]">
+                <div class="flex min-w-[200px] justify-between">
                     @if (this.object().object.programmingLanguage) {
                         <div
-                            class="flex h-full w-full items-center justify-end"
+                            class="flex h-full w-full items-center justify-center"
                         >
                             <p class="text-gray">
                                 {{ this.object().object.programmingLanguage }}
                             </p>
+                        </div>
+                    }
+                    @if (this.isRunnable()) {
+                        <div class="box-border h-full w-full">
+                            <button
+                                class="h-full w-full bg-primary p-2"
+                                (click)="this.runInEdditor()"
+                            >
+                                запустити
+                            </button>
                         </div>
                     }
                 </div>
