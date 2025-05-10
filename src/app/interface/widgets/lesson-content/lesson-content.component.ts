@@ -35,10 +35,7 @@ export class LessonContentComponent implements OnInit {
   status: LoadingState = 'idle';
 
   lesson = computed(() => {
-    if (this.courseHref() && this.lessonHref()) {
-      return this.courseStorage.getLesson(this.lessonHref());
-    }
-    return undefined;
+    return this.courseStorage.getLesson(this.lessonHref());
   });
 
   ngOnInit() {
