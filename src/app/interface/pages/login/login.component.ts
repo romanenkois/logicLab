@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserCommand } from '@commands';
+import { ScreenNotificationService } from '@services';
 import { LoginState } from '@types';
 @Component({
   selector: 'app-login',
@@ -16,7 +17,11 @@ import { LoginState } from '@types';
   styleUrl: './login.component.scss',
 })
 export default class LoginComponent {
-  userCommand: UserCommand = inject(UserCommand);
+  private userCommand: UserCommand = inject(UserCommand);
+  private screenNotification: ScreenNotificationService = inject(
+    ScreenNotificationService
+  );
+
   private formBuilder: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
 
@@ -36,14 +41,23 @@ export default class LoginComponent {
         .subscribe((status: LoginState) => {
           switch (status) {
             case 'resolved':
+
               this.router.navigate(['/profile']);
               break;
             case 'invalidData':
-              window.alert('Невірні дані для входу');
+              this.screenNotification.sendMessage({
+                title: 'Помилка входу',
+                text: 'Невірні дані для входу',
+                buttonText: 'Закрити',
+              })
               this.loginForm.get('password')?.reset();
               break;
             case 'error':
-              window.alert('Помилка під час входу, перевірте введені дані');
+              this.screenNotification.sendMessage({
+                title: 'Помилка входу',
+                text: 'Помилка під час входу, перевірте введені дані',
+                buttonText: 'Закрити',
+              })
               this.loginForm.get('password')?.reset();
               break;
 
@@ -52,11 +66,23 @@ export default class LoginComponent {
           }
         });
     } else if (this.loginForm.get('password')?.errors?.['minlength']) {
-      window.alert('Пароль повинен містити не менше 8 символів');
+      this.screenNotification.sendMessage({
+        title: 'Помилка входу',
+        text: 'Пароль повинен містити не менше 8 символів',
+        buttonText: 'Закрити'
+      })
     } else if (this.loginForm.get('email')?.errors?.['email']) {
-      window.alert('Введіть коректну електронну пошту');
+      this.screenNotification.sendMessage({
+        title: 'Помилка входу',
+        text: 'Введіть коректну електронну пошту',
+        buttonText: 'Закрити'
+      })
     } else {
-      window.alert('Заповніть всі поля');
+      this.screenNotification.sendMessage({
+        title: 'Помилка входу',
+        text: 'Заповніть всі поля',
+        buttonText: 'Закрити'
+      })
     }
   }
 }
