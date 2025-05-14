@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { UserCommand } from '@commands';
+import { AuthorizationCommand } from '@commands';
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -17,7 +17,8 @@ import { ScreenNotificationService } from '@services';
   styleUrl: './registration.component.scss',
 })
 export default class RegistrationComponent {
-  private userCommand: UserCommand = inject(UserCommand);
+  private authorizationCommand: AuthorizationCommand =
+    inject(AuthorizationCommand);
   private screenNotifications: ScreenNotificationService = inject(
     ScreenNotificationService,
   );
@@ -42,12 +43,10 @@ export default class RegistrationComponent {
   }
 
   registerUser() {
-
-
     if (this.registrationForm.valid && this.passwordsMatchValidator()) {
       const formValue = this.registrationForm.value;
 
-      this.userCommand
+      this.authorizationCommand
         .registerUser({
           name: formValue.name,
           email: formValue.email,
@@ -90,11 +89,11 @@ export default class RegistrationComponent {
         buttonText: 'Ок',
       });
     } else {
-
       if (
         this.registrationForm.get('name')?.value &&
         this.registrationForm.get('email')?.value &&
-        (this.registrationForm.get('password')?.value?.length || 0) < 8) {
+        (this.registrationForm.get('password')?.value?.length || 0) < 8
+      ) {
         this.screenNotifications.sendMessage({
           title: 'Помилка',
           text: 'Пароль повинен містити не менше 8 символів',

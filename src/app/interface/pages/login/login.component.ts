@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserCommand } from '@commands';
+import { AuthorizationCommand } from '@commands';
 import { ScreenNotificationService } from '@services';
 import { LoginState } from '@types';
 @Component({
@@ -17,9 +17,10 @@ import { LoginState } from '@types';
   styleUrl: './login.component.scss',
 })
 export default class LoginComponent {
-  private userCommand: UserCommand = inject(UserCommand);
+  private authorizationCommand: AuthorizationCommand =
+    inject(AuthorizationCommand);
   private screenNotification: ScreenNotificationService = inject(
-    ScreenNotificationService
+    ScreenNotificationService,
   );
 
   private formBuilder: FormBuilder = inject(FormBuilder);
@@ -33,7 +34,7 @@ export default class LoginComponent {
   logInUser() {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
-      this.userCommand
+      this.authorizationCommand
         .loginUser({
           email: formValue.email,
           password: formValue.password,
@@ -41,7 +42,6 @@ export default class LoginComponent {
         .subscribe((status: LoginState) => {
           switch (status) {
             case 'resolved':
-
               this.router.navigate(['/profile']);
               break;
             case 'invalidData':
@@ -49,7 +49,7 @@ export default class LoginComponent {
                 title: 'Помилка входу',
                 text: 'Невірні дані для входу',
                 buttonText: 'Закрити',
-              })
+              });
               this.loginForm.get('password')?.reset();
               break;
             case 'error':
@@ -57,7 +57,7 @@ export default class LoginComponent {
                 title: 'Помилка входу',
                 text: 'Помилка під час входу, перевірте введені дані',
                 buttonText: 'Закрити',
-              })
+              });
               this.loginForm.get('password')?.reset();
               break;
 
@@ -69,20 +69,20 @@ export default class LoginComponent {
       this.screenNotification.sendMessage({
         title: 'Помилка входу',
         text: 'Пароль повинен містити не менше 8 символів',
-        buttonText: 'Закрити'
-      })
+        buttonText: 'Закрити',
+      });
     } else if (this.loginForm.get('email')?.errors?.['email']) {
       this.screenNotification.sendMessage({
         title: 'Помилка входу',
         text: 'Введіть коректну електронну пошту',
-        buttonText: 'Закрити'
-      })
+        buttonText: 'Закрити',
+      });
     } else {
       this.screenNotification.sendMessage({
         title: 'Помилка входу',
         text: 'Заповніть всі поля',
-        buttonText: 'Закрити'
-      })
+        buttonText: 'Закрити',
+      });
     }
   }
 }

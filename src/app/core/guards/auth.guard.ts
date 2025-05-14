@@ -8,7 +8,7 @@ export const authorizationGuard: CanActivateFn = (route, state) => {
   const router: Router = inject(Router);
   const requiresAuth = !['login', 'registration'].includes(route.routeConfig?.path || '');
 
-  const isLoggedIn = tokenStorage.getToken() !== null;
+  const isLoggedIn = tokenStorage.getAccessToken() !== null;
 
   if (requiresAuth && !isLoggedIn) {
     router.navigate(['/login']);

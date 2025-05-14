@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { UserCommand } from '@commands';
+import { AuthorizationCommand, UserCommand } from '@commands';
 import { UserStorage } from '@storage';
 import { LoadingState } from '@types';
 
@@ -11,6 +11,8 @@ import { LoadingState } from '@types';
 })
 export default class ProfileComponent implements OnInit {
   private userCommand: UserCommand = inject(UserCommand);
+  private authorizationCommand: AuthorizationCommand =
+    inject(AuthorizationCommand);
   private userStorage: UserStorage = inject(UserStorage);
 
   status: LoadingState = 'idle';
@@ -20,7 +22,7 @@ export default class ProfileComponent implements OnInit {
   });
 
   logout() {
-    this.userCommand.logoutUser();
+    this.authorizationCommand.logoutUser();
   }
 
   ngOnInit() {

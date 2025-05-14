@@ -41,7 +41,15 @@ export class UserAPI {
   }
 
   public verifyToken(token: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/auth/verify?token=${token}`);
+    return this.http.get<any>(`${this.apiUrl}/auth/verify`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  public refreshTokens(token: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/auth/refresh?token=${token}`);
   }
 
   public getUserInfo(userId: string): Observable<any> {
@@ -51,7 +59,7 @@ export class UserAPI {
   public getUserPersonalInfo(token: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/user/user-private`, {
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   }

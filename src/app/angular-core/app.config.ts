@@ -1,13 +1,14 @@
 import {
   APP_INITIALIZER,
   ApplicationConfig,
+  inject,
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import {
   provideHttpClient,
-  withInterceptorsFromDi,
+  withInterceptors,
 } from '@angular/common/http';
 
 import { provideHighlightOptions } from 'ngx-highlightjs';
@@ -23,12 +24,16 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
-    {
-      provide: 'HTTP_INTERCEPTORS',
-      useClass: AuthorizationInterceptor,
-      multi: true,
-    },
+    provideHttpClient(
+      withInterceptors([
+        (req, next) => {
+          const interceptor = inject(AuthorizationInterceptor);
+          return interceptor.intercept(req, {
+            handle: (request) => next(request)
+          });
+        },
+      ])
+    ),
 
     PreloadService,
     {

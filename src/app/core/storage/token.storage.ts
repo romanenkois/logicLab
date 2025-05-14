@@ -13,19 +13,12 @@ export class TokenStorage {
     signal(null);
 
   // SHOULD BE REMOVED
-  public getToken(): string | null {
-    return this.userAccessToken();
-  }
-  public setToken(token: string | null): void {
-    this.userAccessToken.set(token);
-    if (this.userSettings.getUserSettings().keepToken) {
-      if (token === null) {
-        localStorage.removeItem('userAccessToken');
-      } else {
-        localStorage.setItem('userAccessToken', JSON.stringify(token));
-      }
-    }
-  }
+  // public getToken(): string | null {
+  //   return this.userAccessToken();
+  // }
+  // public setToken(token: string | null): void {
+  //   this.userAccessToken.set(token);
+  // }
   // SHOULD BE REMOVED
 
   public setRefreshToken(token: string | null): void {
@@ -43,6 +36,7 @@ export class TokenStorage {
   }
 
   public setAccessToken(token: string | null): void {
+    // console.log('Setting access token:', token);
     this.userAccessToken.set(token);
     // TODO: dangerously unsafe
     if (this.userSettings.getUserSettings().keepToken) {
@@ -54,6 +48,7 @@ export class TokenStorage {
     }
   }
   public getAccessToken(): string | null {
+    // console.log('Access token:', this.userAccessToken());
     return this.userAccessToken();
   }
 }

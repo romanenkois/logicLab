@@ -3,14 +3,15 @@ export type LoadingState =
   | 'loading'
   | 'resolved'
   | 'all-resolved'
-  | 'error';
+  | 'error'
+  | 'unauthorized';
 
 export type UploadingState =
   | 'idle'
   | 'uploading'
   | 'resolved'
   | 'unauthorized'
-  | 'error'
+  | 'error';
 
 export type RegistrationState =
   | 'idle'

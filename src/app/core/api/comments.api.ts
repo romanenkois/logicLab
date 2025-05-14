@@ -25,7 +25,7 @@ export class CommentsAPI {
       comment: comment,
     };
     const headers = {
-      Authorization: userToken,
+      Authorization: `Bearer ${userToken}`,
     };
 
     return this.http.post(`${this.apiUrl}/comments/post-comment`, body, {
