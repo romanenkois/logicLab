@@ -23,8 +23,14 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
+    return this.handleRequest(req, next);
+  }
+
+  private handleRequest(
+    req: HttpRequest<any>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<any>> {
     const accessToken = this.tokenStorage.getAccessToken();
-    // console.log('Access token:', accessToken);
 
     const authorizedRequest = accessToken
       ? req.clone({
@@ -32,20 +38,28 @@ export class AuthorizationInterceptor implements HttpInterceptor {
         })
       : req;
 
-    // console.log('Request:', authorizedRequest);
-
     return next.handle(authorizedRequest).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           const refreshToken = this.tokenStorage.getRefreshToken();
           if (refreshToken) {
-            this.authorizationCommand
-              .refreshTokens()
-              .subscribe((status: LoadingState) => {
-                if (status === 'error') {
-                  this.authorizationCommand.logoutUser();
-                }
-              });
+            return new Observable<HttpEvent<any>>(observer => {
+              this.authorizationCommand
+                .refreshTokens()
+                .subscribe((status: LoadingState) => {
+                  if (status === 'error') {
+                    this.authorizationCommand.logoutUser();
+                    observer.error(error);
+                  } else if (status === 'resolved') {
+                    // Retry the request with new token
+                    this.handleRequest(req, next).subscribe({
+                      next: (event) => observer.next(event),
+                      error: (err) => observer.error(err),
+                      complete: () => observer.complete()
+                    });
+                  }
+                });
+            });
           }
         }
         return throwError(() => error);
