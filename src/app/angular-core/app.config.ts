@@ -5,11 +5,15 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 import { provideHighlightOptions } from 'ngx-highlightjs';
 
 import { PreloadService } from '@services';
+import { AuthorizationInterceptor } from './interceptor';
 
 export function appPreloadInitializer(preloadService: PreloadService) {
   return () => preloadService;
@@ -19,7 +23,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: 'HTTP_INTERCEPTORS',
+      useClass: AuthorizationInterceptor,
+      multi: true,
+    },
 
     PreloadService,
     {

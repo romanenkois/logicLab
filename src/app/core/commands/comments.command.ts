@@ -38,7 +38,7 @@ export class CommentsCommand {
     return new Observable<UploadingState>((observer) => {
       observer.next('uploading');
 
-      const userToken = this.tokenStorage.getToken();
+      const userToken = this.tokenStorage.getAccessToken();
 
       if (!userToken) {
         observer.next('error');
