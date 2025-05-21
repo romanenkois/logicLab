@@ -99,7 +99,7 @@ export class AuthorizationCommand {
     this.tokenStorage.setAccessToken(null);
     this.tokenStorage.setRefreshToken(null);
 
-    this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   public refreshTokens(): Observable<LoadingState> {

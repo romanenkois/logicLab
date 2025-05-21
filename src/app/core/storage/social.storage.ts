@@ -13,8 +13,9 @@ export class SocialStorage {
 
   addUsers(users: UserPublic[]): void {
     const currentUsers = this.users();
-    const newUsers = users.filter((user) => !currentUsers.some((u) => u.id === user.id));
+    const newUsers = users.filter(
+      (user) => !currentUsers.some((u) => u.id === user.id),
+    );
     this.users.update((prev) => [...prev, ...newUsers]);
   }
-
 }

@@ -70,4 +70,23 @@ export class UserCommand {
       });
     });
   }
+
+  public loadPublicUsers(userIds: UserPublic['id'][]): Observable<LoadingState> {
+    return new Observable<LoadingState>((observer) => {
+      observer.next('loading');
+
+      this.userAPI.getUsersInfo(userIds).subscribe({
+        next: (response: { users: UserPublic[] }) => {
+          this.socialStorage.addUsers(response.users);
+          observer.next('resolved');
+          observer.complete();
+        },
+        error: (error) => {
+          console.error(error);
+          observer.next('error');
+          observer.complete();
+        },
+      });
+    });
+  }
 }

@@ -7,15 +7,8 @@ indent_style = space
 indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
-
-[*.{html,scss}]
-indent_size = 4
-
-[*.{scss}]
 quote_type = single
-
-[*.{js,ts}]
-quote_type = single
+indent_size = 2
 
 [*.md]
 max_line_length = off

@@ -53,7 +53,13 @@ export class UserAPI {
   }
 
   public getUserInfo(userId: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/user/user?userid=${userId}`, {});
+    return this.http.get<any>(`${this.apiUrl}/user/user?userid=${userId}`);
+  }
+
+  public getUsersInfo(userIds: string[]): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/user/users?userids=${userIds.join(',')}`,
+    );
   }
 
   public getUserPersonalInfo(token: string): Observable<any> {

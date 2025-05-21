@@ -15,21 +15,23 @@ export class CourseCommand {
     return new Observable<LoadingState>((observer) => {
       observer.next('loading');
       const courses = this.coursesStorage.getCourse(courseHref);
-
-      if (!courses) {
-        this.appAPI.getCourse(courseHref, true).subscribe({
-          next: (response) => {
-            this.coursesStorage.addCourse(response.course as Course);
-            observer.next('resolved');
-            observer.complete();
-          },
-          error: (error) => {
-            console.error(error);
-            observer.next('error');
-            observer.complete();
-          },
-        });
+      if (courses) {
+        observer.next('resolved');
+        observer.complete();
       }
+
+      this.appAPI.getCourse(courseHref, true).subscribe({
+        next: (response) => {
+          this.coursesStorage.addCourse(response.course as Course);
+          observer.next('resolved');
+          observer.complete();
+        },
+        error: (error) => {
+          console.error(error);
+          observer.next('error');
+          observer.complete();
+        },
+      });
     });
   }
 

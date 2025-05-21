@@ -1,26 +1,30 @@
-<div class="wrapper w-full">
+@if (this.lessons().length) {
+  <div class="wrapper w-full">
     @for (lesson of this.$lessons(); track $index) {
-    <div class="item p-2 box-border">
+      <div class="item box-border p-2">
         <a [routerLink]="['/course', this.courseHref(), lesson.href]">
-            <div class="item-2 flex flex-justify-between">
-                <div class="w-full h-full flex">
-                    <div class="flex">
-                        <p
-                            class="text-lg h-min hover:text-pure-white hover:underline"
-                        >
-                            {{ lesson.name }}
-                        </p>
-                    </div>
-                </div>
-                @if (this.showDescription()) {
-                <div class="description w-full h-full">
-                    <p class="text-sm truncate-2 text-gray">
-                        {{ lesson.description }}
-                    </p>
-                </div>
-                }
+          <div class="item-2 flex-justify-between flex">
+            <div class="flex h-full w-full">
+              <div class="flex">
+                <p class="h-min text-lg hover:text-pure-white hover:underline">
+                  {{ lesson.name }}
+                </p>
+              </div>
             </div>
+            @if (this.showDescription()) {
+              <div class="description h-full w-full">
+                <p class="truncate-2 text-sm text-gray">
+                  {{ lesson.description }}
+                </p>
+              </div>
+            }
+          </div>
         </a>
-    </div>
+      </div>
     }
-</div>
+  </div>
+} @else {
+  <div class="flex h-full w-full items-center justify-center py-[30vh]">
+    <app-loading-spinner class="h-[50px] w-[50px]" />
+  </div>
+}

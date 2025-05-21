@@ -1,15 +1,22 @@
-import { Component, computed, inject, input, InputSignal, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  InputSignal,
+  OnInit,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CourseCommand } from '@commands';
 import { CoursesStorage } from '@storage';
-import { CourseLessonsListComponent } from "@features";
+import { CourseLessonsListComponent, LoadingSpinnerComponent } from '@features';
 import { LoadingState } from '@types';
 
 @Component({
   selector: 'app-course-content',
-  imports: [RouterModule, CourseLessonsListComponent],
+  imports: [RouterModule, CourseLessonsListComponent, LoadingSpinnerComponent],
   templateUrl: './course-content.component.html',
-  styleUrl: './course-content.component.scss'
+  styleUrl: './course-content.component.scss',
 })
 export class CourseContentComponent implements OnInit {
   courseCommand: CourseCommand = inject(CourseCommand);
@@ -20,12 +27,14 @@ export class CourseContentComponent implements OnInit {
   status: LoadingState = 'idle';
 
   course = computed(() => {
-    return this.courseStorage.getCourse(this.courseHref())
+    return this.courseStorage.getCourse(this.courseHref());
   });
 
   ngOnInit() {
-    this.courseCommand.loadCourse(this.courseHref()).subscribe((status: LoadingState) => {
-      this.status = status;
-    });
+    this.courseCommand
+      .loadCourse(this.courseHref())
+      .subscribe((status: LoadingState) => {
+        this.status = status;
+      });
   }
 }

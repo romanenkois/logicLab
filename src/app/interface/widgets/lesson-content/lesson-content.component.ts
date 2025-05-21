@@ -14,6 +14,7 @@ import {
 } from '@features';
 import { CoursesStorage } from '@storage';
 import { LoadingState } from '@types';
+import { LoadingSpinnerComponent } from "../../features/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-lesson-content',
@@ -21,7 +22,8 @@ import { LoadingState } from '@types';
     LessonPlainTextComponent,
     LessonCodeSampleComponent,
     LessonListComponent,
-  ],
+    LoadingSpinnerComponent
+],
   templateUrl: './lesson-content.component.html',
   styleUrl: './lesson-content.component.scss',
 })

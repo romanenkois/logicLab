@@ -1,4 +1,5 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthorizationCommand, UserCommand } from '@commands';
 import { UserStorage } from '@storage';
 import { LoadingState } from '@types';
@@ -10,6 +11,7 @@ import { LoadingState } from '@types';
   styleUrl: './profile.component.scss',
 })
 export default class ProfileComponent implements OnInit {
+  private router: Router = inject(Router);
   private userCommand: UserCommand = inject(UserCommand);
   private authorizationCommand: AuthorizationCommand =
     inject(AuthorizationCommand);
@@ -23,6 +25,7 @@ export default class ProfileComponent implements OnInit {
 
   logout() {
     this.authorizationCommand.logoutUser();
+    this.router.navigate(['/']);
   }
 
   ngOnInit() {

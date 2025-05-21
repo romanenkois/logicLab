@@ -9,7 +9,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommentsCommand } from '@commands';
+import { CommentsCommand, UserCommand } from '@commands';
 import { ScreenNotificationService } from '@services';
 import { CommentsStorage } from '@storage';
 import { LoadingState, UploadingState } from '@types';
@@ -22,6 +22,7 @@ import { UserCardComponent } from '@features';
   styleUrl: './lesson-comments.component.scss',
 })
 export class LessonCommentsComponent implements OnInit {
+  private userCommand: UserCommand = inject(UserCommand);
   private commentsCommand: CommentsCommand = inject(CommentsCommand);
   private commentsStorage: CommentsStorage = inject(CommentsStorage);
   private screenNotifications: ScreenNotificationService = inject(
@@ -89,6 +90,16 @@ export class LessonCommentsComponent implements OnInit {
       .loadLessonComments(this.lessonHref())
       .subscribe((status: LoadingState) => {
         this.loadingStatus = status;
+        if (status === 'resolved') {
+          const userIds = this.comments()
+            .map((comment) => comment.userId)
+
+          this.userCommand
+            .loadPublicUsers(userIds)
+            .subscribe((_status: LoadingState) => {
+              console.log('status', _status);
+            });
+        }
       });
   }
 }

@@ -11,10 +11,11 @@ import { RouterLink } from '@angular/router';
 import { CourseCommand } from '@commands';
 import { CoursesStorage } from '@storage';
 import { LessonSimple, Lesson, LoadingState } from '@types';
+import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-course-lessons-list',
-  imports: [RouterLink],
+  imports: [RouterLink, LoadingSpinnerComponent],
   templateUrl: './course-lessons-list.component.html',
   styleUrl: './course-lessons-list.component.scss',
 })

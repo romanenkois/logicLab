@@ -60,9 +60,6 @@ export default class LoginComponent {
               });
               this.loginForm.get('password')?.reset();
               break;
-
-            default:
-              console.error('Unknown status:', status);
           }
         });
     } else if (this.loginForm.get('password')?.errors?.['minlength']) {
