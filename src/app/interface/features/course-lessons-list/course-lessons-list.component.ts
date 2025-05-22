@@ -38,7 +38,7 @@ export class CourseLessonsListComponent implements OnInit {
   ngOnInit() {
     for (const lesson of this.lessons()) {
       const existingLesson = this.CoursesStorage.getLesson(lesson.href);
-      if (!existingLesson || !existingLesson.content || existingLesson.content.length < 1) {
+      if (!existingLesson) {
         this.CourseCommand.loadLesson(lesson.href).subscribe((status) => {
           this.status = status;
         });

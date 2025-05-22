@@ -1,5 +1,5 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { Course, Lesson } from '@types';
+import { Course, Lesson, LessonSimple } from '@types';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class CoursesStorage {
   public getCourse(courseHref: string): Course {
     // used filter instead of find, so compiler would shut up about it being undefined
     return this.courses().filter(
-      (course: Course) => course.href === courseHref
+      (course: Course) => course.href === courseHref,
     )[0];
   }
   public addCourse(course: Course): void {
@@ -23,10 +23,29 @@ export class CoursesStorage {
 
   public getLesson(lessonHref: string): Lesson {
     return this.lessons().filter(
-      (lesson: Lesson) => lesson.href === lessonHref
+      (lesson: Lesson) => lesson.href === lessonHref,
     )[0];
   }
   public addLesson(lesson: Lesson): void {
-    this.lessons.set([...this.lessons(), lesson]);
+    const existingLessonIndex = this.lessons().findIndex(
+      (l) => l.href === lesson.href,
+    );
+
+    if (existingLessonIndex !== -1) {
+      const updatedLessons = [...this.lessons()];
+      updatedLessons[existingLessonIndex] = lesson;
+      this.lessons.set(updatedLessons);
+    } else {
+      this.lessons.set([...this.lessons(), lesson]);
+    }
+  }
+  public addLessons(lessons: Lesson[] | LessonSimple[]): void {
+    if (!('content' in lessons[0])) {
+      lessons = lessons.map((lesson: LessonSimple) => ({
+        ...lesson,
+        content: [],
+      })) as Lesson[];
+    }
+    this.lessons.set([...this.lessons(), ...(lessons as Lesson[])]);
   }
 }

@@ -1,7 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { CoursesAPI } from '@api';
 import { CoursesStorage } from '@storage';
-import { Course, CoursesSelectionOption, LoadingState } from '@types';
+import {
+  Course,
+  CoursesSelectionOption,
+  LessonSimple,
+  LoadingState,
+} from '@types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,8 +26,9 @@ export class CourseCommand {
       }
 
       this.appAPI.getCourse(courseHref, true).subscribe({
-        next: (response) => {
+        next: (response: { course: Course; lessons: LessonSimple[] }) => {
           this.coursesStorage.addCourse(response.course as Course);
+          this.coursesStorage.addLessons(response.lessons);
           observer.next('resolved');
           observer.complete();
         },
@@ -62,23 +68,22 @@ export class CourseCommand {
       observer.next('loading');
       const lesson = this.coursesStorage.getLesson(lessonHref);
 
-      if (!lesson || !lesson.content || lesson.content.length < 1) {
-        this.appAPI.getLesson(lessonHref).subscribe({
-          next: (response) => {
-            this.coursesStorage.addLesson(response.lesson);
-            observer.next('resolved');
-            observer.complete();
-          },
-          error: (error) => {
-            console.error(error);
-            observer.next('error');
-            observer.complete();
-          },
-        });
-      } else {
+      if (lesson && lesson.content && lesson.content.length > 0) {
         observer.next('resolved');
         observer.complete();
       }
+      this.appAPI.getLesson(lessonHref).subscribe({
+        next: (response) => {
+          this.coursesStorage.addLesson(response.lesson);
+          observer.next('resolved');
+          observer.complete();
+        },
+        error: (error) => {
+          console.error(error);
+          observer.next('error');
+          observer.complete();
+        },
+      });
     });
   }
 }
