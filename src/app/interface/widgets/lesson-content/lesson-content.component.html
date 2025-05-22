@@ -1,33 +1,31 @@
 @if (this.lesson()) {
-    <div class="page-wrapper">
-        <div class="mb-9 flex w-full flex-col gap-2">
-            <p class="text-4xl font-black">{{ this.lesson()!.name }}</p>
-            @if (this.lesson()!.description) {
-                <p class="text-gray">{{ this.lesson()!.description }}</p>
-            }
-        </div>
-        <div class="content flex w-full flex-col gap-6">
-            @for (item of this.lesson()!.content; track $index) {
-                <div class="item">
-                    @switch (item.type) {
-                        @case ("plain-text") {
-                            <app-lesson-plain-text [object]="item">
-                            </app-lesson-plain-text>
-                        }
-                        @case ("code-sample") {
-                            <app-lesson-code-sample [object]="item">
-                            </app-lesson-code-sample>
-                        }
-                        @case ("list") {
-                            <app-lesson-list [object]="item"> </app-lesson-list>
-                        }
-                    }
-                </div>
-            }
-        </div>
+  <div class="page-wrapper">
+    <div class="mb-9 flex w-full flex-col gap-2">
+      <p class="text-4xl font-black">{{ this.lesson()!.name }}</p>
+      @if (this.lesson()!.description) {
+        <p class="text-gray">{{ this.lesson()!.description }}</p>
+      }
     </div>
+    <div class="content flex w-full flex-col gap-6">
+      @for (item of this.lesson()!.content; track $index) {
+        <div class="item">
+          @switch (item.type) {
+            @case ('plain-text') {
+              <app-lesson-plain-text [object]="item" />
+            }
+            @case ('code-sample') {
+              <app-lesson-code-sample [object]="item" />
+            }
+            @case ('list') {
+              <app-lesson-list [object]="item" />
+            }
+          }
+        </div>
+      }
+    </div>
+  </div>
 } @else {
-    <div class="flex w-full h-full py-[30vh] items-center justify-center">
-        <app-loading-spinner class="w-[50px] h-[50px]"/>
-    </div>
+  <div class="flex h-full w-full items-center justify-center py-[30vh]">
+    <app-loading-spinner class="h-[50px] w-[50px]" />
+  </div>
 }

@@ -17,9 +17,9 @@ export default class LessonComponent implements OnInit {
 
   lessonCommentsVisibility: WritableSignal<boolean> = signal(false);
 
-  toggleLessonComments(togle?: boolean | void) {
-    if (togle) {
-      this.lessonCommentsVisibility.set(togle);
+  toggleLessonComments(toggle?: boolean | void) {
+    if (toggle) {
+      this.lessonCommentsVisibility.set(toggle);
       return;
     }
     this.lessonCommentsVisibility.set(!this.lessonCommentsVisibility());

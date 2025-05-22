@@ -32,7 +32,7 @@ export class LessonCodeSampleComponent {
   });
 
 
-  runInEdditor() {
+  runInEditor() {
     this.codeSpaceService.createNewEditor({
       programmingLanguage: this.object().object.programmingLanguage ?? 'javascript',
       code: this.object().object.code,

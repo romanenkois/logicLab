@@ -9,15 +9,15 @@ import { Message } from '@types';
   styleUrl: './screen-notification.component.scss',
 })
 export class ScreenNotificationComponent {
-  screenNotifucationService: ScreenNotificationService = inject(
+  screenNotificationService: ScreenNotificationService = inject(
     ScreenNotificationService,
   );
 
   message: Signal<Message | null> = computed(() => {
-    return this.screenNotifucationService.getMessage();
+    return this.screenNotificationService.getMessage();
   });
 
   close() {
-    this.screenNotifucationService.removeMessage();
+    this.screenNotificationService.removeMessage();
   }
 }
