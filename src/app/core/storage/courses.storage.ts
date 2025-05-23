@@ -14,11 +14,20 @@ export class CoursesStorage {
       (course: Course) => course.href === courseHref,
     )[0];
   }
+  public getCourses(): Course[] {
+    return this.courses();
+  }
   public addCourse(course: Course): void {
-    this.courses.set([...this.courses(), course]);
+    const couseInCourses = this.courses().find((c) => c.href === course.href);
+    if (!couseInCourses) {
+      this.courses.set([...this.courses(), course]);
+    }
   }
   public addCourses(courses: Course[]): void {
-    this.courses.set([...this.courses(), ...courses]);
+    const newCourses = courses.filter(
+      (course) => !this.courses().some((existing) => existing.href === course.href),
+    );
+    this.courses.set([...this.courses(), ...newCourses]);
   }
 
   public getLesson(lessonHref: string): Lesson {
@@ -27,6 +36,7 @@ export class CoursesStorage {
     )[0];
   }
   public addLesson(lesson: Lesson): void {
+    // this way we dont skip the suplicates, but rather overwrite them
     const existingLessonIndex = this.lessons().findIndex(
       (l) => l.href === lesson.href,
     );

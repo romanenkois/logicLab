@@ -13,8 +13,8 @@ export class ProgrammingLanguagePipe implements PipeTransform {
         return 'TypeScript';
       case 'python':
         return 'Python';
-      case 'html':
-        return 'HTML';
+      // case 'html':
+      //   return 'HTML';
       case 'css':
         return 'CSS';
 

@@ -1,98 +1,91 @@
 <div class="page-wrapper box-border flex flex-col gap-2">
-    <div class="flex w-full gap-2">
-        <!-- ADD NEW TAB BUTTON -->
-        <div class="flex-shrink-0">
-            <button
-                id="create-new-tab"
-                class="action-button flex aspect-square h-[40px] items-center justify-center p-2"
-                (click)="this.createNewEditor()"
-            >
-                <div class="plus-icon">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </button>
+  <div class="flex w-full gap-2">
+    <!-- ADD NEW TAB BUTTON -->
+    <div class="flex-shrink-0">
+      <button
+        id="create-new-tab"
+        class="action-button flex aspect-square h-[40px] items-center justify-center p-2"
+        (click)="this.createNewEditor()"
+      >
+        <div class="plus-icon">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
-
-        <!-- DELETE ALL TABS BUTTON -->
-        <div class="flex-shrink-0">
-            <button
-                class="action-button flex aspect-square h-[40px] items-center justify-center"
-                (click)="this.deleteAllEditors()"
-            >
-                <div class="medium-icon">
-                    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            fill-rule="evenodd"
-                            d="M8,16 C12.4183,16 16,12.4183 16,8 C16,3.58172 12.4183,0 8,0 C3.58172,0 0,3.58172 0,8 C0,12.4183 3.58172,16 8,16 Z M4.29289,4.29289 C4.68342,3.90237 5.31658,3.90237 5.70711,4.29289 L8,6.58579 L10.2929,4.29289 C10.6834,3.90237 11.3166,3.90237 11.7071,4.29289 C12.0976,4.68342 12.0976,5.31658 11.7071,5.70711 L9.41421,8 L11.7071,10.2929 C12.0976,10.6834 12.0976,11.3166 11.7071,11.7071 C11.3166,12.0976 10.6834,12.0976 10.2929,11.7071 L8,9.41421 L5.70711,11.7071 C5.31658,12.0976 4.68342,12.0976 4.29289,11.7071 C3.90237,11.3166 3.90237,10.6834 4.29289,10.2929 L6.58579,8 L4.29289,5.70711 C3.90237,5.31658 3.90237,4.68342 4.29289,4.29289 Z"
-                        />
-                    </svg>
-                </div>
-            </button>
-        </div>
-
-        <!-- TAB LIST -->
-        <div class="tab-list flex flex-1 gap-2">
-            @for (codespace of this.codeEditors(); track $index) {
-                <button
-                    class="flex w-max gap-2 bg-dark-light p-2"
-                    [class]="
-                        this.activeEditor() === codespace.name
-                            ? 'active-tab'
-                            : ''
-                    "
-                    (click)="this.setActiveEditor(codespace.name)"
-                >
-                    <div>
-                        <p class="select-none text-dark-gray">
-                            {{ codespace.name }}
-                        </p>
-                    </div>
-                    <button
-                        class="flex h-full items-center justify-center"
-                        (click)="
-                            $event.stopPropagation();
-                            this.removeEditor(codespace.name)
-                        "
-                    >
-                        <div class="cross-icon">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                    </button>
-                </button>
-            }
-        </div>
+      </button>
     </div>
-    <div>
-        <!-- EDITORS, TRYING TO ADD ALL, FILTERING ON ONE ACTIVE TAB -->
-        @for (codespace of this.codeEditors(); track $index) {
-            <app-console
-                [consoleConfiguration]="codespace"
-                [style.display]="
-                    this.activeEditor() === codespace.name ? 'block' : 'none'
-                "
-            ></app-console>
-        }
 
-        <!-- PLACEHOLDER IF THERE IS NO ACTIVE EDITOR -->
-        @if (this.codeEditors().length === 0 || this.activeEditor() === null) {
-            <div
-                class="g-2 flex h-96 w-full flex-col items-center justify-center"
-            >
-                <p class="text-center text-3xl font-black text-gray">
-                    Не обрано жодної консолі
-                </p>
-                <p class="text-center text-dark-gray">
-                    @if (this.codeEditors().length !== 0) {
-                        натисніть на одну з відкритих вкладок зверху, чи
-                        <br />
-                    }
-                    натисніть на кнопку
-                    <span class="font-black text-gray"> + </span>
-                    зверху, аби створити нову консоль
-                </p>
+    <!-- DELETE ALL TABS BUTTON -->
+    <div class="flex-shrink-0">
+      <button
+        class="action-button flex aspect-square h-[40px] items-center justify-center"
+        (click)="this.deleteAllEditors()"
+      >
+        <div class="medium-icon">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              d="M8,16 C12.4183,16 16,12.4183 16,8 C16,3.58172 12.4183,0 8,0 C3.58172,0 0,3.58172 0,8 C0,12.4183 3.58172,16 8,16 Z M4.29289,4.29289 C4.68342,3.90237 5.31658,3.90237 5.70711,4.29289 L8,6.58579 L10.2929,4.29289 C10.6834,3.90237 11.3166,3.90237 11.7071,4.29289 C12.0976,4.68342 12.0976,5.31658 11.7071,5.70711 L9.41421,8 L11.7071,10.2929 C12.0976,10.6834 12.0976,11.3166 11.7071,11.7071 C11.3166,12.0976 10.6834,12.0976 10.2929,11.7071 L8,9.41421 L5.70711,11.7071 C5.31658,12.0976 4.68342,12.0976 4.29289,11.7071 C3.90237,11.3166 3.90237,10.6834 4.29289,10.2929 L6.58579,8 L4.29289,5.70711 C3.90237,5.31658 3.90237,4.68342 4.29289,4.29289 Z"
+            />
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- TAB LIST -->
+    <div class="tab-list flex flex-1 gap-2">
+      @for (codespace of this.codeEditors(); track $index) {
+        <button
+          class="flex w-max gap-2 bg-dark-light p-2"
+          [class]="this.activeEditor() === codespace.name ? 'active-tab' : ''"
+          (click)="this.setActiveEditor(codespace.name)"
+        >
+          <div>
+            <p class="select-none text-dark-gray">
+              {{ codespace.name }}
+            </p>
+          </div>
+          <button
+            class="flex h-full items-center justify-center"
+            (click)="
+              $event.stopPropagation(); this.removeEditor(codespace.name)
+            "
+          >
+            <div class="cross-icon">
+              <div class="line"></div>
+              <div class="line"></div>
             </div>
-        }
+          </button>
+        </button>
+      }
     </div>
+  </div>
+  <div>
+    <!-- EDITORS, TRYING TO ADD ALL, FILTERING ON ONE ACTIVE TAB -->
+    @for (codespace of this.codeEditors(); track $index) {
+      <app-console
+        [consoleConfiguration]="codespace"
+        [style.display]="
+          this.activeEditor() === codespace.name ? 'block' : 'none'
+        "
+      />
+    }
+
+    <!-- PLACEHOLDER IF THERE IS NO ACTIVE EDITOR -->
+    @if (this.codeEditors().length === 0 || this.activeEditor() === null) {
+      <div class="g-2 flex h-96 w-full flex-col items-center justify-center">
+        <p class="text-center text-3xl font-black text-gray">
+          Не обрано жодної консолі
+        </p>
+        <p class="text-center text-dark-gray">
+          @if (this.codeEditors().length !== 0) {
+            натисніть на одну з відкритих вкладок зверху, чи
+            <br />
+          }
+          натисніть на кнопку
+          <span class="font-black text-gray"> + </span>
+          зверху, аби створити нову консоль
+        </p>
+      </div>
+    }
+  </div>
 </div>

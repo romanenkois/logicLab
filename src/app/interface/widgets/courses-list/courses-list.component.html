@@ -1,0 +1,24 @@
+<div class="flex flex-col gap-10 p-6 py-10">
+  @for (course of this.courses(); track $index) {
+    <a routerLink="/course/{{ course.href }}">
+      <div class="flex flex-col gap-2 bg-dark p-2">
+        <h2 class="text-4xl font-black hover:underline">{{ course.title }}</h2>
+        @if (
+          course.programmingLanguage &&
+          (course.programmingLanguage | programmingLanguage) !==
+            'Unknown Language'
+        ) {
+          <p class="font-black text-gray hover:underline">
+            {{ course.programmingLanguage | programmingLanguage }}
+          </p>
+        }
+        <p
+          class="truncate-2 text-gray hover:underline"
+          [title]="course.description"
+        >
+          {{ course.description }}
+        </p>
+      </div>
+    </a>
+  }
+</div>
